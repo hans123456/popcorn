@@ -1,0 +1,35 @@
+	
+	.custom-container {
+		width : 100vw;
+		margin-top : 30px;
+	}
+	
+	td {
+		width : 25%;
+	}
+	
+	.pagination {
+		clear: both;
+		margin-left : auto;
+		margin-right : auto;
+		margin-top : 30px;
+		text-align : center;
+	}
+	
+	.filter-small {
+		margin : 20px;
+	}
+	
+	.modal-image {
+		width : 100px;
+		height : 100px;
+	}
+	
+	.margin-top10 {
+		margin-top : 10px;
+	}
+	
+	.margin-top15 {
+		margin-top : 15px;
+	}
+	

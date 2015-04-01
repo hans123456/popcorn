@@ -1,0 +1,20 @@
+
+	td {
+		width : 20%;
+	}
+	
+	.pagination {
+		clear: both;
+		margin-left : auto;
+		margin-right : auto;
+		margin-top : 30px;
+		text-align : center;
+	}
+	
+	.description {
+		margin-top : 40px;
+	}
+	
+	.sub-description {
+		margin-top : 30px;
+	}
