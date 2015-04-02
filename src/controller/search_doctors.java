@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,11 @@ public class search_doctors extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.sendRedirect("view_doctors");
+		ServletContext sc = request.getServletContext();
+		
+		sc.setAttribute("search", request.getParameter("search"));
+		
+		request.getRequestDispatcher("/view_doctors").forward(request, response);
 	}
 
 }

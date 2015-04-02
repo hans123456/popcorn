@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="enums.filters" %>
+   
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -57,7 +60,7 @@
 							<form action="search_doctors" method="get">
 								<p class="flow-text">Search</p>
 								<div class="input-field">
-									<input id="search" type="text" class="validate">
+									<input id="search" type="text" class="validate" name="search">
 									<label for="search">Doctor's Name (any)</label>
 								</div>
 								<div class="right-align">
@@ -68,32 +71,37 @@
 					</div>
 					<div class="card">
 						<div class="card-content">
-							<form action="filter_doctors" method="get">
+							<form action="filter_doctors" method="GET">
 								<p class="flow-text">Filters</p>
-								<select type="submit">
-									<option value="" disabled selected>Specialization</option>
-									<option value="0">None</option>
-									<option value="1">Dentist</option>
-									<option value="2">Occupational Therapy</option>
-									<option value="3">Physical Therapy</option>
-									<option value="4">Physician</option>
+								<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
+									<option value="0" disabled selected>Specialization</option>
+									<option value="1">None</option>
+									<!--- PRINT SPECIALIZATIONS --->
+									<c:forEach items="${specializations}" var="specialization">
+								        <option value="${specialization.key}">${specialization.value}</option>
+								    </c:forEach>
 								</select>
-								<select type="submit">
-									<option value="" disabled selected>Location</option>
-									<option value="0">None</option>
-									<option value="1">Makati</option>
-									<option value="2">Manila</option>
-									<option value="3">Pasay</option>
-									<option value="4">Quezon</option>
+								<select id="city_selector" name="city" onchange="this.form.submit()">
+									<option value="0" disabled selected>Location</option>
+									<option value="1">None</option>
+									<!--- PRINT CITIES --->
+									<c:forEach items="${cities}" var="city">
+								        <option value="${city.key}">${city.value}</option>
+								    </c:forEach>
 								</select>
-								<select type="submit">
-									<option value="" disabled selected>Hospital</option>
-									<option value="0">None</option>
-									<option value="1">Manila Adventist Medical Center</option>
-									<option value="2">Manila Doctors' Hospital</option>
-									<option value="3">Philippine General Hospital</option>
-									<option value="4">San Lazaro Hospital</option>
+								<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
+									<option value="0" disabled selected>Hospital</option>
+									<option value="1">None</option>
+									<!--- PRINT HOSPITALS --->
+									<c:forEach items="${hospitals}" var="hospital">
+								        <option value="${hospital.key}">${hospital.value}</option>
+								    </c:forEach>
 								</select>
+							</form>
+							<form action="clear_filters">
+								<div class="right-align">
+									<button type="submit" class="waves-effect waves-light btn white-text">Clear</button>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -109,37 +117,37 @@
 								<li>
 									<div class="collapsible-header"><i class="mdi-content-filter-list"></i>Filters</div>
 									<div class="collapsible-body">
-										<form action="#">
+										<form action="filter_doctors" method="GET">
 											<div class="filter-small">
 												<div class="row">
 													<div class="col s12 m4">
-														<select id="specialization_selector">
-															<option value="" disabled selected>Specialization</option>
-															<option value="0">None</option>
-															<option value="1">Dentist</option>
-															<option value="2">Occupational Therapy</option>
-															<option value="3">Physical Therapy</option>
-															<option value="4">Physician</option>
+														<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
+															<option value="0" disabled selected>Specialization</option>
+															<option value="1">None</option>
+															<!--- PRINT SPECIALIZATIONS --->
+															<c:forEach items="${specializations}" var="specialization">
+														        <option value="${specialization.key}">${specialization.value}</option>
+														    </c:forEach>
 														</select>
 													</div>
 													<div class="col s12 m4">
-														<select id="location_selector">
-															<option value="" disabled selected>Location</option>
-															<option value="0">None</option>
-															<option value="1">Makati</option>
-															<option value="2">Manila</option>
-															<option value="3">Pasay</option>
-															<option value="4">Quezon</option>
+														<select id="location_selector" name="location" onchange="this.form.submit()">
+															<option value="9" disabled selected>Location</option>
+															<option value="1">None</option>
+															<!--- PRINT CITIES --->
+															<c:forEach items="${cities}" var="city">
+														        <option value="${city.key}">${city.value}</option>
+														    </c:forEach>
 														</select>
 													</div>
 													<div class="col s12 m4">
-														<select id="hospital_selector">
-															<option value="" disabled selected>Hospital</option>
-															<option value="0">None</option>
-															<option value="1">Manila Adventist Medical Center</option>
-															<option value="2">Manila Doctors' Hospital</option>
-															<option value="3">Philippine General Hospital</option>
-															<option value="4">San Lazaro Hospital</option>
+														<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
+															<option value="0" disabled selected>Hospital</option>
+															<option value="1">None</option>
+															<!--- PRINT HOSPITALS --->
+															<c:forEach items="${hospitals}" var="hospital">
+														        <option value="${hospital.key}">${hospital.value}</option>
+														    </c:forEach>
 														</select>
 													</div>
 												</div>
@@ -260,7 +268,35 @@
 </body>
 
 	<script>
-		
+	
+		<%
+			ServletContext sc = request.getServletContext();
+			Object o;
+			for(filters i : filters.values()){
+				String attr = i.toString();
+				o = sc.getAttribute(attr);
+				if(o==null || o.equals("1")){
+					%>
+						$("#<%=attr%>_selector option[value='0']").attr('selected', true);
+					<%
+				}else{
+					%>
+						$("#<%=attr%>_selector option[value='0']").attr('selected', false);
+						$("#<%=attr%>_selector option[value=\"" + <%=o.toString()%>+ "\"]").attr('selected', true);
+					<%
+				}
+			}
+			
+			o = sc.getAttribute("search");
+			
+			if(o!=null){
+				%>
+					$("#search").val("<%=o%>");
+				<%
+			}
+			
+		%>
+	
 		$(document).ready(function(){
 		
 			$('.button-collapse').sideNav({menuWidth: 240, activationWidth: 70});
@@ -292,7 +328,7 @@
 		});
 		
 		function load_doctor_info(id){
-			$('#doctor-info').openModal();
+			$('#doctor-info').openModal();	
 		}
 		
 	</script>

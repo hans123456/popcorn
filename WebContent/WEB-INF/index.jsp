@@ -87,7 +87,10 @@
 	<div class="board yellow lighten-4 valign-wrapper">
 		<div class="container valign">
 			<div class="left-align board-padding col s12 ">
-				<h2 class="board-header">Login</h2>
+				<div>
+					<h2 class="board-header display-inline">Login</h2>
+					<h5 class="red-text display-inline left-margin10">Invalid User</h5>
+				</div>
 				<form action="login" method="post">
 					<div class="input-field col s6">
 						<i class="mdi-communication-email prefix"></i>
@@ -111,7 +114,10 @@
 	<div class="board valign-wrapper">
 		<div class="container valign">
 			<div class="left-align board-padding col s12 ">
-				<h2 class="board-header">Register</h2>
+				<div>
+					<h2 class="board-header display-inline">Register</h2>
+					<h5 class="red-text display-inline left-margin10">Invalid Email</h5>
+				</div>
 				<div class="row">
 				<form class="col s12" action="register" method="post">
 					<div class="row">

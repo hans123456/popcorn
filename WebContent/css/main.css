@@ -45,3 +45,11 @@
 	.datepicker {
 		overflow : visible;
 	}
+	
+	.display-inline{
+		display : inline;
+	}
+	
+	.left-margin10{
+		margin-left : 10px;
+	}
