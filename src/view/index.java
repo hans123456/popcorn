@@ -2,6 +2,8 @@ package view;
 
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +30,40 @@ public class index extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		ServletContext sc = request.getServletContext();
+
+		String key1 = "invalid_registration";
+		String key2 = "invalid_login";
+		
+		request.setAttribute(key1, sc.getAttribute(key1));
+		request.setAttribute(key2, sc.getAttribute(key2));
+		sc.removeAttribute(key1);
+		sc.removeAttribute(key2);
+		
+		System.out.println(request.getAttribute(key1));
 		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
+	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		ServletContext sc = request.getServletContext();
 
+		String key1 = "invalid_registration";
+		String key2 = "invalid_login";
+		
+		request.setAttribute(key1, sc.getAttribute(key1));
+		request.setAttribute(key2, sc.getAttribute(key2));
+		sc.removeAttribute(key1);
+		sc.removeAttribute(key2);
+		
+		System.out.println(request.getAttribute(key1));
+		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+		
+	}
+	
 }

@@ -82,7 +82,7 @@
 								    </c:forEach>
 								</select>
 								<select id="city_selector" name="city" onchange="this.form.submit()">
-									<option value="0" disabled selected>Location</option>
+									<option value="0" disabled selected>City</option>
 									<option value="1">None</option>
 									<!--- PRINT CITIES --->
 									<c:forEach items="${cities}" var="city">
@@ -131,8 +131,8 @@
 														</select>
 													</div>
 													<div class="col s12 m4">
-														<select id="location_selector" name="location" onchange="this.form.submit()">
-															<option value="9" disabled selected>Location</option>
+														<select id="city_selector" name="city" onchange="this.form.submit()">
+															<option value="9" disabled selected>City</option>
 															<option value="1">None</option>
 															<!--- PRINT CITIES --->
 															<c:forEach items="${cities}" var="city">
@@ -222,39 +222,38 @@
 	
 	<div id="doctor-info" class="modal modal-fixed-footer">
 		<div class="modal-content">
-			<span>
-			<h4>Doctor Piggy</h4>
-			</span>
-			<div class="flow-text margin-top10">Weekdays : 8am - 4pm</div>
-			<div class="flow-text margin-top10">Weekends : 8am - 4pm</div>
+			<h4 id="doctor-info-name">Doctor Piggy</h4>
+			<span class="flow-text margin-top10"><span id="doctor-info-hospital">Manila Doctors' Hospital</span> , <span id="doctor-info-city">Manila</span></span>
+			<!--<div class="margin-top10">Weekdays : <span id="doctor-info-weekday">8am - 4pm</span></div>
+			<div class="margin-top10">Weekends : <span id="doctor-info-weekend">8am - 4pm</span></div> -->
 			<div class="flow-text margin-top10">Available Days :</div>
 			<div class="row margin-top10">
 				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="mon_checkbox" checked="checked" disabled="disabled" />
+					<input type="checkbox" id="doctor-info-mon_checkbox" checked="checked" disabled="disabled" />
 					<label for="test7">Monday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="tue_checkbox" checked="checked" disabled="disabled" />
+					<input type="checkbox" id="doctor-info-tue_checkbox" checked="checked" disabled="disabled" />
 					<label for="test7">Tuesday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="wed_checkbox" disabled="disabled" />
+					<input type="checkbox" id="doctor-info-wed_checkbox" disabled="disabled" />
 					<label for="test7">Wednesday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="thur_checkbox" checked="checked" disabled="disabled" />
+					<input type="checkbox" id="doctor-info-thur_checkbox" checked="checked" disabled="disabled" />
 					<label for="test7">Thursday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="fri_checkbox" checked="checked" disabled="disabled" />
+					<input type="checkbox" id="doctor-info-fri_checkbox" checked="checked" disabled="disabled" />
 					<label for="test7">Friday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="sat_checkbox" checked="checked" disabled="disabled" />
+					<input type="checkbox" id="doctor-info-sat_checkbox" checked="checked" disabled="disabled" />
 					<label for="test7">Saturday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="sun_checkbox" disabled="disabled" />
+					<input type="checkbox" id="doctor-info-sun_checkbox" disabled="disabled" />
 					<label for="test7">Sunday</label>
 				</div>
 			</div>
@@ -328,6 +327,11 @@
 		});
 		
 		function load_doctor_info(id){
+			
+			<%
+				
+			%>
+			
 			$('#doctor-info').openModal();	
 		}
 		

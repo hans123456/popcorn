@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -92,7 +95,7 @@
 					<h5 class="red-text display-inline left-margin10">Invalid User</h5>
 				</div>
 				<form action="login" method="post">
-					<div class="input-field col s6">
+					<div class="input-field col s6 margin-top15">
 						<i class="mdi-communication-email prefix"></i>
 						<input id="icon_prefix" type="email" class="validate">
 						<label for="icon_prefix">Email Address</label>
@@ -103,7 +106,7 @@
 						<label for="icon_prefix">Password</label>
 					</div>
 					<div class="right-align">
-						<button type="submit" class="waves-effect waves-light btn btn-top-margin"><i class="mdi-content-send right"></i>Login</button>
+						<button type="submit" class="waves-effect waves-light btn margin-top10"><i class="mdi-content-send right"></i>Login</button>
 					</div>
 				</form>
 			</div>
@@ -116,38 +119,42 @@
 			<div class="left-align board-padding col s12 ">
 				<div>
 					<h2 class="board-header display-inline">Register</h2>
-					<h5 class="red-text display-inline left-margin10">Invalid Email</h5>
+					<h5 class="red-text display-inline left-margin10">
+						<c:if test="${invalid_registration!=null}">
+							${invalid_registration}
+						</c:if>
+					</h5>
 				</div>
 				<div class="row">
 				<form class="col s12" action="register" method="post">
 					<div class="row">
 						<div class="input-field col m6 s12">
-							<input id="first_name" type="text" class="validate">
+							<input id="first_name" name="first_name" type="text" class="validate" value='<c:if test=""></c:if>'>
 							<label for="first_name">First Name</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="last_name" type="text" class="validate">
+							<input id="last_name" name="last_name" type="text" class="validate">
 							<label for="last_name">Last Name</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="email" type="email" class="validate">
+							<input id="email" name="email" type="email" class="validate">
 							<label for="email">Email</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="contact-number" type="text" class="validate">
-							<label for="contact-number">Contact Number</label>
+							<input id="contact_number" name="contact_number" type="text" class="validate">
+							<label for="contact_number">Contact Number</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="password" type="password" class="validate">
+							<input id="password" name="password" type="password" class="validate">
 							<label for="password">Password</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="confirm-password" type="password" class="validate">
-							<label for="confirm-password">Confirm Password</label>
+							<input id="confirm_password" name="confirm_password" type="password" class="validate">
+							<label for="confirm_password">Confirm Password</label>
 						</div>
 					</div>
 					<div class="right-align">
-						<button type="submit" class="waves-effect waves-light btn btn-top-margin"><i class="mdi-content-send right"></i>Register</button>
+						<button type="submit" class="waves-effect waves-light btn margin-top10"><i class="mdi-content-send right"></i>Register</button>
 					</div>
 					<div class="left-align flow-text">
 						A doctor? apply <a href="doctor_apply.html">here</a>
