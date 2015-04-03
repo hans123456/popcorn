@@ -9,17 +9,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
-	<link rel="shortcut icon" href="popcorn.ico">
-	
-	<!--Import materialize.css-->
-	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-	<!--Let browser know website is optimized for mobile-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	
-	<link type="text/css" rel="stylesheet" href="css/main.css"  media="screen,projection"/>
-	
-	<title>POPCORN</title>
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<link type="text/css" rel="stylesheet" href="css/main.css"  media="screen,projection"/>
+
+<title>POPCORN</title>
 		
 </head>
 <body>
@@ -161,7 +159,7 @@
 						<button type="submit" class="waves-effect waves-light btn margin-top10"><i class="mdi-content-send right"></i>Register</button>
 					</div>
 					<div class="left-align flow-text">
-						A doctor? apply <a href="doctor_apply.html">here</a>
+						A doctor? apply <a href="doctor_apply#Apply">here</a>
 					</div>
 				</form>
 				</div>

@@ -8,18 +8,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-	<link rel="shortcut icon" href="popcorn.ico">
-	
-	<!--Import materialize.css-->
-	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<link rel="shortcut icon" href="popcorn.ico">
 
-	<!--Let browser know website is optimized for mobile-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-	
-	<link type="text/css" rel="stylesheet" href="css/main.css"  media="screen,projection"/>
-	<link type="text/css" rel="stylesheet" href="css/view_doctors.css"  media="screen,projection"/>
-	
-	<title>POPCORN</title>
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<link type="text/css" rel="stylesheet" href="css/main.css"  media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="css/view_doctors.css"  media="screen,projection"/>
+
+<title>POPCORN</title>
 		
 </head>
 <body>
@@ -29,7 +29,7 @@
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	
 	<div class="navbar-fixed">
-		<nav class="blue darken-3">
+		<nav class="green darken-2">
 			<div class="nav-wrapper">
 				<a href="index#Home" class="brand-logo">POPCORN</a>
 				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
@@ -194,7 +194,7 @@
 		</div>
 	</div>
 	
-	<footer class="page-footer blue darken-3">
+	<footer class="page-footer green darken-2">
          <div class="container">
            <div class="row">
              <div class="col l6 s12">
@@ -230,36 +230,36 @@
 			<div class="row margin-top10">
 				<div class="col s12 m4 margin-top15">
 					<input type="checkbox" id="doctor-info-mon_checkbox" checked="checked" disabled="disabled" />
-					<label for="test7">Monday</label>
+					<label for="doctor-info-mon_checkbox">Monday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
 					<input type="checkbox" id="doctor-info-tue_checkbox" checked="checked" disabled="disabled" />
-					<label for="test7">Tuesday</label>
+					<label for="doctor-info-tue_checkbox">Tuesday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
 					<input type="checkbox" id="doctor-info-wed_checkbox" disabled="disabled" />
-					<label for="test7">Wednesday</label>
+					<label for="doctor-info-wed_checkbox">Wednesday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
 					<input type="checkbox" id="doctor-info-thur_checkbox" checked="checked" disabled="disabled" />
-					<label for="test7">Thursday</label>
+					<label for="doctor-info-thur_checkbox">Thursday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
 					<input type="checkbox" id="doctor-info-fri_checkbox" checked="checked" disabled="disabled" />
-					<label for="test7">Friday</label>
+					<label for="doctor-info-fri_checkbox">Friday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
 					<input type="checkbox" id="doctor-info-sat_checkbox" checked="checked" disabled="disabled" />
-					<label for="test7">Saturday</label>
+					<label for="doctor-info-sat_checkbox">Saturday</label>
 				</div>
 				<div class="col s12 m4 margin-top15">
 					<input type="checkbox" id="doctor-info-sun_checkbox" disabled="disabled" />
-					<label for="test7">Sunday</label>
+					<label for="doctor-info-sun_checkbox">Sunday</label>
 				</div>
 			</div>
 		</div>
 		<div class="modal-footer">
-			<a class="waves-effect waves-green btn-flat modal-action" href="doctor_profile.html">View Doctor</a>
+			<a class="waves-effect waves-green btn-flat modal-action" href="doctor_profile">View Doctor</a>
 			<a class="waves-effect waves-teal btn-flat modal-action modal-close">Close</a>
 		</div>
 	</div>

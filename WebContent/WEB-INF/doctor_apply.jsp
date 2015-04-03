@@ -45,12 +45,36 @@
 		</nav>
 	</div>
 	
-	<div id="Success"></div>
-	<div class="board valign-wrapper">
+	<div id="Apply" class="board valign-wrapper">
 		<div class="container valign">
-			<div class="center board-padding col s12 ">
-				<h2 class="board-header">Success</h2>
-				<p class="flow-text">Back to <a href="index">Home...</a></p>
+			<div class="left-align board-padding col s12 ">
+				<h2 class="board-header">Doctor Application</h2>
+				<p class="flow-text">We'll get in touch with you ...</p>
+				<div class="row">
+				<form class="col s12">
+					<div class="row">
+						<div class="input-field col m6 s12">
+							<input id="first_name" type="text" class="validate">
+							<label for="first_name">First Name</label>
+						</div>
+						<div class="input-field col m6 s12">
+							<input id="last_name" type="text" class="validate">
+							<label for="last_name">Last Name</label>
+						</div>
+						<div class="input-field col m6 s12">
+							<input id="email" type="email" class="validate">
+							<label for="email">Email</label>
+						</div>
+						<div class="input-field col m6 s12">
+							<input id="contact-number" type="text" class="validate">
+							<label for="contact-number">Contact Number</label>
+						</div>
+					</div>
+					<div class="right-align">
+						<a class="waves-effect waves-light btn btn-top-margin"><i class="mdi-content-send right"></i>Continue</a>
+					</div>
+				</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -78,9 +102,8 @@
            <div class="container">
 			&copy; 2015 Copyright Text
            </div>
-          </div>
-        </footer>
-		
-
+         </div>
+       </footer>
+	
 </body>
 </html>
