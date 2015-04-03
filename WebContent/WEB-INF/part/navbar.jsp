@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-  
+
 <div class="navbar-fixed">
 	<nav>
 		<div class="nav-wrapper">
@@ -26,8 +26,8 @@
 				<li><a href="#About">About</a></li>
 				<li><a href="view_doctors">View Doctors</a></li>
 				<c:if test="${user==null}">
-					<li><a class="black-text text-lighten-3" href="#Login">Login</a></li>
-					<li><a class="black-text text-lighten-3" href="#Register">Register</a></li>
+					<li><a class="black-text text-lighten-3" href="index#Login">Login</a></li>
+					<li><a class="black-text text-lighten-3" href="index#Register">Register</a></li>
 				</c:if>
 				<c:if test="${user!=null}">
 					<li><a class="black-text text-lighten-3" href="doctor_profile">Doctor Profile</a></li>
@@ -37,7 +37,7 @@
 		</div>
 	</nav>
 </div>
-	
+
 <script>
 
 	$(document).ready(function(){
