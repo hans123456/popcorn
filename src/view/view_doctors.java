@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -10,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Doctor;
+import model.DoctorsDAO;
 
 /**
  * Servlet implementation class view_doctors
@@ -46,8 +50,24 @@ public class view_doctors extends HttpServlet {
 		sc.setAttribute("specializations", specializations);
 		sc.setAttribute("cities", cities);
 		sc.setAttribute("hospitals", hospitals);
+
+		int page = 1;
+        int recordsPerPage = 10;
+        if(request.getParameter("page") != null)
+            page = Integer.parseInt(request.getParameter("page"));
 		
+        DoctorsDAO dao = new DoctorsDAO();
+        Iterator<Doctor> list = dao.listOfDoctors((page-1)*recordsPerPage, recordsPerPage); // add filter and search
+        
+        int noOfRecords = dao.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+        
+        request.setAttribute("doctorsList", list);
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
+        
 		request.getRequestDispatcher("/WEB-INF/view_doctors.jsp").forward(request, response);
+		
 	}
 
 }

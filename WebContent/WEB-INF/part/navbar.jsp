@@ -32,6 +32,7 @@
 				<c:if test="${user!=null}">
 					<li><a class="black-text text-lighten-3" href="doctor_profile">Doctor Profile</a></li>
 					<li><a class="black-text text-lighten-3" href="user_profile">User Profile</a></li>
+					<li><a class="black-text text-lighten-3" href="logout">Logout</a></li>
 				</c:if>
 			</ul>
 		</div>

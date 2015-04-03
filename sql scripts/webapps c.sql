@@ -48,10 +48,12 @@ DROP TABLE IF EXISTS `doctors`;
 		`specialization_id` int(11) unsigned NOT NULL,
 		`city_id` int(11) unsigned NOT NULL,
 		`hospital_id` int(11) unsigned NOT NULL,
+		`user_id` int(11) unsigned NOT NULL,
 		PRIMARY KEY (`id`),
 		FOREIGN KEY fk_specialization(`specialization_id`) REFERENCES `specializations`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 		FOREIGN KEY fk_city(`city_id`) REFERENCES `cities`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-		FOREIGN KEY fk_hospital(`hospital_id`) REFERENCES `hospitals`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+		FOREIGN KEY fk_hospital(`hospital_id`) REFERENCES `hospitals`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+		FOREIGN KEY fk_user(`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `available times`;
@@ -89,9 +91,7 @@ DROP TABLE IF EXISTS `users`;
 		`contact_number` varchar(100) NOT NULL,
 		`email` varchar(50) NOT NULL,
 		`medications` varchar(1000),
-		`doctor_id` int(11) unsigned,
-		PRIMARY KEY (`id`),
-		FOREIGN KEY fk_doctor(`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+		PRIMARY KEY (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `hospitalizations`;

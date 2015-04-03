@@ -13,16 +13,17 @@
 			<div class="col l4 offset-l2 s12">
 				<h5 class="white-text">Links</h5>
 				<ul>
-					<li><a class="grey-text text-lighten-3" href="#Home">Home</a></li>
-					<li><a class="grey-text text-lighten-3" href="#About">About</a></li>
+					<li><a class="grey-text text-lighten-3" href="index#Home">Home</a></li>
+					<li><a class="grey-text text-lighten-3" href="index#About">About</a></li>
 					<li><a class="grey-text text-lighten-3" href="view_doctors">View Doctors</a></li>
 					<c:if test="${user==null}">
-						<li><a class="grey-text text-lighten-3" href="#Login">Login</a></li>
-						<li><a class="grey-text text-lighten-3" href="#Register">Register</a></li>
+						<li><a class="grey-text text-lighten-3" href="index#Login">Login</a></li>
+						<li><a class="grey-text text-lighten-3" href="index#Register">Register</a></li>
 					</c:if>
 					<c:if test="${user!=null}">
 						<li><a class="grey-text text-lighten-3" href="doctor_profile">Doctor Profile</a></li>
 						<li><a class="grey-text text-lighten-3" href="user_profile">User Profile</a></li>
+						<li><a class="grey-text text-lighten-3" href="logout">Logout</a></li>
 					</c:if>
 				</ul>
 			</div>

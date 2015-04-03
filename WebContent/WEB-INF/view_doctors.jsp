@@ -147,7 +147,7 @@
 												</tr>
 											</thead>
 											<tbody id="list_of_doctors">
-												
+
 											</tbody>
 										</table>
 									</div>
@@ -270,11 +270,21 @@
 				});
 			});
 			
-			var list = $('#list_of_doctors');
+			/*var list = $('#list_of_doctors');
 				
 			for(var i=0; i<10; i++){
 				list.append('<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info()"><td>Piggy</td><td>Manila</td><td>Physician</td></tr>');
 			}
+			
+			<c:forEach var="doctor" items="${doctorsList}">
+			<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info(${doctor.getId}])">
+				<td>${doctor.getInfo("name")}</td>
+				<td>${doctor.getCity}</td>
+				<td>${doctor.getSpecialization}</td>
+			</tr>
+			</c:forEach>
+			
+			*/
 			
 		});
 		
