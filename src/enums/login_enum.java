@@ -1,14 +1,13 @@
 package enums;
 
-public enum filters {
+public enum login_enum {
 
-	SPECIALIZATION ("specialization"),
-	CITY ("city"),
-	HOSPITAL ("hospital");
+	EMAIL ("login_email"),
+	PASSWORD ("login_password");
 	
 	private final String text;
 
-    private filters(final String text) {
+    private login_enum(final String text) {
         this.text = text;
     }
 
@@ -16,5 +15,5 @@ public enum filters {
     public String toString() {
         return text;
     }
-    
+	
 }

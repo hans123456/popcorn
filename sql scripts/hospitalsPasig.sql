@@ -1,0 +1,21 @@
+INSERT INTO `locations hospital` (`name`, `location_city_id`)
+VALUES
+("Alfonso Specialist Hospital", 12),
+("Glen Eagles Healthcare", 12),
+("Health Solutions Corporation", 12),
+("Javillonar Clinic and Hospital", 12),
+("John F. Cotton Hospital", 12),
+("Mary Immaculate Hospital", 12),
+("Medicomm Pacific, Inc.", 12),
+("Metro Psych Facility", 12),
+("Mission Hospital", 12),
+("Mother Regina Hospital", 12),
+("Pasig City General Hospital", 12),
+("Pasig Doctors Medical Center", 12),
+("Pasig Medical and Maternity Hospital Foundation", 12),
+("Rizal Medical Center", 12),
+("Sabater General Hospital", 12),
+("Salve Regina General Hospital", 12),
+("Saint Threse Hospital", 12),
+("The Medical City", 12),
+("Wellness Pro, Inc.", 12)

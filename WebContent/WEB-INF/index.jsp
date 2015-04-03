@@ -1,3 +1,4 @@
+<%@ page import="enums.user_registration_enum"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -91,7 +92,11 @@
 			<div class="left-align board-padding col s12 ">
 				<div>
 					<h2 class="board-header display-inline">Login</h2>
-					<h5 class="red-text display-inline left-margin10">Invalid User</h5>
+					<h5 class="red-text display-inline left-margin10">
+						<c:if test="${invalid_login!=null}">
+							${invalid_login}
+						</c:if>
+					</h5>
 				</div>
 				<form action="login" method="post">
 					<div class="input-field col s6 margin-top15">
@@ -128,28 +133,28 @@
 				<form class="col s12" action="register" method="post">
 					<div class="row">
 						<div class="input-field col m6 s12">
-							<input id="first_name" name="first_name" type="text" class="validate" value='<c:if test=""></c:if>'>
-							<label for="first_name">First Name</label>
+							<input id="user_reg_first_name" name="user_reg_first_name" type="text" class="validate" value='<c:if test=""></c:if>'>
+							<label for="user_reg_first_name">First Name</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="last_name" name="last_name" type="text" class="validate">
-							<label for="last_name">Last Name</label>
+							<input id="user_reg_last_name" name="user_reg_last_name" type="text" class="validate">
+							<label for="user_reg_last_name">Last Name</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="email" name="email" type="email" class="validate">
-							<label for="email">Email</label>
+							<input id="user_reg_email" name="user_reg_email" type="email" class="validate">
+							<label for="user_reg_email">Email</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="contact_number" name="contact_number" type="text" class="validate">
-							<label for="contact_number">Contact Number</label>
+							<input id="user_reg_contact_number" name="user_reg_contact_number" type="text" class="validate">
+							<label for="user_reg_contact_number">Contact Number</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="password" name="password" type="password" class="validate">
-							<label for="password">Password</label>
+							<input id="user_reg_password" name="user_reg_password" type="password" class="validate">
+							<label for="user_reg_password">Password</label>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="confirm_password" name="confirm_password" type="password" class="validate">
-							<label for="confirm_password">Confirm Password</label>
+							<input id="user_reg_confirm_password" name="user_reg_confirm_password" type="password" class="validate">
+							<label for="user_reg_confirm_password">Confirm Password</label>
 						</div>
 					</div>
 					<div class="right-align">
@@ -193,6 +198,17 @@
 </body>
 
 	<script>
+		
+		<%
+			for(user_registration_enum i : user_registration_enum.values()){
+				String val = (String) request.getAttribute(i.toString());
+				if(val!=null){
+		%>
+					$("#<%=i.toString()%>").val("<%=val%>");
+		<%
+				}
+			}
+		%>
 		
 		$(document).ready(function(){
 		
