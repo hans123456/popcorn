@@ -28,28 +28,7 @@
 	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	
-	<div class="navbar-fixed">
-		<nav class="green darken-2">
-			<div class="nav-wrapper">
-				<a href="index#Home" class="brand-logo">POPCORN</a>
-				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-				<ul class="right hide-on-med-and-down">
-					<li><a href="index#Home">Home</a></li>
-					<li><a href="index#About">About</a></li>
-					<li><a href="view_doctors">View Doctors</a></li>
-					<li><a href="index#Login">Login</a></li>
-					<li><a href="index#Register">Register</a></li>
-				</ul>
-				<ul class="side-nav" id="mobile-demo">
-					<li><a href="index#Home">Home</a></li>
-					<li><a href="index#About">About</a></li>
-					<li><a href="view_doctors">View Doctors</a></li>
-					<li><a href="index#Login">Login</a></li>
-					<li><a href="index#Register">Register</a></li>
-				</ul>
-			</div>
-		</nav>
-	</div>
+	<c:import url="part/navbar.jsp"></c:import>
 	
 	<div class="board">
 		<div class="container custom-container row center-align board-padding">
@@ -194,31 +173,7 @@
 		</div>
 	</div>
 	
-	<footer class="page-footer green darken-2">
-         <div class="container">
-           <div class="row">
-             <div class="col l6 s12">
-               <h5 class="white-text">POPCORN</h5>
-               <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, porro clita imperdiet id pri. Ne mea prima antiopam, ut vis enim doming voluptua. Nihil inimicus ut eam, oratio latine mei in, ut purto inciderint vim.</p>
-             </div>
-             <div class="col l4 offset-l2 s12">
-               <h5 class="white-text">Links</h5>
-               <ul>
-                 <li><a class="grey-text text-lighten-3" href="index#Home">Home</a></li>
-                 <li><a class="grey-text text-lighten-3" href="index#About">About</a></li>
-                 <li><a class="grey-text text-lighten-3" href="view_doctors">View Doctors</a></li>
-                 <li><a class="grey-text text-lighten-3" href="index#Login">Login</a></li>
-                 <li><a class="grey-text text-lighten-3" href="index#Register">Register</a></li>
-               </ul>
-             </div>
-           </div>
-         </div>
-         <div class="footer-copyright">
-           <div class="container">
-			&copy; 2015 Copyright Text
-           </div>
-         </div>
-       </footer>
+	<c:import url="part/footer.jsp"></c:import>
 	
 	<div id="doctor-info" class="modal modal-fixed-footer">
 		<div class="modal-content">
@@ -298,7 +253,6 @@
 	
 		$(document).ready(function(){
 		
-			$('.button-collapse').sideNav({menuWidth: 240, activationWidth: 70});
 			$('select').material_select();
 			$('.modal-trigger').leanModal();
 			$('.collapsible').collapsible({
@@ -333,6 +287,7 @@
 			%>
 			
 			$('#doctor-info').openModal();	
+			
 		}
 		
 	</script>

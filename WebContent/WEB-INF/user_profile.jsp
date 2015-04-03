@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,28 +26,7 @@
 	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	
-	<div class="navbar-fixed">
-		<nav>
-			<div class="nav-wrapper">
-				<a href="index#Home" class="brand-logo">POPCORN</a>
-				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-				<ul class="right hide-on-med-and-down">
-					<li><a href="index#Home">Home</a></li>
-					<li><a href="index#About">About</a></li>
-					<li><a href="view_doctors">View Doctors</a></li>
-					<li><a href="index#Login">Login</a></li>
-					<li><a href="index#Register">Register</a></li>
-				</ul>
-				<ul class="side-nav" id="mobile-demo">
-					<li><a href="index#Home">Home</a></li>
-					<li><a href="index#About">About</a></li>
-					<li><a href="view_doctors">View Doctors</a></li>
-					<li><a href="index#Login">Login</a></li>
-					<li><a href="index#Register">Register</a></li>
-				</ul>
-			</div>
-		</nav>
-	</div>
+	<c:import url="part/navbar.jsp"></c:import>
 	
 	<div class="board valign-wrapper">
 		<div class="container valign">
@@ -186,31 +168,8 @@
 		</div>
 	</div>
 	
-	<footer class="page-footer">
-         <div class="container">
-           <div class="row">
-             <div class="col l6 s12">
-               <h5 class="white-text">POPCORN</h5>
-               <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, porro clita imperdiet id pri. Ne mea prima antiopam, ut vis enim doming voluptua. Nihil inimicus ut eam, oratio latine mei in, ut purto inciderint vim.</p>
-             </div>
-             <div class="col l4 offset-l2 s12">
-               <h5 class="white-text">Links</h5>
-               <ul>
-                 <li><a class="grey-text text-lighten-3" href="index#Home">Home</a></li>
-                 <li><a class="grey-text text-lighten-3" href="index#About">About</a></li>
-                 <li><a class="grey-text text-lighten-3" href="view_doctors">View Doctors</a></li>
-                 <li><a class="grey-text text-lighten-3" href="index#Login">Login</a></li>
-                 <li><a class="grey-text text-lighten-3" href="index#Register">Register</a></li>
-               </ul>
-             </div>
-           </div>
-         </div>
-         <div class="footer-copyright">
-           <div class="container">
-			&copy; 2015 Copyright Text
-           </div>
-         </div>
-       </footer>
+	<c:import url="part/footer.jsp"></c:import>
 	
 </body>
+
 </html>
