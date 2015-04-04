@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import enums.filters;
+import enums.filters_enum;
 
 /**
  * Servlet implementation class clear_filters
@@ -32,7 +32,7 @@ public class clear_filters extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ServletContext sc = request.getServletContext();
-		for(filters i : filters.values()){
+		for(filters_enum i : filters_enum.values()){
 			String attr = i.toString();
 			sc.removeAttribute(attr);
 		}

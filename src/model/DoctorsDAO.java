@@ -21,7 +21,9 @@ public class DoctorsDAO {
     
     public Iterator<Doctor> listOfDoctors(int offset, int noOfRecords){
     	
-    	String query = "select SQL_CALC_FOUND_ROWS * from employee limit " + offset + ", " + noOfRecords;
+    	String query = "select (u.first_name + ' ' + u.last_name) as `name`, cities.name, specializations.name"
+    					+ " from doctors d, cities c, specializations s, users u where d.city_id = c.id and d.specialization_id = s.id"
+    					+ " and d.user_id = u.id limit " + offset + ", " + noOfRecords;
     	
 		List<Doctor> list = new ArrayList<Doctor>();
 		Doctor doctor = null;

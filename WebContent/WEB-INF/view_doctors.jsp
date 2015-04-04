@@ -1,7 +1,8 @@
+<%@ page import="enums.filters_enum" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="enums.filters" %>
-   
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    pageEncoding="ISO-8859-1" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -154,13 +155,32 @@
 								</div>
 								<div class="row center">
 									<ul class="pagination col s12 center-align" style="width: auto">
-										<li class="disabled"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>
-										<li class="active"><a href="#!">1</a></li>
-										<li class="waves-effect"><a href="#!">2</a></li>
-										<li class="waves-effect"><a href="#!">3</a></li>
-										<li class="waves-effect"><a href="#!">4</a></li>
-										<li class="waves-effect"><a href="#!">5</a></li>
-										<li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
+									
+										<c:if test="${currentPage == 1}">
+											<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
+										</c:if>
+										<c:if test="${currentPage != 1}">
+											<li class="disabled"><a href="view_doctors?page=${currentPage - 1}"><i class="mdi-navigation-chevron-left"></i></a></li>
+										</c:if>
+										
+										<c:forEach begin="1" end="${noOfPages}" var="i">
+							                <c:choose>
+							                    <c:when test="${currentPage eq i}">
+							                    	<li class="active">${i}</li>
+							                    </c:when>
+							                    <c:otherwise>
+							                    	<li class="waves-effect"><a href="view_doctors?page=${i}">${i}</a></li>
+							                    </c:otherwise>
+							                </c:choose>
+							            </c:forEach>
+							            
+							            <c:if test="${currentPage lt noOfPages}">
+											<li class="waves-effect"><a href="view_doctors?page=${currentPage + 1}"><i class="mdi-navigation-chevron-right"></i></a></li>
+										</c:if>
+										<c:if test="${currentPage ge noOfPages}">
+											<li class="disabled"><i class="mdi-navigation-chevron-right"></i></li>
+										</c:if>
+										
 									</ul>
 								</div>
 							</div>
@@ -224,7 +244,7 @@
 		<%
 			ServletContext sc = request.getServletContext();
 			Object o;
-			for(filters i : filters.values()){
+			for(filters_enum i : filters_enum.values()){
 				String attr = i.toString();
 				o = sc.getAttribute(attr);
 				if(o==null || o.equals("1")){
@@ -276,13 +296,13 @@
 				list.append('<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info()"><td>Piggy</td><td>Manila</td><td>Physician</td></tr>');
 			}
 			
-			<c:forEach var="doctor" items="${doctorsList}">
-			<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info(${doctor.getId}])">
-				<td>${doctor.getInfo("name")}</td>
-				<td>${doctor.getCity}</td>
-				<td>${doctor.getSpecialization}</td>
-			</tr>
-			</c:forEach>
+				<c:forEach var="doctor" items="${doctorsList}">
+				<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info(${doctor.getId}])">
+					<td>${doctor.getInfo("name")}</td>
+					<td>${doctor.getCity}</td>
+					<td>${doctor.getSpecialization}</td>
+				</tr>
+				</c:forEach>
 			
 			*/
 			

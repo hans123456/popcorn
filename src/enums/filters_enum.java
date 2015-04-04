@@ -1,6 +1,6 @@
 package enums;
 
-public enum filters {
+public enum filters_enum {
 
 	SPECIALIZATION ("specialization"),
 	CITY ("city"),
@@ -8,7 +8,7 @@ public enum filters {
 	
 	private final String text;
 
-    private filters(final String text) {
+    private filters_enum(final String text) {
         this.text = text;
     }
 
