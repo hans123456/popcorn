@@ -41,6 +41,20 @@ DROP TABLE IF EXISTS `hospitals`;
 		FOREIGN KEY fk_city(`city_id`) REFERENCES `cities`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `users`;
+
+	CREATE TABLE `users` (
+		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+		`first_name` varchar(50) NOT NULL,
+		`last_name` varchar(50) NOT NULL,
+		`gender` varchar(1) NOT NULL,
+		`birth_date` date NOT NULL,
+		`contact_number` varchar(100) NOT NULL,
+		`email` varchar(50) NOT NULL,
+		`medications` varchar(1000),
+		PRIMARY KEY (`id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `doctors`;
 
 	CREATE TABLE `doctors` (
@@ -81,19 +95,6 @@ DROP TABLE IF EXISTS `unavailable times`;
 		FOREIGN KEY fk_doctor(`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
-DROP TABLE IF EXISTS `users`;
-
-	CREATE TABLE `users` (
-		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-		`first_name` varchar(50) NOT NULL,
-		`last_name` varchar(50) NOT NULL,
-		`gender` varchar(1) NOT NULL,
-		`contact_number` varchar(100) NOT NULL,
-		`email` varchar(50) NOT NULL,
-		`medications` varchar(1000),
-		PRIMARY KEY (`id`)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 DROP TABLE IF EXISTS `hospitalizations`;
 
 	CREATE TABLE `hospitalizations` (
