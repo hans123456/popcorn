@@ -1,9 +1,6 @@
-package controller;
+package controllers;
 
 import java.io.IOException;
-import java.util.Map;
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class filter_doctors
+ * Servlet implementation class doctor_apply
  */
-@WebServlet("/filter_doctors")
-public class filter_doctors extends HttpServlet {
+@WebServlet("/doctor_apply")
+public class doctor_apply extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public filter_doctors() {
+    public doctor_apply() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +27,21 @@ public class filter_doctors extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ServletContext sc = request.getServletContext();
+		response.sendRedirect("doctor_application#Apply");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		
-		Map<String, String[]> map = request.getParameterMap();
-		
-		for(String key : map.keySet()){
-			sc.setAttribute(key, map.get(key)[0]);
+		if(true){
+			response.sendRedirect("success#Success");
+		}else {
+			response.sendRedirect("doctor_application#Apply");
 		}
 		
-		request.getRequestDispatcher("/view_doctors").forward(request, response);
 	}
 
 }

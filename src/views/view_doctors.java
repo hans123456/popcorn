@@ -1,9 +1,7 @@
-package view;
+package views;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,8 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Doctor;
-import model.DoctorsDAO;
+import models.city.CitiesDAO;
+import models.city.City;
+import models.doctor.Doctor;
+import models.doctor.ListOfDoctorsDAO;
+import models.hospital.Hospital;
+import models.hospital.HospitalsDAO;
+import models.specialization.Specialization;
+import models.specialization.SpecializationsDAO;
 
 /**
  * Servlet implementation class view_doctors
@@ -38,14 +42,14 @@ public class view_doctors extends HttpServlet {
 		
 		ServletContext sc = request.getServletContext();
 		
-			Map<String, String> specializations = new HashMap<String, String>();
-			specializations.put("7", "Test");
+		SpecializationsDAO spdao = new SpecializationsDAO();
+		List<Specialization> specializations = spdao.getSpecializations();
+		
+		CitiesDAO cdao = new CitiesDAO();
+		List<City> cities = cdao.getCities();
 			
-			Map<String, String> cities = new HashMap<String, String>();
-			cities.put("7", "Test");
-			
-			Map<String, String> hospitals = new HashMap<String, String>();
-			hospitals.put("7", "Test");
+		HospitalsDAO hdao = new HospitalsDAO();
+		List<Hospital> hospitals = hdao.getHospitals();
 
 		sc.setAttribute("specializations", specializations);
 		sc.setAttribute("cities", cities);
@@ -56,8 +60,8 @@ public class view_doctors extends HttpServlet {
         if(request.getParameter("page") != null)
             page = Integer.parseInt(request.getParameter("page"));
 		
-        //DoctorsDAO dao = new DoctorsDAO();
-        //Iterator<Doctor> list = dao.listOfDoctors((page-1)*recordsPerPage, recordsPerPage); // add filter and search
+        ListOfDoctorsDAO dao = new ListOfDoctorsDAO();
+        List<Doctor> list = dao.listOfDoctors((page-1)*recordsPerPage, recordsPerPage); // add filter and search
         
         int noOfRecords = 5;//dao.getNoOfRecords();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
@@ -65,7 +69,7 @@ public class view_doctors extends HttpServlet {
         if(noOfPages<page)
         	page = noOfPages;
         
-        //request.setAttribute("doctorsList", list);
+        request.setAttribute("doctorsList", list);
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
         

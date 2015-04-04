@@ -32,7 +32,7 @@
 		<div class="container valign">
 			<div class="center board-padding col s12 ">
 				<h2 class="board-header">Success</h2>
-				<p class="flow-text">Back to <a href="index">Home...</a></p>
+				<p class="flow-text">Back to <a href="index#Home">Home...</a></p>
 			</div>
 		</div>
 	</div>

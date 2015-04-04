@@ -1,4 +1,4 @@
-package view;
+package views;
 
 
 import java.io.IOException;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.login;
-import controller.register;
+import controllers.login;
+import controllers.register;
 import enums.user_registration_enum;
 
 /**

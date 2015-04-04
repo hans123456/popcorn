@@ -31,15 +31,15 @@
 	<div class="board">
 		<div class="container board-padding">
 			<div class="row">
-				<h3>Doctor Piggy</h3>
-				<p class="flow-text">
+				<h3 id="name">Doctor Piggy</h3>
+				<p id="specialization" class="flow-text">
 					Physician
 				</p>
-				<div class="flow-text">
+				<div id="city" class="flow-text">
 					Manila
 				</div>
-				<div class="flow-text">
-					Manila Something Street
+				<div id="hospital" class="flow-text">
+					Manila Doctors' Hospital
 				</div>
 			</div>
 			

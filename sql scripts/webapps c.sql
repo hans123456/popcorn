@@ -51,10 +51,19 @@ DROP TABLE IF EXISTS `users`;
 		`birth_date` date NOT NULL,
 		`contact_number` varchar(100) NOT NULL,
 		`email` varchar(50) NOT NULL,
-		`medications` varchar(1000),
+		`password` varchar(512) NOT NULL,
 		PRIMARY KEY (`id`)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `admins`;
+
+	CREATE TABLE `admins` (
+		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+		`user_id` int(11) unsigned NOT NULL,
+		PRIMARY KEY (`id`),
+		FOREIGN KEY fk_user(`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	
 DROP TABLE IF EXISTS `doctors`;
 
 	CREATE TABLE `doctors` (
@@ -93,6 +102,16 @@ DROP TABLE IF EXISTS `unavailable times`;
 		PRIMARY KEY (`id`),
 		FOREIGN KEY fk_time(`time_id`) REFERENCES `times`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 		FOREIGN KEY fk_doctor(`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `medications`;
+
+	CREATE TABLE `medications` (
+		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+		`name` varchar(200) NOT NULL,
+		`user_id` int(11) unsigned NOT NULL,
+		PRIMARY KEY (`id`),
+		FOREIGN KEY fk_user(`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 DROP TABLE IF EXISTS `hospitalizations`;

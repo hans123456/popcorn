@@ -1,4 +1,4 @@
-package view;
+package controllers;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class doctor_profile
+ * Servlet implementation class logout
  */
-@WebServlet("/doctor_profile")
-public class doctor_profile extends HttpServlet {
+@WebServlet("/logout")
+public class logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public doctor_profile() {
+    public logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,8 @@ public class doctor_profile extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/doctor_profile.jsp").forward(request, response);
+		request.getSession().invalidate();
+		response.sendRedirect("success#Success");
 	}
 
 }

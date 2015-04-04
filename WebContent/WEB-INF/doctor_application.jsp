@@ -33,7 +33,7 @@
 				<h2 class="board-header">Doctor Application</h2>
 				<p class="flow-text">We'll get in touch with you ...</p>
 				<div class="row">
-				<form class="col s12">
+				<form action="doctor_apply" method="POST" class="col s12">
 					<div class="row">
 						<div class="input-field col m6 s12">
 							<input id="first_name" type="text" class="validate">
@@ -53,7 +53,7 @@
 						</div>
 					</div>
 					<div class="right-align">
-						<a class="waves-effect waves-light btn btn-top-margin"><i class="mdi-content-send right"></i>Continue</a>
+						<button type="submit" class="waves-effect waves-light btn btn-top-margin"><i class="mdi-content-send right"></i>Submit</button>
 					</div>
 				</form>
 				</div>

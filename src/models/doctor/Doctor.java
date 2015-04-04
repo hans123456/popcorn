@@ -1,4 +1,4 @@
-package model;
+package models.doctor;
 
 import java.util.HashMap;
 import java.util.Map;

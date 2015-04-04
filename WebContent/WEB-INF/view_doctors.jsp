@@ -1,3 +1,4 @@
+<%@page import="enums.doctor_info_view_enum"%>
 <%@ page import="enums.filters_enum" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
@@ -52,27 +53,24 @@
 							<form action="filter_doctors" method="GET">
 								<p class="flow-text">Filters</p>
 								<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
-									<option value="0" disabled selected>Specialization</option>
-									<option value="1">None</option>
-									<!--- PRINT SPECIALIZATIONS --->
+									<option value="" disabled selected>Specialization</option>
+									<option value="0">None</option>
 									<c:forEach items="${specializations}" var="specialization">
-								        <option value="${specialization.key}">${specialization.value}</option>
+								        <option value="${specialization.getId()}">${specialization.getName()}</option>
 								    </c:forEach>
 								</select>
 								<select id="city_selector" name="city" onchange="this.form.submit()">
-									<option value="0" disabled selected>City</option>
-									<option value="1">None</option>
-									<!--- PRINT CITIES --->
+									<option value="" disabled selected>City</option>
+									<option value="0">None</option>
 									<c:forEach items="${cities}" var="city">
-								        <option value="${city.key}">${city.value}</option>
+								        <option value="${city.getId()}">${city.getName()}</option>
 								    </c:forEach>
 								</select>
 								<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
-									<option value="0" disabled selected>Hospital</option>
-									<option value="1">None</option>
-									<!--- PRINT HOSPITALS --->
+									<option value="" disabled selected>Hospital</option>
+									<option value="0">None</option>
 									<c:forEach items="${hospitals}" var="hospital">
-								        <option value="${hospital.key}">${hospital.value}</option>
+								        <option value="${hospital.getId()}">${hospital.getName()}</option>
 								    </c:forEach>
 								</select>
 							</form>
@@ -100,31 +98,28 @@
 												<div class="row">
 													<div class="col s12 m4">
 														<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
-															<option value="0" disabled selected>Specialization</option>
-															<option value="1">None</option>
-															<!--- PRINT SPECIALIZATIONS --->
+															<option value="" disabled selected>Specialization</option>
+															<option value="0">None</option>
 															<c:forEach items="${specializations}" var="specialization">
-														        <option value="${specialization.key}">${specialization.value}</option>
+														        <option value="${specialization.getId()}">${specialization.getName()}</option>
 														    </c:forEach>
 														</select>
 													</div>
 													<div class="col s12 m4">
 														<select id="city_selector" name="city" onchange="this.form.submit()">
-															<option value="9" disabled selected>City</option>
-															<option value="1">None</option>
-															<!--- PRINT CITIES --->
+															<option value="" disabled selected>City</option>
+															<option value="0">None</option>
 															<c:forEach items="${cities}" var="city">
-														        <option value="${city.key}">${city.value}</option>
+														        <option value="${city.getId()}">${city.getName()}</option>
 														    </c:forEach>
 														</select>
 													</div>
 													<div class="col s12 m4">
 														<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
-															<option value="0" disabled selected>Hospital</option>
-															<option value="1">None</option>
-															<!--- PRINT HOSPITALS --->
+															<option value="" disabled selected>Hospital</option>
+															<option value="0">None</option>
 															<c:forEach items="${hospitals}" var="hospital">
-														        <option value="${hospital.key}">${hospital.value}</option>
+														        <option value="${hospital.getId()}">${hospital.getName()}</option>
 														    </c:forEach>
 														</select>
 													</div>
@@ -148,7 +143,13 @@
 												</tr>
 											</thead>
 											<tbody id="list_of_doctors">
-
+												<c:forEach var="doctor" items="${doctorsList}">
+													<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info(${doctor.getId()})">
+														<c:forEach items="<%=doctor_info_view_enum.values()%>" var="entry">
+														    <td>${doctor.getInformation(entry.toString())}</td>
+														</c:forEach>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>
@@ -232,7 +233,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<a class="waves-effect waves-green btn-flat modal-action" href="doctor_profile">View Doctor</a>
+			<a id="view_doctor_link" class="waves-effect waves-green btn-flat modal-action" href="doctor_profile?did=2">View Doctor</a>
 			<a class="waves-effect waves-teal btn-flat modal-action modal-close">Close</a>
 		</div>
 	</div>
@@ -247,13 +248,13 @@
 			for(filters_enum i : filters_enum.values()){
 				String attr = i.toString();
 				o = sc.getAttribute(attr);
-				if(o==null || o.equals("1")){
+				if(o==null || o.equals("0")){
 					%>
-						$("#<%=attr%>_selector option[value='0']").attr('selected', true);
+						$("#<%=attr%>_selector option[value='']").attr('selected', true);
 					<%
 				}else{
 					%>
-						$("#<%=attr%>_selector option[value='0']").attr('selected', false);
+						$("#<%=attr%>_selector option[value='']").attr('selected', false);
 						$("#<%=attr%>_selector option[value=\"" + <%=o.toString()%>+ "\"]").attr('selected', true);
 					<%
 				}
@@ -290,30 +291,11 @@
 				});
 			});
 			
-			/*var list = $('#list_of_doctors');
-				
-			for(var i=0; i<10; i++){
-				list.append('<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info()"><td>Piggy</td><td>Manila</td><td>Physician</td></tr>');
-			}
-			
-				<c:forEach var="doctor" items="${doctorsList}">
-				<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info(${doctor.getId}])">
-					<td>${doctor.getInfo("name")}</td>
-					<td>${doctor.getCity}</td>
-					<td>${doctor.getSpecialization}</td>
-				</tr>
-				</c:forEach>
-			
-			*/
-			
 		});
 		
 		function load_doctor_info(id){
 			
-			<%
-				
-			%>
-			
+			$('#view_doctor_link').attr('href', 'doctor_profile?did=' + id);
 			$('#doctor-info').openModal();	
 			
 		}

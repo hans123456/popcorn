@@ -1,26 +1,29 @@
-package view;
+package controllers;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import enums.user_registration_enum;
+import enums.login_enum;
 
 /**
- * Servlet implementation class sucess
+ * Servlet implementation class login
  */
-@WebServlet("/success")
-public class success extends HttpServlet {
+@WebServlet("/login")
+public class login extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
+	public static final String invalid = "invalid_login";
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public success() {
+    public login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,12 +33,7 @@ public class success extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		for(user_registration_enum i : user_registration_enum.values()){
-			request.removeAttribute(i.toString());  
-		}
-		
-		request.getRequestDispatcher("/WEB-INF/success.jsp").forward(request, response);
+		response.sendRedirect("index#Login");
 	}
 
 	/**
@@ -43,7 +41,19 @@ public class success extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/success.jsp").forward(request, response);
+		
+		ServletContext sc = request.getServletContext();
+		
+		String email = request.getParameter(login_enum.EMAIL.toString());
+		String password = request.getParameter(login_enum.PASSWORD.toString());
+		
+		if(true){ // check if account correct
+			response.sendRedirect("success#Success");
+		}else {
+			sc.setAttribute(invalid, "Invalid Email or Password");
+			response.sendRedirect("index#Login");
+		}
+		
 	}
 
 }

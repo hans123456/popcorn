@@ -1,6 +1,7 @@
-package controller;
+package controllers;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,16 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class search_doctors
+ * Servlet implementation class filter_doctors
  */
-@WebServlet("/search_doctors")
-public class search_doctors extends HttpServlet {
+@WebServlet("/filter_doctors")
+public class filter_doctors extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public search_doctors() {
+    public filter_doctors() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +32,11 @@ public class search_doctors extends HttpServlet {
 		// TODO Auto-generated method stub
 		ServletContext sc = request.getServletContext();
 		
-		sc.setAttribute("search", request.getParameter("search"));
+		Map<String, String[]> map = request.getParameterMap();
+		
+		for(String key : map.keySet()){
+			sc.setAttribute(key, map.get(key)[0]);
+		}
 		
 		request.getRequestDispatcher("/view_doctors").forward(request, response);
 	}

@@ -1,27 +1,23 @@
-package controller;
+package views;
 
 import java.io.IOException;
-
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import enums.filters_enum;
-
 /**
- * Servlet implementation class clear_filters
+ * Servlet implementation class doctor_apply
  */
-@WebServlet("/clear_filters")
-public class clear_filters extends HttpServlet {
+@WebServlet("/doctor_application")
+public class doctor_application extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public clear_filters() {
+    public doctor_application() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +27,7 @@ public class clear_filters extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ServletContext sc = request.getServletContext();
-		for(filters_enum i : filters_enum.values()){
-			String attr = i.toString();
-			sc.removeAttribute(attr);
-		}
-		request.getRequestDispatcher("/view_doctors").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/doctor_application.jsp").forward(request, response);
 	}
-	
+
 }

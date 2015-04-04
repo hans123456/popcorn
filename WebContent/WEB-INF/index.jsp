@@ -41,9 +41,13 @@
 					<h5 class="flow-text">Doctor Appointment System</h5>
 				</div>
 				<div class="row">
-					<a class="waves-effect waves-light btn-large green" href="#Register">Register</a>
+					<c:if test="${user==null}">
+						<a class="waves-effect waves-light btn-large green" href="#Register">Register</a>
+					</c:if>
 					<a class="waves-effect waves-light btn-large blue" href="view_doctors">View Doctor List</a>
-					<a class="waves-effect waves-light btn-large red" href="#Login">Login</a>
+					<c:if test="${user==null}">
+						<a class="waves-effect waves-light btn-large red" href="#Login">Login</a>
+					</c:if>
 				</div>
 			</div>
 		</div>
@@ -62,6 +66,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<c:if test="${user==null}">
 	
 	<div id="Login"></div>
 	<div class="board yellow lighten-4 valign-wrapper">
@@ -138,13 +144,27 @@
 						<button type="submit" class="waves-effect waves-light btn margin-top10"><i class="mdi-content-send right"></i>Register</button>
 					</div>
 					<div class="left-align flow-text">
-						A doctor? apply <a href="doctor_apply#Apply">here</a>
+						A doctor? apply <a href="doctor_application#Apply">here</a>
 					</div>
 				</form>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	</c:if>
+	
+	<c:if test="${user!=null}">
+		<c:if test="${user.isDoctor()!=false}">
+			<div class="board valign-wrapper">
+				<div class="container valign">
+					<div class="left-align flow-text">
+						A doctor? apply <a href="doctor_application#Apply">here</a>
+					</div>
+				</div>
+			</div>
+		</c:if>
+	</c:if>
 	
 	<c:import url="part/footer.jsp"></c:import>
 		
