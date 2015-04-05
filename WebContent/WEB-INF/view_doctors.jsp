@@ -188,50 +188,6 @@
 	
 	<c:import url="part/footer.jsp"></c:import>
 	
-	<div id="doctor-info" class="modal modal-fixed-footer">
-		<div class="modal-content">
-			<h4 id="doctor-info-name">Doctor Piggy</h4>
-			<span class="flow-text margin-top10"><span id="doctor-info-hospital">Manila Doctors' Hospital</span> , <span id="doctor-info-city">Manila</span></span>
-			<!--<div class="margin-top10">Weekdays : <span id="doctor-info-weekday">8am - 4pm</span></div>
-			<div class="margin-top10">Weekends : <span id="doctor-info-weekend">8am - 4pm</span></div> -->
-			<div class="flow-text margin-top10">Available Days :</div>
-			<div class="row margin-top10">
-				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="doctor-info-mon_checkbox" checked="checked" disabled="disabled" />
-					<label for="doctor-info-mon_checkbox">Monday</label>
-				</div>
-				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="doctor-info-tue_checkbox" checked="checked" disabled="disabled" />
-					<label for="doctor-info-tue_checkbox">Tuesday</label>
-				</div>
-				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="doctor-info-wed_checkbox" disabled="disabled" />
-					<label for="doctor-info-wed_checkbox">Wednesday</label>
-				</div>
-				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="doctor-info-thur_checkbox" checked="checked" disabled="disabled" />
-					<label for="doctor-info-thur_checkbox">Thursday</label>
-				</div>
-				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="doctor-info-fri_checkbox" checked="checked" disabled="disabled" />
-					<label for="doctor-info-fri_checkbox">Friday</label>
-				</div>
-				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="doctor-info-sat_checkbox" checked="checked" disabled="disabled" />
-					<label for="doctor-info-sat_checkbox">Saturday</label>
-				</div>
-				<div class="col s12 m4 margin-top15">
-					<input type="checkbox" id="doctor-info-sun_checkbox" disabled="disabled" />
-					<label for="doctor-info-sun_checkbox">Sunday</label>
-				</div>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<a id="view_doctor_link" class="waves-effect waves-green btn-flat modal-action" href="doctor_profile?did=2">View Doctor</a>
-			<a class="waves-effect waves-teal btn-flat modal-action modal-close">Close</a>
-		</div>
-	</div>
-
 </body>
 
 	<script>
