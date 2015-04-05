@@ -4,8 +4,12 @@
 		margin-top : 30px;
 	}
 	
+	th {
+		width : 33%;
+	}
+	
 	td {
-		width : 25%;
+		width : 33%;
 	}
 	
 	.pagination {

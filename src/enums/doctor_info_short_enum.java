@@ -1,6 +1,6 @@
 package enums;
 
-public enum doctor_info_view_enum {
+public enum doctor_info_short_enum {
 
 	NAME ("name", 2),
 	CITY ("city", 3),
@@ -9,7 +9,7 @@ public enum doctor_info_view_enum {
 	private final String key;
 	private final int column_no;
 	
-    private doctor_info_view_enum(final String key, final int column_no) {
+    private doctor_info_short_enum(final String key, final int column_no) {
         this.key = key;
         this.column_no = column_no;
     }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.DAO;
+import Tables.Hospitals_Table;
 
 public class HospitalsDAO extends DAO{
 
@@ -14,7 +15,9 @@ public class HospitalsDAO extends DAO{
 		List<Hospital> list = new ArrayList<Hospital>();
 		Hospital hospital = null;
 		
-		String query = "SELECT id, name FROM hospitals";
+		Hospitals_Table h = new Hospitals_Table();
+		
+		String query = "SELECT " + h.ID + ", " + h.NAME + " FROM " + h.TABLE_NAME + " order by " + h.NAME + " asc";
 		
 		try {
 			

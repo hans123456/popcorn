@@ -1,4 +1,5 @@
-<%@page import="enums.doctor_info_view_enum"%>
+<%@page import="models.doctor.DoctorInfoDAO"%>
+<%@page import="enums.doctor_info_short_enum"%>
 <%@ page import="enums.filters_enum" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
@@ -30,55 +31,48 @@
 	
 	<c:import url="part/navbar.jsp"></c:import>
 	
+	<form action="view_doctors" method="GET">
+	
 	<div class="board">
 		<div class="container custom-container row center-align board-padding">
 			<div class="center-align col s12">
 				<div class="col l3 hide-on-med-and-down">
 					<div class="card">
 						<div class="card-content">
-							<form action="search_doctors" method="get">
-								<p class="flow-text">Search</p>
-								<div class="input-field">
-									<input id="search" type="text" class="validate" name="search">
-									<label for="search">Doctor's Name (any)</label>
-								</div>
-								<div class="right-align">
-									<button type="submit" class="waves-effect waves-light btn white-text">Search</button>
-								</div>
-							</form>
+							<p class="flow-text">Search</p>
+							<div class="input-field">
+								<input id="search" type="text" class="validate" name="search">
+								<label for="search">Doctor's Name (any)</label>
+							</div>
+							<div class="right-align">
+								<button type="submit" class="waves-effect waves-light btn white-text">Search</button>
+							</div>
 						</div>
 					</div>
 					<div class="card">
 						<div class="card-content">
-							<form action="filter_doctors" method="GET">
-								<p class="flow-text">Filters</p>
-								<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
-									<option value="" disabled selected>Specialization</option>
-									<option value="0">None</option>
-									<c:forEach items="${specializations}" var="specialization">
-								        <option value="${specialization.getId()}">${specialization.getName()}</option>
-								    </c:forEach>
-								</select>
-								<select id="city_selector" name="city" onchange="this.form.submit()">
-									<option value="" disabled selected>City</option>
-									<option value="0">None</option>
-									<c:forEach items="${cities}" var="city">
-								        <option value="${city.getId()}">${city.getName()}</option>
-								    </c:forEach>
-								</select>
-								<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
-									<option value="" disabled selected>Hospital</option>
-									<option value="0">None</option>
-									<c:forEach items="${hospitals}" var="hospital">
-								        <option value="${hospital.getId()}">${hospital.getName()}</option>
-								    </c:forEach>
-								</select>
-							</form>
-							<form action="clear_filters">
-								<div class="right-align">
-									<button type="submit" class="waves-effect waves-light btn white-text">Clear</button>
-								</div>
-							</form>
+							<p class="flow-text">Filters</p>
+							<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
+								<option value="" disabled selected>Specialization</option>
+								<option value="0">None</option>
+								<c:forEach items="${specializations}" var="specialization">
+							        <option value="${specialization.getId()}">${specialization.getName()}</option>
+							    </c:forEach>
+							</select>
+							<select id="city_selector" name="city" onchange="this.form.submit()">
+								<option value="" disabled selected>City</option>
+								<option value="0">None</option>
+								<c:forEach items="${cities}" var="city">
+							        <option value="${city.getId()}">${city.getName()}</option>
+							    </c:forEach>
+							</select>
+							<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
+								<option value="" disabled selected>Hospital</option>
+								<option value="0">None</option>
+								<c:forEach items="${hospitals}" var="hospital">
+							        <option value="${hospital.getId()}">${hospital.getName()}</option>
+							    </c:forEach>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -93,39 +87,37 @@
 								<li>
 									<div class="collapsible-header"><i class="mdi-content-filter-list"></i>Filters</div>
 									<div class="collapsible-body">
-										<form action="filter_doctors" method="GET">
-											<div class="filter-small">
-												<div class="row">
-													<div class="col s12 m4">
-														<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
-															<option value="" disabled selected>Specialization</option>
-															<option value="0">None</option>
-															<c:forEach items="${specializations}" var="specialization">
-														        <option value="${specialization.getId()}">${specialization.getName()}</option>
-														    </c:forEach>
-														</select>
-													</div>
-													<div class="col s12 m4">
-														<select id="city_selector" name="city" onchange="this.form.submit()">
-															<option value="" disabled selected>City</option>
-															<option value="0">None</option>
-															<c:forEach items="${cities}" var="city">
-														        <option value="${city.getId()}">${city.getName()}</option>
-														    </c:forEach>
-														</select>
-													</div>
-													<div class="col s12 m4">
-														<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
-															<option value="" disabled selected>Hospital</option>
-															<option value="0">None</option>
-															<c:forEach items="${hospitals}" var="hospital">
-														        <option value="${hospital.getId()}">${hospital.getName()}</option>
-														    </c:forEach>
-														</select>
-													</div>
+										<div class="filter-small">
+											<div class="row">
+												<div class="col s12 m4">
+													<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
+														<option value="" disabled selected>Specialization</option>
+														<option value="0">None</option>
+														<c:forEach items="${specializations}" var="specialization">
+													        <option value="${specialization.getId()}">${specialization.getName()}</option>
+													    </c:forEach>
+													</select>
+												</div>
+												<div class="col s12 m4">
+													<select id="city_selector" name="city" onchange="this.form.submit()">
+														<option value="" disabled selected>City</option>
+														<option value="0">None</option>
+														<c:forEach items="${cities}" var="city">
+													        <option value="${city.getId()}">${city.getName()}</option>
+													    </c:forEach>
+													</select>
+												</div>
+												<div class="col s12 m4">
+													<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
+														<option value="" disabled selected>Hospital</option>
+														<option value="0">None</option>
+														<c:forEach items="${hospitals}" var="hospital">
+													        <option value="${hospital.getId()}">${hospital.getName()}</option>
+													    </c:forEach>
+													</select>
 												</div>
 											</div>
-										</form>
+										</div>
 									</div>
 								</li>
 							</ul>
@@ -145,7 +137,7 @@
 											<tbody id="list_of_doctors">
 												<c:forEach var="doctor" items="${doctorsList}">
 													<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info(${doctor.getId()})">
-														<c:forEach items="<%=doctor_info_view_enum.values()%>" var="entry">
+														<c:forEach items="<%=doctor_info_short_enum.values()%>" var="entry">
 														    <td>${doctor.getInformation(entry.toString())}</td>
 														</c:forEach>
 													</tr>
@@ -191,6 +183,8 @@
 			</div>
 		</div>
 	</div>
+	
+	</form>
 	
 	<c:import url="part/footer.jsp"></c:import>
 	
@@ -243,11 +237,10 @@
 	<script>
 	
 		<%
-			ServletContext sc = request.getServletContext();
-			Object o;
+			String o;
 			for(filters_enum i : filters_enum.values()){
 				String attr = i.toString();
-				o = sc.getAttribute(attr);
+				o = request.getParameter(attr);
 				if(o==null || o.equals("0")){
 					%>
 						$("#<%=attr%>_selector option[value='']").attr('selected', true);
@@ -260,14 +253,14 @@
 				}
 			}
 			
-			o = sc.getAttribute("search");
+			o = request.getParameter("search");
 			
 			if(o!=null){
 				%>
 					$("#search").val("<%=o%>");
 				<%
 			}
-			
+
 		%>
 	
 		$(document).ready(function(){

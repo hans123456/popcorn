@@ -57,11 +57,16 @@ public class view_doctors extends HttpServlet {
 
 		int page = 1;
         int recordsPerPage = 10;
-        if(request.getParameter("page") != null)
-            page = Integer.parseInt(request.getParameter("page"));
-		
+        if(request.getParameter("page") != null){
+        	try{
+        		page = Integer.parseInt(request.getParameter("page"));
+        	}catch(NumberFormatException e){
+        		
+        	}
+        }
+        
         ListOfDoctorsDAO dao = new ListOfDoctorsDAO();
-        List<Doctor> list = dao.listOfDoctors((page-1)*recordsPerPage, recordsPerPage); // add filter and search
+        List<Doctor> list = dao.listOfDoctors((page-1)*recordsPerPage, recordsPerPage, request.getParameterMap()); // add filter and search
         
         int noOfRecords = 5;//dao.getNoOfRecords();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);

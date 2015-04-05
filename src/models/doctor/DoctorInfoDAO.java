@@ -1,10 +1,9 @@
 package models.doctor;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
+import enums.doctor_info_enum;
 import models.DAO;
 
 public class DoctorInfoDAO extends DAO{
@@ -13,7 +12,9 @@ public class DoctorInfoDAO extends DAO{
 		
 		Doctor doctor = null;
 		
-		String query = "";
+		String query = "select d.id, CONCAT(u.first_name, ' ', u.last_name) as `name`, c.name, h.name, s.name"
+						+ " from doctors d, cities c, hospitals h, specializations s, users u where d.city_id = c.id and d.hospital_id = h.id "
+						+ " and d.specialization_id = s.id and d.user_id = u.id and d.id=" + id;
 		
 		try {
 			
@@ -22,7 +23,10 @@ public class DoctorInfoDAO extends DAO{
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()) {
-				// DOCTOR INFO
+				doctor = new Doctor(rs.getInt(1));
+				for(doctor_info_enum i : doctor_info_enum.values()){
+					doctor.setInformation(i.toString(), rs.getString(i.getColumnNo()));
+				}
 			}
 			
 			rs.close();

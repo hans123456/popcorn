@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.doctor.Doctor;
-import models.doctor.DoctorInfoDAO;
-
 /**
  * Servlet implementation class doctor_profile
  */

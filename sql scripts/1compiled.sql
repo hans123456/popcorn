@@ -129,10 +129,12 @@ DROP TABLE IF EXISTS `appointments`;
 
 	CREATE TABLE `appointments` (
 		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-		`date_time` datetime NOT NULL,
+		`date` date NOT NULL,
+		`time_id` int(11) unsigned,
 		`user_id` int(11) unsigned,
 		`doctor_id` int(11) unsigned,
 		PRIMARY KEY (`id`),
+		FOREIGN KEY fk_time(`time_id`) REFERENCES `times`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 		FOREIGN KEY fk_user(`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 		FOREIGN KEY fk_doctor(`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
