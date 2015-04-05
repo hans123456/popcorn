@@ -1,4 +1,4 @@
-package Tables;
+package tables;
 
 public final class Applied_doctors_Table {
 

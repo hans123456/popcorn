@@ -136,7 +136,7 @@
 											</thead>
 											<tbody id="list_of_doctors">
 												<c:forEach var="doctor" items="${doctorsList}">
-													<tr class="modal-trigger" href="#doctor-info" onclick="load_doctor_info(${doctor.getId()})">
+													<tr class="modal-trigger" onclick="location.href='doctor_profile?did=${doctor.getId()}'">
 														<c:forEach items="<%=doctor_info_short_enum.values()%>" var="entry">
 														    <td>${doctor.getInformation(entry.toString())}</td>
 														</c:forEach>
@@ -153,7 +153,7 @@
 											<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
 										</c:if>
 										<c:if test="${currentPage != 1}">
-											<li class="disabled"><a href="view_doctors?page=${currentPage - 1}"><i class="mdi-navigation-chevron-left"></i></a></li>
+											<li class="disabled"><a href="view_doctors?page=${currentPage - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
 										</c:if>
 										
 										<c:forEach begin="1" end="${noOfPages}" var="i">
@@ -162,13 +162,13 @@
 							                    	<li class="active">${i}</li>
 							                    </c:when>
 							                    <c:otherwise>
-							                    	<li class="waves-effect"><a href="view_doctors?page=${i}">${i}</a></li>
+							                    	<li class="waves-effect"><a href="view_doctors?page=${i}${parameter}">${i}</a></li>
 							                    </c:otherwise>
 							                </c:choose>
 							            </c:forEach>
 							            
 							            <c:if test="${currentPage lt noOfPages}">
-											<li class="waves-effect"><a href="view_doctors?page=${currentPage + 1}"><i class="mdi-navigation-chevron-right"></i></a></li>
+											<li class="waves-effect"><a href="view_doctors?page=${currentPage + 1}${parameter}"><i class="mdi-navigation-chevron-right"></i></a></li>
 										</c:if>
 										<c:if test="${currentPage ge noOfPages}">
 											<li class="disabled"><i class="mdi-navigation-chevron-right"></i></li>

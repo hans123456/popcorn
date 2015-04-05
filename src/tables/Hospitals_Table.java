@@ -1,4 +1,4 @@
-package Tables;
+package tables;
 
 public final class Hospitals_Table {
 

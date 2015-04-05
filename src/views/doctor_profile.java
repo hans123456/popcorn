@@ -35,7 +35,6 @@ public class doctor_profile extends HttpServlet {
 		try{
 			did = Integer.parseInt(request.getParameter("did"));
 		}catch(NumberFormatException e){
-			e.printStackTrace();
 		}
 		
 		if(did==0){

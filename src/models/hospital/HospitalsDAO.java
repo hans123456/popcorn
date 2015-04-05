@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import tables.Hospitals_Table;
 import models.DAO;
-import Tables.Hospitals_Table;
 
 public class HospitalsDAO extends DAO{
 

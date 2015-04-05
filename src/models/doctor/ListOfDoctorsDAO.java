@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import Tables.Cities_Table;
-import Tables.Doctors_Table;
-import Tables.Specializations_Table;
-import Tables.Users_Table;
+import tables.Cities_Table;
+import tables.Doctors_Table;
+import tables.Specializations_Table;
+import tables.Users_Table;
 import models.DAO;
 import enums.doctor_info_short_enum;
 
