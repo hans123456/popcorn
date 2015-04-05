@@ -5,7 +5,7 @@
     pageEncoding="ISO-8859-1" %>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-   
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -136,7 +136,7 @@
 											</thead>
 											<tbody id="list_of_doctors">
 												<c:forEach var="doctor" items="${doctorsList}">
-													<tr class="modal-trigger" onclick="location.href='doctor_profile?did=${doctor.getId()}'">
+													<tr onclick="location.href='doctor_profile?did=${doctor.getId()}'">
 														<c:forEach items="<%=doctor_info_short_enum.values()%>" var="entry">
 														    <td>${doctor.getInformation(entry.toString())}</td>
 														</c:forEach>
@@ -222,7 +222,6 @@
 		$(document).ready(function(){
 		
 			$('select').material_select();
-			$('.modal-trigger').leanModal();
 			$('.collapsible').collapsible({
 				accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
 			});
@@ -241,14 +240,7 @@
 			});
 			
 		});
-		
-		function load_doctor_info(id){
-			
-			$('#view_doctor_link').attr('href', 'doctor_profile?did=' + id);
-			$('#doctor-info').openModal();	
-			
-		}
-		
+	
 	</script>
 	
 </html>

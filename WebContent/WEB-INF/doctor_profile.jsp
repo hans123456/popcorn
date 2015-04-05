@@ -30,8 +30,16 @@
 	
 	<div class="board">
 		<div class="container board-padding">
-			<div class="row">
-				<h3 id="name">Doctor Piggy</h3>
+			<div class="row margin-top30">
+				<div class="hide-on-med-and-up col s12">
+					<a class="waves-effect waves-light btn display-inline left" onclick="window.history.back()"><i class="mdi-hardware-keyboard-backspace left"></i>back</a>
+				</div>
+				<div>
+					<h3 id="name" class="display-inline margin-top30">Doctor Piggy</h3>
+					<div class="hide-on-small-only display-inline">
+						<a class="waves-effect waves-light btn display-inline right" onclick="window.history.back()"><i class="mdi-hardware-keyboard-backspace left"></i>back</a>
+					</div>
+				</div>
 				<p id="specialization" class="flow-text">
 					Physician
 				</p>
