@@ -2,36 +2,19 @@ package models.user;
 
 public class User {
 
-	private String id;
+	private int id;
 	private String name;
 	private boolean isAdmin;
 	private boolean isDoctor;
+	private int doctorId;
 	
 	public User(){
 		super();
 	}
 	
-	public User(String id, String name, boolean isDoctor, boolean isAdmin) {
+	public User(int id, String name) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.isDoctor = isDoctor;
-		this.isAdmin = isAdmin;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -39,8 +22,31 @@ public class User {
 		return isAdmin;
 	}
 
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public boolean isDoctor() {
 		return isDoctor;
 	}
+
+	public void setDoctor(int doctorId, boolean isDoctor) {
+		this.doctorId = doctorId;
+		this.isDoctor = isDoctor;
+	}
+
+	public int getDoctorId(){
+		return doctorId;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
+	
 
 }
