@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import enums.doctor_info_enum;
+import models.doctor.Doctor;
+import models.doctor.DoctorInfoDAO;
+
 /**
  * Servlet implementation class doctor_profile
  */
@@ -40,9 +44,13 @@ public class doctor_profile extends HttpServlet {
 		if(did==0){
 			request.getRequestDispatcher("/view_doctors").forward(request, response);
 		}else {
-//			DoctorInfoDAO dao = new DoctorInfoDAO();
-//			Doctor doctor = dao.getDoctorInfo(did);	
-//			request.setAttribute("doctor_info", doctor);
+			DoctorInfoDAO dao = new DoctorInfoDAO();
+			Doctor doctor = dao.getDoctorInfo(did);
+			
+			for(doctor_info_enum i : doctor_info_enum.values()){
+				request.setAttribute(i.toString(), doctor.getInformation(i.toString()));
+			}
+			
 			request.getRequestDispatcher("/WEB-INF/doctor_profile.jsp").forward(request, response);
 		}
 		

@@ -35,19 +35,19 @@
 					<a class="waves-effect waves-light btn display-inline left" onclick="window.history.back()"><i class="mdi-hardware-keyboard-backspace left"></i>back</a>
 				</div>
 				<div>
-					<h3 id="name" class="display-inline margin-top30">Doctor Piggy</h3>
+					<h3 id="name" class="display-inline margin-top30">${name}</h3>
 					<div class="hide-on-small-only display-inline">
 						<a class="waves-effect waves-light btn display-inline right" onclick="window.history.back()"><i class="mdi-hardware-keyboard-backspace left"></i>back</a>
 					</div>
 				</div>
 				<p id="specialization" class="flow-text">
-					Physician
+					${specialization}
 				</p>
 				<div id="city" class="flow-text">
-					Manila
+					${city}
 				</div>
 				<div id="hospital" class="flow-text">
-					Manila Doctors' Hospital
+					${hospital}
 				</div>
 			</div>
 			

@@ -3,6 +3,11 @@ package models.doctor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import tables.Cities_Table;
+import tables.Doctors_Table;
+import tables.Hospitals_Table;
+import tables.Specializations_Table;
+import tables.Users_Table;
 import enums.doctor_info_enum;
 import models.DAO;
 
@@ -12,9 +17,17 @@ public class DoctorInfoDAO extends DAO{
 		
 		Doctor doctor = null;
 		
-		String query = "select d.id, CONCAT(u.first_name, ' ', u.last_name) as `name`, c.name, h.name, s.name"
-						+ " from doctors d, cities c, hospitals h, specializations s, users u where d.city_id = c.id and d.hospital_id = h.id "
-						+ " and d.specialization_id = s.id and d.user_id = u.id and d.id=" + id;
+		Users_Table u = new Users_Table();
+		Doctors_Table d = new Doctors_Table();
+		Hospitals_Table h = new Hospitals_Table();
+		Cities_Table c = new Cities_Table();
+		Specializations_Table s = new Specializations_Table();
+		
+		String query = "select " + d.ID + ", CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ") as `name`, " + 
+						c.NAME + ", " + h.NAME + ", " + s.NAME	+ " from " + d.TABLE_NAME + ", " + c.TABLE_NAME + 
+						", " + h.TABLE_NAME + ", " + s.TABLE_NAME + ", " + u.TABLE_NAME + " where " + 
+						d.CITY_ID + " = " + c.ID + " and " + d.HOSPITAL_ID + " = " + h.ID + " and " + 
+						d.SPECIALIZATION_ID + " = " + s.ID + " and " + d.USER_ID + " = " + u.ID + " and " + d.ID + " = " + id;
 		
 		try {
 			
