@@ -63,9 +63,14 @@
 				<div id="appointments" class="col s12">
 					<div class="row">
 						<div class="card-panel margin-top30">
-							<div class="flow-text">
-								Check Schedules On :<input type="date" class="datepicker center">
-							</div>
+							<form action="doctor_profile?did=1&" method="GET">
+								<input name="did" class="hide-on-small-only hide-on-med-and-up" value="<%=request.getParameter("did")%>"/>
+								<div class="flow-text display-inline">
+									Check Schedules On : 
+								</div>
+								<button class="waves-effect waves-light btn blue left-margin10">Check</button>
+								<input name="date" type="date" class="datepicker center" placeholder="Pick A Date" value='<c:if test="${param.date!=null}">${param.date}</c:if>'/>
+							</form>
 							<div class="row">
 								<table class="hoverable bordered centered col m6 s12">
 									<thead>
