@@ -2,14 +2,19 @@ package models.doctor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import models.DAO;
+import tables.Appointments_Table;
+import tables.Available_times_Table;
 import tables.Cities_Table;
 import tables.Doctors_Table;
 import tables.Hospitals_Table;
 import tables.Specializations_Table;
 import tables.Users_Table;
 import enums.doctor_info_enum;
-import models.DAO;
 
 public class DoctorInfoDAO extends DAO{
 
@@ -60,6 +65,54 @@ public class DoctorInfoDAO extends DAO{
 		}
 		
 		return doctor;
+		
+	}
+	
+	public List<Integer> getAvailableTimes(Date date, int did){
+		
+		
+		List<Integer> times = new ArrayList<Integer>();
+		
+		Available_times_Table av = new Available_times_Table();
+		Appointments_Table ap = new Appointments_Table();
+		Doctors_Table d = new Doctors_Table();
+		
+		String query = "SELECT " + av.TIME_ID + " FROM " + d.TABLE_NAME + "," + av.TABLE_NAME +
+						" WHERE " + d.ID + "=" + av.DOCTOR_ID + " and " + d.ID + "=" + did + " and " + 
+						av.TIME_ID + " NOT IN (" + 
+						"SELECT " + ap.TIME_ID + " FROM " + d.TABLE_NAME + "," + ap.TABLE_NAME + 
+						" WHERE " + d.ID + "=" + ap.DOCTOR_ID + " and " +
+						ap.DATE + "=" + date.toString() + " and " + // change date
+						d.ID + "=" + did + ")";
+		
+		try {
+			
+			connection = getConnection();
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			while (rs.next()) {
+				
+			}
+			
+			rs.close();
+			
+		} catch (SQLException e) {
+		   e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+		   e.printStackTrace();
+		}finally {
+			try {
+				if(stmt != null)
+					stmt.close();
+				if(connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return times;
 		
 	}
 
