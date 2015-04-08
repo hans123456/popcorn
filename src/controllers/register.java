@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.user.User;
+import models.user.UserDAO;
 import enums.user_registration_enum;
 
 /**
@@ -43,22 +45,24 @@ public class register extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		ServletContext sc = request.getServletContext();
+//		
+//		for(user_registration_enum i : user_registration_enum.values()){
+//			System.out.println(i.toString());
+//			String val = request.getParameter(i.toString());
+//			
+//			if(val.length()>0){
+//				sc.setAttribute(i.toString(), val);  
+//			}
+//			
+//		}
+//		
 		
-		for(user_registration_enum i : user_registration_enum.values()){
-			String val = request.getParameter(i.toString());
-			
-			if(val.length()>0){
-				sc.setAttribute(i.toString(), val);  
-			}
-			
-		}
-		
-		String first_name = request.getParameter(user_registration_enum.FIRSTNAME.toString());
-		String last_name = request.getParameter(user_registration_enum.LASTNAME.toString());
-		String email = request.getParameter(user_registration_enum.EMAIL.toString());
-		String contact = request.getParameter(user_registration_enum.CONTACTNUMBER.toString());
-		String password = request.getParameter(user_registration_enum.PASSWORD.toString());
-		String confirm_password = request.getParameter(user_registration_enum.CONFIRMPASSWORD.toString());
+		String first_name = request.getParameter(user_registration_enum.FIRSTNAME.getKey());
+		String last_name = request.getParameter(user_registration_enum.LASTNAME.getKey());
+		String email = request.getParameter(user_registration_enum.EMAIL.getKey());
+		String contact = request.getParameter(user_registration_enum.CONTACTNUMBER.getKey());
+		String password = request.getParameter(user_registration_enum.PASSWORD.getKey());
+		String confirm_password = request.getParameter(user_registration_enum.CONFIRMPASSWORD.getKey());
 		
 		if(first_name.length()==0){
 			sc.setAttribute(invalid, "First Name is Empty");
@@ -66,8 +70,9 @@ public class register extends HttpServlet {
 			sc.setAttribute(invalid, "Last Name is Empty");
 		}else if(email.length()==0){
 			sc.setAttribute(invalid, "Email is Empty");
-		} // insert check if email valid
-		else if(contact.length()==0){
+		}else if (!(email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))) {
+			sc.setAttribute(invalid, "Invalid Email");
+		}else if(contact.length()==0){
 			sc.setAttribute(invalid, "Contact is Empty");
 		}else if(password.length()==0){
 			sc.setAttribute(invalid, "Password is Empty");
@@ -79,7 +84,20 @@ public class register extends HttpServlet {
 		if(sc.getAttribute(invalid)!=null)
 			response.sendRedirect("index#Register");
 		else{
-			response.sendRedirect("success#Success");
+			User user = new User();
+			user.setInformation(user_registration_enum.FIRSTNAME.getKey(), first_name);
+			user.setInformation(user_registration_enum.LASTNAME.getKey(), last_name);
+			user.setInformation(user_registration_enum.EMAIL.getKey(), email);
+			user.setInformation(user_registration_enum.CONTACTNUMBER.getKey(), contact);
+			user.setInformation(user_registration_enum.PASSWORD.getKey(), password);
+			user.setInformation(user_registration_enum.BIRTHDATE.getKey(), "1990-01-01");
+			user.setInformation(user_registration_enum.GENDER.getKey(), "M");
+			
+			UserDAO userDao = new UserDAO();
+			if(userDao.registerUser(user))			
+				response.sendRedirect("success#Success");
+			else
+				System.out.println("error");
 		}
 		
 	}

@@ -9,7 +9,10 @@ public enum user_registration_enum {
 	EMAIL (Users_Table.EMAIL,"user_reg_email"),
 	CONTACTNUMBER (Users_Table.CONTACTNUMBER,"user_reg_contact_number"),
 	PASSWORD (Users_Table.PASSWORD, "user_reg_password"),
+	GENDER (Users_Table.GENDER, "user_reg_gender"),
+	BIRTHDATE (Users_Table.BIRTHDATE, "user_reg_birthdate"),
 	CONFIRMPASSWORD (null, "user_reg_confirm_password");
+
 	
 	private final String database_column;
 	private final String key;

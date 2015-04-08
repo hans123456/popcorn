@@ -47,11 +47,17 @@ public class doctor_profile extends HttpServlet {
 			DoctorInfoDAO dao = new DoctorInfoDAO();
 			Doctor doctor = dao.getDoctorInfo(did);
 			
-			for(doctor_info_enum i : doctor_info_enum.values()){
-				request.setAttribute(i.toString(), doctor.getInformation(i.toString()));
+			if(doctor==null){
+				request.getRequestDispatcher("/view_doctors").forward(request, response);
+			}else{
+				
+				for(doctor_info_enum i : doctor_info_enum.values()){
+					request.setAttribute(i.toString(), doctor.getInformation(i.toString()));
+				}
+				
+				request.getRequestDispatcher("/WEB-INF/doctor_profile.jsp").forward(request, response);
+				
 			}
-			
-			request.getRequestDispatcher("/WEB-INF/doctor_profile.jsp").forward(request, response);
 		}
 		
 	}

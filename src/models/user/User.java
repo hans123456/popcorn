@@ -1,21 +1,26 @@
 package models.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User {
 
 	private int id;
-	private String name;
+	//private String name;
+	private Map<String, String> info;
 	private boolean isAdmin;
 	private boolean isDoctor;
 	private int doctorId;
 	
 	public User(){
 		super();
+		this.info = new HashMap<String, String>();
 	}
 	
-	public User(int id, String name) {
+	public User(int id) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.info = new HashMap<String, String>();
 	}
 
 	public boolean isAdmin() {
@@ -43,10 +48,16 @@ public class User {
 		return id;
 	}
 
-	public String getName() {
-		return name;
+//	public String getName() {
+//		return name;
+//	}
+	
+	public void setInformation(String key, String value){
+		info.put(key, value);
 	}
 	
-	
+	public String getInformation(String key){
+		return info.get(key);
+	}
 
 }

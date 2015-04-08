@@ -3,7 +3,10 @@ package models.user;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import enums.user_info_enum;
+import enums.user_registration_enum;
 import models.DAO;
+import sun.misc.UUDecoder;
 import tables.Doctors_Table;
 import tables.Users_Table;
 
@@ -29,7 +32,8 @@ public class UserDAO extends DAO{
 			ResultSet rs = stmt.executeQuery(query1);
 			
 			if(rs.next()){
-				user = new User(rs.getInt(1), rs.getString(2));
+				user = new User(rs.getInt(1));
+				user.setInformation(user_info_enum.NAME.getKey(), rs.getString(2));
 			}
 			
 			rs.close();
@@ -61,13 +65,22 @@ public class UserDAO extends DAO{
 		
 	}
 	
-	public boolean registerUser(){
+	public boolean registerUser(User user){
 		
 		boolean result = true;
-		String query = "";
+		Users_Table u = new Users_Table();
+		String query = "INSERT INTO " + u.TABLE_NAME + " ( " + u.FIRSTNAME + ", " +
+						u.LASTNAME + ", " + u.GENDER + ", " + u.BIRTHDATE + ", " + u.CONTACTNUMBER +
+						", " + u.EMAIL + ", " + u.PASSWORD + " ) values ('" +
+						user.getInformation(user_registration_enum.FIRSTNAME.getKey()) + "', '" +
+						user.getInformation(user_registration_enum.LASTNAME.getKey()) + "', '" +
+						user.getInformation(user_registration_enum.GENDER.getKey()) + "', '" +
+						user.getInformation(user_registration_enum.BIRTHDATE.getKey()) + "', '" +
+						user.getInformation(user_registration_enum.CONTACTNUMBER.getKey()) + "', '" +
+						user.getInformation(user_registration_enum.EMAIL.getKey()) + "', sha2('" +
+						user.getInformation(user_registration_enum.PASSWORD.getKey()) + "', 512))";
 		
 		try {
-			
 			connection = getConnection();
 			stmt = connection.createStatement();
 			stmt.execute(query);

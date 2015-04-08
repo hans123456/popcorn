@@ -116,7 +116,7 @@
 				<form class="col s12" action="register" method="post">
 					<div class="row">
 						<div class="input-field col m6 s12">
-							<input id="user_reg_first_name" name="user_reg_first_name" type="text" class="validate" value='<c:if test=""></c:if>'>
+							<input id="user_reg_first_name" name="user_reg_first_name" type="text" class="validate">
 							<label for="user_reg_first_name">First Name</label>
 						</div>
 						<div class="input-field col m6 s12">
