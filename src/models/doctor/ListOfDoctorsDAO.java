@@ -53,7 +53,9 @@ public class ListOfDoctorsDAO extends DAO{
 				query += " and 'whole name' like \"%" + constraints.get("search")[0] + "%\"";
 			
 		query += " limit " + offset + ", " + noOfRecords;
-			
+		
+		System.out.println(query);
+		
 		List<Doctor> list = new ArrayList<Doctor>();
 		Doctor doctor = null;
 

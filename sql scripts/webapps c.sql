@@ -129,7 +129,8 @@ DROP TABLE IF EXISTS `appointments`;
 
 	CREATE TABLE `appointments` (
 		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-		`date_time` datetime NOT NULL,
+		`date` date NOT NULL,
+		`time_id` int(11) unsigned,
 		`user_id` int(11) unsigned,
 		`doctor_id` int(11) unsigned,
 		PRIMARY KEY (`id`),
