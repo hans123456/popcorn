@@ -14,12 +14,9 @@ public class DateParser {
 		DateFormat output = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		
-		if(param_date.length()!=0){
-			try {
-				date = input.parse(param_date);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			date = input.parse(param_date);
+		} catch (Exception e) {
 		}
 		
 		return output.format(date);
@@ -30,11 +27,9 @@ public class DateParser {
 		
 		DateFormat output = new SimpleDateFormat("yyyy-MM-dd");
 		
-		if(param_date.length()!=0){
-			try {
-				return output.parse(param_date);
-			} catch (Exception e) {
-			}
+		try {
+			return output.parse(param_date);
+		} catch (Exception e) {
 		}
 		
 		return null;

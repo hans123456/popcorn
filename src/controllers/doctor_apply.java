@@ -80,10 +80,10 @@ public class doctor_apply extends HttpServlet {
 						times.add(checkboxNamesList[j]);
 					}
 				}
-			}
 			consultHours.put(checkBoxNames[i].toString(), times);
+			}
+			
 		}
-		
 		
 		if(first_name.length()==0){
 			sc.setAttribute(invalid, "First Name is Empty");
@@ -95,10 +95,6 @@ public class doctor_apply extends HttpServlet {
 			sc.setAttribute(invalid, "Invalid Email");
 		}else if(contact.length()==0){
 			sc.setAttribute(invalid, "Contact is Empty");
-		}else if(password.length()==0){
-			sc.setAttribute(invalid, "Password is Empty");
-		}else if(password.equals(confirm_password)==false){
-			sc.setAttribute(invalid, "Passwords Do Not Match");
 		}else if(date == null) {
 			sc.setAttribute(invalid, "Birthdate is Empty");
 		}else if(date.after(new Date())) {
@@ -113,6 +109,10 @@ public class doctor_apply extends HttpServlet {
 			sc.setAttribute(invalid, "No gender chosen");
 		}else if(consultHours.size()==0) {
 			sc.setAttribute(invalid, "No consultation hours");
+		}else if(password.length()==0){
+			sc.setAttribute(invalid, "Password is Empty");
+		}else if(password.equals(confirm_password)==false){
+			sc.setAttribute(invalid, "Passwords Do Not Match");
 		}
 		
 		
@@ -120,7 +120,7 @@ public class doctor_apply extends HttpServlet {
 		
 		// change to != if checking already okay
 		if(sc.getAttribute(invalid)!=null)
-			response.sendRedirect("index#Register");
+			response.sendRedirect("doctor_application#Apply");
 		else{
 			User user = new User();
 			user.setInformation(user_registration_enum.FIRSTNAME.getKey(), first_name);

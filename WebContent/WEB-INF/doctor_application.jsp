@@ -30,7 +30,14 @@
 	<div id="Apply" class="board valign-wrapper">
 		<div class="container valign">
 			<div class="left-align board-padding col s12 ">
-				<h2 class="board-header">Doctor Application</h2>
+			<div>
+				<h2 class="board-header display-inline">Doctor Application</h2>
+				<h5 class="red-text display-inline left-margin10">
+					<c:if test="${invalid_registration!=null}">
+						${invalid_registration}
+					</c:if>
+				</h5>
+			</div>
 				<div class="row">
 				<form action="doctor_apply" method="POST" class="col s12">
 					<div class="row">

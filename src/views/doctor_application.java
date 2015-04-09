@@ -6,12 +6,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controllers.login;
+import controllers.register;
+import enums.doctor_info_enum;
+import enums.user_registration_enum;
 import models.city.CitiesDAO;
 import models.city.City;
 import models.hospital.Hospital;
@@ -38,6 +43,25 @@ public class doctor_application extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		ServletContext sc = request.getServletContext();
+		
+		for(user_registration_enum i : user_registration_enum.values()){
+			String val = (String) sc.getAttribute(i.toString());
+			if(val!=null){
+				request.setAttribute(i.toString(), val);
+				sc.removeAttribute(i.toString());
+			}
+		}
+		
+		for(doctor_info_enum i : doctor_info_enum.values()){
+			String val = (String) sc.getAttribute(i.toString());
+			if(val!=null){
+				request.setAttribute(i.toString(), val);
+				sc.removeAttribute(i.toString());
+			}
+		}
+		
 		SpecializationsDAO speDao = new SpecializationsDAO();
 		CitiesDAO cityDao = new CitiesDAO();
 		HospitalsDAO hospitalDao = new HospitalsDAO();
