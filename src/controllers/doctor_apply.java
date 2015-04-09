@@ -67,6 +67,24 @@ public class doctor_apply extends HttpServlet {
 		String specialization = request.getParameter("specializations");
 		String city = request.getParameter("cities");
 		
+		Integer[] checkBoxNames = {1, 2, 3, 4, 5, 6, 7};
+		
+		Map<String, List<String>> consultHours = new HashMap();
+		
+		for(int i = 0; i < checkBoxNames.length; i++) {
+			String[] checkboxNamesList= request.getParameterValues(checkBoxNames[i].toString());
+			List<String> times = new ArrayList();
+			if(checkboxNamesList != null) {
+				for(int j = 0; j < checkboxNamesList.length; j++) {
+					if(checkboxNamesList[j] != null) {
+						times.add(checkboxNamesList[j]);
+					}
+				}
+			}
+			consultHours.put(checkBoxNames[i].toString(), times);
+		}
+		
+		
 		if(first_name.length()==0){
 			sc.setAttribute(invalid, "First Name is Empty");
 		}else if(last_name.length()==0){
@@ -85,7 +103,20 @@ public class doctor_apply extends HttpServlet {
 			sc.setAttribute(invalid, "Birthdate is Empty");
 		}else if(date.after(new Date())) {
 			sc.setAttribute(invalid, "Invalid Birthdate");
+		}else if(hospital == null) {
+			sc.setAttribute(invalid, "No hospital chosen");
+		}else if(specialization == null) {
+			sc.setAttribute(invalid, "No specialization chosen");
+		}else if(city == null) {
+			sc.setAttribute(invalid, "No city chosen");
+		}else if(gender == null){
+			sc.setAttribute(invalid, "No gender chosen");
+		}else if(consultHours.size()==0) {
+			sc.setAttribute(invalid, "No consultation hours");
 		}
+		
+		
+		
 		
 		// change to != if checking already okay
 		if(sc.getAttribute(invalid)!=null)
@@ -107,21 +138,8 @@ public class doctor_apply extends HttpServlet {
 			
 			//Map<String, List<String>> consultHours = new HashMap();
 			
-			Integer[] checkBoxNames = {1, 2, 3, 4, 5, 6, 7};
-			
-			for(int i = 0; i < checkBoxNames.length; i++) {
-				String[] checkboxNamesList= request.getParameterValues(checkBoxNames[i].toString());
-				List<Integer> times = new ArrayList();
-				for(int j = 0; j < checkboxNamesList.length; j++) {
-					if(checkboxNamesList[j] != null) {
-						times.add(Integer.parseInt(checkboxNamesList[j]));
-					}
-				}
-				doctor.setSchedule(checkBoxNames[i], times);
-				//consultHours.put(checkBoxNames[i], times);
-			}
-			
 			//System.out.println(consultHours);
+			doctor.setSchedule(consultHours);
 			
 			UserDAO userDao = new UserDAO();
 			if(userDao.registerUser(user)) {

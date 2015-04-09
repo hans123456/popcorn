@@ -32,24 +32,39 @@
 		<div class="container valign">
 			<div class="board-padding col s12 ">
 				<div class="row description">
+					<div class="hide-on-med-and-up col s12">
+						<a class="waves-effect waves-light btn display-inline left" onclick="window.history.back()"><i class="mdi-hardware-keyboard-backspace left"></i>back</a>
+					</div>
+					<div>
+						<h3 id="name" class="display-inline margin-top30">${name}</h3>
+						<div class="hide-on-small-only display-inline">
+							<a class="waves-effect waves-light btn display-inline right" onclick="window.history.back()"><i class="mdi-hardware-keyboard-backspace left"></i>back</a>
+						</div>
+					</div>
 					<h4>
 						<strong id="user_name">
-							${user.getInformation("name")}
+							<c:if test="${appointee==null}">${user.getInformation("name")}</c:if>
+							<c:if test="${appointee!=null}">${appointee.getInformation("name")}</c:if>
 						</strong>
 					</h4>
 					<div class="grey-text">
 						<h5 id="user_gender_age">
-							${user.getInformation("gender")}, ${user.getInformation("birthdate")}
+							<c:if test="${appointee==null}">${user.getInformation("gender")}, ${user.getInformation("birthdate")}</c:if>
+							<c:if test="${appointee!=null}">${appointee.getInformation("gender")}, ${appointee.getInformation("birthdate")}</c:if>
 						</h5>
 					</div>
 					<div class="sub-description">
 						<div class="grey-text">
 							<h5 id="user_contact">
-								${user.getInformation("contact")}
+							<c:if test="${appointee==null}">${user.getInformation("contact")}</c:if>
+							<c:if test="${appointee!=null}">${appointee.getInformation("contact")}</c:if>
 							</h5>
 						</div>
 					</div>
 				</div>
+				
+				<c:if test="${appointee==null}">
+				
 				<div class="row">
 					<p class="flow-text">
 						<strong>
@@ -106,6 +121,9 @@
 						</div>
 					</div>
 				</div>
+				
+				</c:if>
+				
 			</div>
 		</div>
 	</div>

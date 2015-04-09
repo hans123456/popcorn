@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.appointments.AppointmentsDAO;
 import models.user.User;
+import models.user.UserDAO;
 
 /**
  * Servlet implementation class user_profile
@@ -33,16 +34,41 @@ public class user_profile extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		User user = (User) request.getSession().getAttribute("user");
+		String user_id = request.getParameter("uid");
+		int uid = 0;
+		AppointmentsDAO dao1 = new AppointmentsDAO();
+		UserDAO dao2 = new UserDAO();
+		
+		try {
+			uid = Integer.parseInt(user_id);
+		}catch (Exception e){
+			
+		}
 		
 		if(user!=null){
-		
-			AppointmentsDAO dao = new AppointmentsDAO();
 			
-			request.setAttribute("user", user);
-			request.setAttribute("appointments", dao.getUserAppointments(user.getId()));
+			if(user.isDoctor()){
+				
+				boolean appointee = dao1.isAppointee(uid, user.getDoctorId());
+				
+				if(uid==0 || uid==user.getId()){
+					request.getRequestDispatcher("/WEB-INF/user_profile.jsp").forward(request, response);
+				}else if(appointee){
+					request.setAttribute("appointee", dao2.getInfoForDoctor(uid));
+					request.getRequestDispatcher("/WEB-INF/user_profile.jsp").forward(request, response);
+				}else {
+					response.sendRedirect("doctor_profile");
+				}
+				
+			}else {
 			
-			request.getRequestDispatcher("/WEB-INF/user_profile.jsp").forward(request, response);
-		
+				AppointmentsDAO dao = new AppointmentsDAO();
+				request.setAttribute("appointments", dao.getUserAppointments(user.getId()));
+				
+				request.getRequestDispatcher("/WEB-INF/user_profile.jsp").forward(request, response);
+			
+			}
+			
 		}else {
 			
 			response.sendRedirect("index");

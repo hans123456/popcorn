@@ -20,13 +20,11 @@ public class UserDAO extends DAO{
 		Doctors_Table d = new Doctors_Table();
 		
 		String query1 = "SELECT " + u.ID + ", CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ") as `name`, " + 
-						u.GENDER + "," + u.BIRTHDATE + "," + u.CONTACTNUMBER + 
+						u.GENDER + ", DATE_FORMAT(" + u.BIRTHDATE + ",'%M %e, %Y')," + u.CONTACTNUMBER + 
 						" FROM " + u.TABLE_NAME + " where lower(" + u.EMAIL + ") = lower('" + email + "') " +
 						"and " + u.PASSWORD + " = SHA2('" + password + "', 512)";
 		
 		String query2 = "SELECT " + d.ID + " FROM " + d.TABLE_NAME + " WHERE " + d.USER_ID + " = ";
-		
-		System.out.println(query1);
 		
 		try {
 			
@@ -148,6 +146,54 @@ public class UserDAO extends DAO{
 		}
 		
 		return result;
+		
+	}
+	
+	public User getInfoForDoctor(int uid){
+		
+User user = null;
+		
+		Users_Table u = new Users_Table();
+		Doctors_Table d = new Doctors_Table();
+		
+		String query1 = "SELECT " + u.ID + ", CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ") as `name`, " + 
+						u.GENDER + ", DATE_FORMAT(" + u.BIRTHDATE + ",'%M %e, %Y')," + u.CONTACTNUMBER + 
+						" FROM " + u.TABLE_NAME + " where " + u.ID + "=" + uid;
+		
+		System.out.println(query1);
+		
+		try {
+			
+			connection = getConnection();
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query1);
+			
+			if(rs.next()){
+				user = new User(rs.getInt(1));
+				user.setInformation(user_info_enum.NAME.getKey(), rs.getString(2));
+				user.setInformation(user_info_enum.GENDER.getKey(), rs.getString(3));
+				user.setInformation(user_info_enum.BIRTHDATE.getKey(), rs.getString(4));
+				user.setInformation(user_info_enum.CONTACTNUMBER.getKey(), rs.getString(5));
+			}
+			
+			rs.close();
+			
+		} catch (SQLException e) {
+		   e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+		   e.printStackTrace();
+		}finally {
+			try {
+				if(stmt != null)
+					stmt.close();
+				if(connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return user;		
 		
 	}
 	

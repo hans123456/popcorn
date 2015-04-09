@@ -86,7 +86,7 @@
 							</select>
 						</div>
 						<div class="input-field col m6 s12">
-							<select id="hospitals" name="hospitals">
+							<select id="hospitals" name="hospitals" class="browser-default">
 								<option value="" selected disabled>Hospital</option>
 								<c:forEach items="${hospitals}" var="curItem">
 									<option value="${curItem.getId()}">${curItem.getName()}</option>
@@ -377,43 +377,43 @@
 							<div class="row margin-top10">
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday1"  value="1"/>
-									<label for="friday1">8:00AM</label>
+									<label for="sunday1">8:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday2" value="6" />
-									<label for="friday2">1:00PM</label>
+									<label for="sunday2">1:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday3" value="2" />
-									<label for="friday3">9:00AM</label>
+									<label for="sunday3">9:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday4" value="7" />
-									<label for="friday4">2:00PM</label>
+									<label for="sunday4">2:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday5" value="3" />
-									<label for="friday5">10:00AM</label>
+									<label for="sunday5">10:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday6" value="8"/>
-									<label for="friday6">3:00PM</label>
+									<label for="sunday6">3:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday7" value="4"/>
-									<label for="friday7">11:00AM</label>
+									<label for="sunday7">11:00AM</label>
 								</div>					
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday8" value="9"/>
-									<label for="friday8">4:00PM</label>
+									<label for="sunday8">4:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday9" value="5"/>
-									<label for="friday9">12:00PM</label>
+									<label for="sunday9">12:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday10" value="10"/>
-									<label for="friday10">5:00PM</label>
+									<label for="sunday10">5:00PM</label>
 								</div>
 							</div>	
 						</div>
@@ -469,28 +469,36 @@
 		
 		$('select').material_select();
 
-		$('#cities').change(function(){
-			
-			$("#hospitals").empty().html(' ');
-			
-			var city = document.getElementById("cities").value;
+		  
+		$("#cities").change(function() {
+		    
+		    // clear contents
+		    var $selectDropdown = 
+		      $("#hospitals")
+		        .empty()
+		        .html(' ');
+
+		    // add new value
+		    
+		    var city = document.getElementById("cities").value;
 			var result = mapping[city];
 
-		    $("#hospitals").append($("<option></option>").attr("value", "").text("Hospital").attr("selected", true).attr("disabled", true));
+		    $selectDropdown.append($("<option></option>").attr("value", "").text("Hospital").attr("selected", true).attr("disabled", true));
 			for(var i = 0 ; i < result.length; i++){
 				var value = result[i];
-			    $("#hospitals").append($("<option></option>").attr("value",value.id).text(value.name));
-			    console.log(value);
+			    $selectDropdown.append($("<option></option>").attr("value",value.id).text(value.name));
 			}
-			
-			$('#hospitals').trigger('contentChanged');
-			
-		});
+		    
 
-		 $('#hospitals').on('contentChanged', function() {
+		    // trigger event
+		    $selectDropdown.trigger('contentChanged');
+		  });
+
+
+		  $('select').on('contentChanged', function() {
 		    // re-initialize (update)
-		    $(this).material_select(); 
-		});
+		    $(this).material_select();
+		  });
 		 
 	});
  

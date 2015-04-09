@@ -165,18 +165,6 @@
 	
 	</c:if>
 	
-	<c:if test="${user!=null}">
-		<c:if test="${user.isDoctor()!=false}">
-			<div class="board valign-wrapper">
-				<div class="container valign">
-					<div class="left-align flow-text">
-						A doctor? apply <a href="/Popcorn/doctor_application">here</a>
-					</div>
-				</div>
-			</div>
-		</c:if>
-	</c:if>
-	
 	<c:import url="part/footer.jsp"></c:import>
 		
 </body>

@@ -1,4 +1,4 @@
-<%@ page import="java.util.List" %>
+	<%@ page import="java.util.List, models.doctor.Time" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -86,11 +86,11 @@
 										</tr>
 									</thead>
 									<tbody id="AMschedule">
-										<tr><td>8:00AM</td><td id="avail_1"></td></tr>
-										<tr><td>9:00AM</td><td id="avail_2"></td></tr>
-										<tr><td>10:00AM</td><td id="avail_3"></td></tr>
-										<tr><td>11:00AM</td><td id="avail_4"></td></tr>
-										<tr><td>12:00PM</td><td id="avail_5"></td></tr>
+										<tr id="tr1"><td>8:00AM</td><td id="avail_1"></td></tr>
+										<tr id="tr2"><td>9:00AM</td><td id="avail_2"></td></tr>
+										<tr id="tr3"><td>10:00AM</td><td id="avail_3"></td></tr>
+										<tr id="tr4"><td>11:00AM</td><td id="avail_4"></td></tr>
+										<tr id="tr5"><td>12:00PM</td><td id="avail_5"></td></tr>
 									</tbody>
 								</table>
 								<table class="hoverable bordered centered col m6 s12">
@@ -106,11 +106,11 @@
 										</tr>
 									</thead>
 									<tbody id="PMschedule">
-										<tr><td>1:00PM</td><td id="avail_6"></td></tr>
-										<tr><td>2:00PM</td><td id="avail_7"></td></tr>
-										<tr><td>3:00PM</td><td id="avail_8"></td></tr>
-										<tr><td>4:00PM</td><td id="avail_9"></td></tr>
-										<tr><td>5:00PM</td><td id="avail_10"></td></tr>
+										<tr id="tr6"><td>1:00PM</td><td id="avail_6"></td></tr>
+										<tr id="tr7"><td>2:00PM</td><td id="avail_7"></td></tr>
+										<tr id="tr8"><td>3:00PM</td><td id="avail_8"></td></tr>
+										<tr id="tr9"><td>4:00PM</td><td id="avail_9"></td></tr>
+										<tr id="tr10"><td>5:00PM</td><td id="avail_10"></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -297,23 +297,44 @@
 			
 			$('.modal-trigger').leanModal();
 			
+			var temp = new Array();
 			<%
-				List<Integer> times = (List<Integer>) request.getAttribute("times");
-				for(int i=1; i<=10; i++){
-					if(times.contains(i)){
+				List<Time> times = (List<Time>) request.getAttribute("times");
+				boolean doc = false;
+					
+					if(request.getAttribute("doc")!=null)
+						doc = (Boolean) request.getAttribute("doc");
+						
+				for(Time i : times){
 			%>
-						$("#avail_"+<%=i%>).toggleClass("green white-text");
-						$("#avail_"+<%=i%>).text("YES");
+					temp[<%=i.getTimeId()%>] = true;
 			<%
-					} else { 
+					if(i.getAppointeeId().equals("")){
 			%>
-						$("#avail_"+<%=i%>).toggleClass("red white-text");
-						$("#avail_"+<%=i%>).text("NO");
-						$("#sched_"+<%=i%>).remove();
+						$("#avail_"+<%=i.getTimeId()%>).toggleClass("green white-text");
+						$("#avail_"+<%=i.getTimeId()%>).text("YES");
+			<%	
+					} else if(doc==true){
+			%>
+						$("#avail_"+<%=i.getTimeId()%>).toggleClass("blue white-text");
+						$("#avail_"+<%=i.getTimeId()%>).text('<%=i.getAppointeeName()%>');
+						$("#tr"+<%=i.getTimeId()%>).attr("onclick", "location.href='user_profile?uid=" + <%=i.getAppointeeId()%> + "'");
+			<%
+					} else {
+			%>
+						$("#avail_"+<%=i.getTimeId()%>).toggleClass("red white-text");
+						$("#avail_"+<%=i.getTimeId()%>).text("NO");
 			<%
 					}
 				}
 			%>
+
+			for(var i=1; i<=10; i++){
+				if(temp[i]==null){
+					$("#avail_"+i).toggleClass("red white-text");
+					$("#avail_"+i).text("NO");
+				}
+			}
 			
 		});
 		

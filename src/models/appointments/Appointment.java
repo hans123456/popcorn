@@ -1,18 +1,19 @@
 package models.appointments;
 
-import java.util.Date;
 
 public class Appointment {
 
-	public int id;
-	public String name;
-	public String date;
-	public String time;
+	private int id;
+	private String doctor_name;
+	private String appointee_name;
+	private String date;
+	private String time;
 	
-	public Appointment(int id, String name, String date, String time) {
+	public Appointment(int id, String doctor_name, String appointee_name, String date, String time) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.doctor_name = doctor_name;
+		this.appointee_name = appointee_name;
 		this.date = date;
 		this.time = time;
 	}
@@ -21,10 +22,14 @@ public class Appointment {
 		return id;
 	}
 	
-	public String getName() {
-		return name;
+	public String getDoctorName() {
+		return doctor_name;
 	}
 
+	public String getAppointeeName() {
+		return appointee_name;
+	}
+	
 	public String getDate() {
 		return date;
 	}

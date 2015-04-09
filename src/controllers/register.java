@@ -87,6 +87,8 @@ public class register extends HttpServlet {
 			sc.setAttribute(invalid, "Birthdate is Empty");
 		}else if(date.after(new Date())) {
 			sc.setAttribute(invalid, "Invalid Birthdate");
+		}else if(gender == null) {
+			sc.setAttribute(invalid, "No Gender Selected");
 		}
 		
 		// change to != if checking already okay

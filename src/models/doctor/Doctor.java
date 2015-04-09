@@ -8,18 +8,18 @@ public class Doctor {
 
 	private int id;
 	private Map<String,String> info;
-	private Map<Integer, List<Integer>> schedule;
+	private Map<String, List<String>> schedule;
 	
 	public Doctor(int id){
 		this.id = id;
 		this.info = new HashMap<String, String>();
-		this.schedule = new HashMap<Integer, List<Integer>>();
+		this.schedule = new HashMap<String, List<String>>();
 	}
 	
 	public Doctor(){
 		this.id = 0;
 		this.info = new HashMap<String, String>();
-		this.schedule = new HashMap<Integer, List<Integer>>();
+		this.schedule = new HashMap<String, List<String>>();
 	}
 	
 	public int getId(){
@@ -34,15 +34,19 @@ public class Doctor {
 		return info.get(key);
 	}
 	
-	public void setSchedule(Integer key, List<Integer> value){
+	public void setSchedule(String key, List<String> value){
 		schedule.put(key, value);
 	}
 	
-	public List<Integer> getSchedule(Integer key){
+	public List<String> getSchedule(String key){
 		return schedule.get(key);
 	}
 	
-	public Map<Integer, List<Integer>> getSchedule(){
+	public Map<String, List<String>> getSchedule(){
 		return schedule;
+	}
+	
+	public void setSchedule(Map<String, List<String>> schedule){
+		this.schedule = schedule;
 	}
 }

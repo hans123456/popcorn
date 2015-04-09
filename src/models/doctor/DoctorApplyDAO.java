@@ -27,27 +27,8 @@ public class DoctorApplyDAO extends DAO {
 		Users_Table u = new Users_Table();
 		Cities_Table c = new Cities_Table();
 
-		int hospital_id = 0;
-		int specialization_id = 0;
-		int city_id = 0;
 		int user_id = 0;
 
-		String hospitalQuery = "SELECT " + h.ID + " FROM " + h.TABLE_NAME
-				+ " WHERE " + h.NAME + " = '"
-				+ doctor.getInformation(doctor_info_enum.HOSPITAL.toString())
-				+ "'";
-		String specializationQuery = "SELECT "
-				+ s.ID
-				+ " FROM "
-				+ s.TABLE_NAME
-				+ " WHERE "
-				+ s.NAME
-				+ " = '"
-				+ doctor.getInformation(doctor_info_enum.SPECIALIZATION
-						.toString()) + "'";
-		String cityQuery = "SELECT " + c.ID + " FROM " + c.TABLE_NAME
-				+ " WHERE " + c.NAME + " = '"
-				+ doctor.getInformation(doctor_info_enum.CITY.toString()) + "'";
 		String userQuery = "SELECT " + u.ID + " FROM " + u.TABLE_NAME
 				+ " WHERE lower(" + u.EMAIL + ") = lower('"
 				+ user.getInformation(user_registration_enum.EMAIL.getKey())
@@ -56,31 +37,7 @@ public class DoctorApplyDAO extends DAO {
 		try {
 			connection = getConnection();
 			stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(hospitalQuery);
-
-			if (rs.next()) {
-				hospital_id = rs.getInt(1);
-			}
-
-			rs.close();
-
-			rs = stmt.executeQuery(specializationQuery);
-
-			if (rs.next()) {
-				specialization_id = rs.getInt(1);
-			}
-
-			rs.close();
-
-			rs = stmt.executeQuery(cityQuery);
-
-			if (rs.next()) {
-				city_id = rs.getInt(1);
-			}
-
-			rs.close();
-
-			rs = stmt.executeQuery(userQuery);
+			ResultSet rs = stmt.executeQuery(userQuery);
 
 			if (rs.next()) {
 				user_id = rs.getInt(1);
@@ -91,7 +48,9 @@ public class DoctorApplyDAO extends DAO {
 			String register = "INSERT INTO " + d.TABLE_NAME + " ( "
 					+ d.HOSPITAL_ID + ", " + d.SPECIALIZATION_ID + ", "
 					+ d.CITY_ID + ", " + d.USER_ID + " ) values ("
-					+ hospital_id + ", " + specialization_id + ", " + city_id
+					+ Integer.parseInt(doctor.getInformation(doctor_info_enum.HOSPITAL.toString())) + ", " 
+					+ Integer.parseInt(doctor.getInformation(doctor_info_enum.SPECIALIZATION.toString())) + ", "
+					+ Integer.parseInt(doctor.getInformation(doctor_info_enum.CITY.toString()))
 					+ ", " + user_id + " ) ";
 
 			// System.out.println(register);
@@ -157,10 +116,10 @@ public class DoctorApplyDAO extends DAO {
 			
 			rs.close();
 			
-			for(Map.Entry<Integer, List<Integer>> entry: doctor.getSchedule().entrySet()) {
-				for(Integer time: entry.getValue()) {
+			for(Map.Entry<String, List<String>> entry: doctor.getSchedule().entrySet()) {
+				for(String time: entry.getValue()) {
 				schedule = "INSERT INTO " + a.TABLE_NAME + " ( " + a.DAY_ID + ", " + a.DOCTOR_ID + ", " + a.TIME_ID +
-							" ) values ( " + entry.getKey() + ", " + doctor_id + ", " + time + " )";
+							" ) values ( " + Integer.parseInt(entry.getKey())+ ", " + doctor_id + ", " + Integer.parseInt(time) + " )";
 				
 				stmt.execute(schedule);
 				}

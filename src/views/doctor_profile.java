@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import models.appointments.AppointmentsDAO;
 import models.doctor.Doctor;
 import models.doctor.DoctorInfoDAO;
+import models.doctor.Time;
 import models.user.User;
 import utilities.DateParser;
 import enums.doctor_info_enum;
@@ -39,17 +40,32 @@ public class doctor_profile extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		int did = 0;
+		User user = (User) request.getSession().getAttribute("user");
 		
 		try{
 			did = Integer.parseInt(request.getParameter("did"));
 		}catch(NumberFormatException e){
 		}
 		
+		if(user!=null){
+			if(user.isDoctor() && did==0){
+				did = user.getDoctorId();
+			}
+		}
+		
 		if(did==0){
+			
 			request.getRequestDispatcher("/view_doctors").forward(request, response);
+			
 		}else {
 			DoctorInfoDAO dao = new DoctorInfoDAO();
 			Doctor doctor = dao.getDoctorInfo(did);
+			
+			if(user!=null){
+				if(did==user.getDoctorId()){
+					request.setAttribute("doc", true);
+				}
+			}
 			
 			if(doctor==null){
 				request.getRequestDispatcher("/view_doctors").forward(request, response);
@@ -60,11 +76,9 @@ public class doctor_profile extends HttpServlet {
 				}
 				
 				String date = DateParser.parseDateForDatabase(request.getParameter("date"));
-				List<Integer> times = dao.getAvailableTimes(date, doctor.getId());
+				List<Time> times = dao.getAvailableTimes(date, doctor.getId());
 				
 				request.setAttribute("times", times);
-				
-				User user = (User) request.getSession().getAttribute("user");
 				
 				if(user!=null){
 					AppointmentsDAO dao2 = new AppointmentsDAO();

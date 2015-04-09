@@ -17,3 +17,7 @@ VALUE
 INSERT INTO `appointments` (`date`, `time_id`, `user_id`, `doctor_id`)
 VALUE
 ('2015-04-20', 2, 1, 1), ('2015-04-20', 1, 1, 1)
+
+INSERT INTO `users` (`first_name`, `last_name`, `gender`, `birth_date`, `contact_number`, `email`, `password`) 
+VALUES 
+('a', 'a', 'M', '1990-01-01', '0000', 'a@a.com', sha2('b', 512));

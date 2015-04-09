@@ -16,12 +16,12 @@
 					<li><a class="grey-text text-lighten-3" href="index#Home">Home</a></li>
 					<li><a class="grey-text text-lighten-3" href="index#About">About</a></li>
 					<li><a class="grey-text text-lighten-3" href="view_doctors">View Doctors</a></li>
-					<c:if test="${user==null}">
+					<c:if test="${sessionScope.user==null}">
 						<li><a class="grey-text text-lighten-3" href="index#Login">Login</a></li>
 						<li><a class="grey-text text-lighten-3" href="index#Register">Register</a></li>
 					</c:if>
-					<c:if test="${user!=null}">
-						<c:if test="${user.isDoctor()==true}">
+					<c:if test="${sessionScope.user!=null}">
+						<c:if test="${sessionScope.user.isDoctor()==true}">
 							<li><a class="grey-text text-lighten-3" href="doctor_profile">Doctor Profile</a></li>
 						</c:if>
 						<li><a class="grey-text text-lighten-3" href="user_profile">User Profile</a></li>

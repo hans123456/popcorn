@@ -67,22 +67,31 @@ public class DoctorInfoDAO extends DAO{
 		
 	}
 	
-	public List<Integer> getAvailableTimes(String date, int did){
+	public List<Time> getAvailableTimes(String date, int did){
 		
-		List<Integer> times = new ArrayList<Integer>();
+		List<Time> times = new ArrayList<Time>();
+		Time time = null;
 		
 		Available_times_Table av = new Available_times_Table();
 		Appointments_Table ap = new Appointments_Table();
 		Doctors_Table d = new Doctors_Table();
+		Users_Table u = new Users_Table();
 		
-		String query = "SELECT " + av.TIME_ID + " FROM " + d.TABLE_NAME + "," + av.TABLE_NAME +
+		String query = "SELECT " + av.TIME_ID + " as `time id`, '' as `name`, '' as `appointee id`" + 
+						" FROM " + d.TABLE_NAME + "," + av.TABLE_NAME +
 						" WHERE " + d.ID + "=" + av.DOCTOR_ID + " and " + d.ID + "=" + did + " and " + 
 						av.DAY_ID + "= DAYOFWEEK(' " + date + "') and " +
 						av.TIME_ID + " NOT IN (" + 
 						"SELECT " + ap.TIME_ID + " FROM " + d.TABLE_NAME + "," + ap.TABLE_NAME + 
 						" WHERE " + d.ID + "=" + ap.DOCTOR_ID + " and " +
 						ap.DATE + "='" + date + "' and " + 
-						d.ID + "=" + did + ")";
+						d.ID + "=" + did + ") " + 
+						"UNION " + "SELECT " + ap.TIME_ID + " as `time id`, CONCAT( " + u.FIRSTNAME + ", ' ', " + u.LASTNAME +
+						") as `name`, " + u.ID + " FROM " + d.TABLE_NAME + "," + ap.TABLE_NAME + "," + u.TABLE_NAME + 
+						" WHERE " + d.ID + "=" + ap.DOCTOR_ID + " and " + u.ID + "=" + ap.USER_ID + " and " + 
+						ap.DATE + "='" + date + "' and " + d.ID + "=" + did;
+		
+		System.out.println(query);
 		
 		try {
 			
@@ -91,7 +100,8 @@ public class DoctorInfoDAO extends DAO{
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()) {
-				times.add(rs.getInt(1));
+				time = new Time(rs.getInt(1), rs.getString(2), rs.getString(3));
+				times.add(time);
 			}
 			
 			rs.close();
