@@ -70,7 +70,6 @@ public class DoctorInfoDAO extends DAO{
 	
 	public List<Integer> getAvailableTimes(Date date, int did){
 		
-		
 		List<Integer> times = new ArrayList<Integer>();
 		
 		Available_times_Table av = new Available_times_Table();
@@ -92,7 +91,7 @@ public class DoctorInfoDAO extends DAO{
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()) {
-				
+				times.add(rs.getInt(1));
 			}
 			
 			rs.close();

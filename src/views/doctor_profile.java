@@ -1,6 +1,10 @@
 package views;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,9 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import enums.doctor_info_enum;
+import utilities.DateParser;
 import models.doctor.Doctor;
 import models.doctor.DoctorInfoDAO;
+import enums.doctor_info_enum;
 
 /**
  * Servlet implementation class doctor_profile
@@ -55,9 +60,13 @@ public class doctor_profile extends HttpServlet {
 					request.setAttribute(i.toString(), doctor.getInformation(i.toString()));
 				}
 				
+				String param_date = request.getParameter("date");
+				System.out.println(DateParser.parseDateForDatabase(param_date));
+				
 				request.getRequestDispatcher("/WEB-INF/doctor_profile.jsp").forward(request, response);
 				
 			}
+			
 		}
 		
 	}
