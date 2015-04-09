@@ -131,6 +131,17 @@
 							<input id="user_reg_contact_number" name="user_reg_contact_number" type="text" class="validate">
 							<label for="user_reg_contact_number">Contact Number</label>
 						</div>
+						<div class="input-field col m6 s12 select">
+							<select id="user_reg_gender" name="user_reg_gender">
+								<option value="" selected disabled>Gender</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
+						</div>
+						<div class="input-field col m6 s12">	
+ 							<input id="user_reg_birthdate" name="user_reg_birthdate" type="date" class="datepicker">
+							<label for="user_reg_birthdate">Birthdate</label>
+						</div>
 						<div class="input-field col m6 s12">
 							<input id="user_reg_password" name="user_reg_password" type="password" class="validate">
 							<label for="user_reg_password">Password</label>
@@ -144,7 +155,7 @@
 						<button type="submit" class="waves-effect waves-light btn margin-top10"><i class="mdi-content-send right"></i>Register</button>
 					</div>
 					<div class="left-align flow-text">
-						A doctor? apply <a href="doctor_application#Apply">here</a>
+						A doctor? apply <a href="/Popcorn/doctor_application">here</a>
 					</div>
 				</form>
 				</div>
@@ -159,7 +170,7 @@
 			<div class="board valign-wrapper">
 				<div class="container valign">
 					<div class="left-align flow-text">
-						A doctor? apply <a href="doctor_application#Apply">here</a>
+						A doctor? apply <a href="/Popcorn/doctor_application">here</a>
 					</div>
 				</div>
 			</div>
@@ -170,19 +181,28 @@
 		
 </body>
 
-	<script>
+<script>
 		
-		<%
-			for(user_registration_enum i : user_registration_enum.values()){
-				String val = (String) request.getAttribute(i.toString());
-				if(val!=null){
-		%>
-					$("#<%=i.toString()%>").val("<%=val%>");
-		<%
-				}
+	$('.datepicker').pickadate({
+	   	selectMonths: true, // Creates a dropdown to control month
+	   	selectYears: 15 // Creates a dropdown of 15 years to control year
+	});
+	
+	$(document).ready(function() {
+		$('select').material_select();
+	});
+	
+	<%
+		for(user_registration_enum i : user_registration_enum.values()){
+			String val = (String) request.getAttribute(i.toString());
+			if(val!=null){
+	%>
+				$("#<%=i.toString()%>").val("<%=val%>");
+	<%
 			}
-		%>
+		}
+	%>
 		
-	</script>
+</script>
 
 </html>

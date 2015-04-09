@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import utilities.DateParser;
 import models.user.User;
 import models.user.UserDAO;
 import enums.user_registration_enum;
@@ -63,6 +65,9 @@ public class register extends HttpServlet {
 		String contact = request.getParameter(user_registration_enum.CONTACTNUMBER.getKey());
 		String password = request.getParameter(user_registration_enum.PASSWORD.getKey());
 		String confirm_password = request.getParameter(user_registration_enum.CONFIRMPASSWORD.getKey());
+		String birth_date = DateParser.parseDateForDatabase(request.getParameter(user_registration_enum.BIRTHDATE.getKey()));
+		Date date = DateParser.parseStringToDate(birth_date);
+		String gender = request.getParameter(user_registration_enum.GENDER.getKey());
 		
 		if(first_name.length()==0){
 			sc.setAttribute(invalid, "First Name is Empty");
@@ -78,6 +83,10 @@ public class register extends HttpServlet {
 			sc.setAttribute(invalid, "Password is Empty");
 		}else if(password.equals(confirm_password)==false){
 			sc.setAttribute(invalid, "Passwords Do Not Match");
+		}else if(date == null) {
+			sc.setAttribute(invalid, "Birthdate is Empty");
+		}else if(date.after(new Date())) {
+			sc.setAttribute(invalid, "Invalid Birthdate");
 		}
 		
 		// change to != if checking already okay
@@ -90,14 +99,15 @@ public class register extends HttpServlet {
 			user.setInformation(user_registration_enum.EMAIL.getKey(), email);
 			user.setInformation(user_registration_enum.CONTACTNUMBER.getKey(), contact);
 			user.setInformation(user_registration_enum.PASSWORD.getKey(), password);
-			user.setInformation(user_registration_enum.BIRTHDATE.getKey(), "1990-01-01");
-			user.setInformation(user_registration_enum.GENDER.getKey(), "M");
+			user.setInformation(user_registration_enum.BIRTHDATE.getKey(), birth_date);
+			user.setInformation(user_registration_enum.GENDER.getKey(), gender);
 			
 			UserDAO userDao = new UserDAO();
 			if(userDao.registerUser(user))			
 				response.sendRedirect("success#Success");
 			else
 				System.out.println("error");
+			//response.sendRedirect("index#Register");
 		}
 		
 	}

@@ -301,7 +301,7 @@ VALUES
 ("Tondo Foreshore Health Center", 6),
 ("Tondo Health Center", 6),
 ("Tondo Medical Center", 6),
-("Trinity Woman and Child Center \"The Birthplace\"", 6),
+("Trinity Woman and Child Center", 6),
 ("Unciano General Hospital", 6),
 ("United Doctor's Medical Center", 6),
 ("University of Santo Tomas Hospital", 6);

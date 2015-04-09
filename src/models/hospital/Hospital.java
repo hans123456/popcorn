@@ -4,10 +4,12 @@ public class Hospital {
 
 	private int id;
 	private String name;
+	private int cityId;
 	
-	public Hospital(int id, String name){
+	public Hospital(int id, String name, int cityId){
 		this.id = id;
 		this.name = name;
+		this.cityId = cityId;
 	}
 
 	public int getId() {
@@ -16,6 +18,10 @@ public class Hospital {
 
 	public String getName() {
 		return name;
+	}
+	
+	public int getCityId() {
+		return cityId;
 	}
 	
 }

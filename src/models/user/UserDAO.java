@@ -105,4 +105,37 @@ public class UserDAO extends DAO{
 		
 	}
 	
+	public boolean deleteUser(User user){
+		
+		boolean result = true;
+		Users_Table u = new Users_Table();
+		
+		//assume everyone has unique email...
+		String query = "DELETE FROM " + u.TABLE_NAME + " WHERE lower(" + u.EMAIL + ") = lower('" + user.getInformation(user_registration_enum.EMAIL.getKey()) + "') ";
+		
+		try {
+			connection = getConnection();
+			stmt = connection.createStatement();
+			stmt.executeUpdate(query);
+			
+		} catch (SQLException e) {
+		   e.printStackTrace();
+		   result = false;
+		} catch (ClassNotFoundException e) {
+		   e.printStackTrace();
+		}finally {
+			try {
+				if(stmt != null)
+					stmt.close();
+				if(connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+		
+	}
+	
 }

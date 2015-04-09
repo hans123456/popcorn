@@ -18,11 +18,26 @@ public class DateParser {
 			try {
 				date = input.parse(param_date);
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 		
 		return output.format(date);
 		
+	}
+	
+	public static Date parseStringToDate(String param_date){
+		
+		DateFormat output = new SimpleDateFormat("yyyy-MM-dd");
+		
+		if(param_date!=null){
+			try {
+				return output.parse(param_date);
+			} catch (Exception e) {
+			}
+		}
+		
+		return null;
 	}
 	
 }

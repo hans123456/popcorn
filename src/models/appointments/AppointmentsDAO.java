@@ -62,8 +62,10 @@ public class AppointmentsDAO extends DAO{
 		return appointments;
 		
 	}
+	
+	private int noOfRecords;
 
-	public List<Appointment> getUserAppointments(String date, int uid, int did){
+	public List<Appointment> getUserAppointments(int uid){
 		
 		List<Appointment> appointments = new ArrayList<Appointment>();
 		Appointment appointment = null;
@@ -93,6 +95,11 @@ public class AppointmentsDAO extends DAO{
 			}
 			
 			rs.close();
+			
+			rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+			   
+			if(rs.next())
+				this.noOfRecords = rs.getInt(1);
 			
 		} catch (SQLException e) {
 		   e.printStackTrace();
@@ -144,6 +151,10 @@ public class AppointmentsDAO extends DAO{
 		
 		return result;
 		
+	}
+	
+	public int getNoOfRecords() {
+		return noOfRecords;
 	}
 	
 }

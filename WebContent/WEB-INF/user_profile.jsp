@@ -34,23 +34,18 @@
 				<div class="row description">
 					<h4>
 						<strong id="user_name">
-							John Carlo De Guzman
+							${user.getInformation("name")}
 						</strong>
 					</h4>
 					<div class="grey-text">
 						<h5 id="user_gender_age">
-							Male, 19
+							${user.getInformation("gender")}, ${user.getInformation("birthdate")}
 						</h5>
 					</div>
 					<div class="sub-description">
 						<div class="grey-text">
 							<h5 id="user_contact">
-								0915 1111 111
-							</h5>
-						</div>
-						<div class="grey-text">
-							<h5 id="user_address">
-								DLSU Manila
+								${user.getInformation("contact")}
 							</h5>
 						</div>
 					</div>

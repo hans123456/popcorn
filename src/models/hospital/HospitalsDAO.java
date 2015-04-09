@@ -17,7 +17,7 @@ public class HospitalsDAO extends DAO{
 		
 		Hospitals_Table h = new Hospitals_Table();
 		
-		String query = "SELECT " + h.ID + ", " + h.NAME + " FROM " + h.TABLE_NAME + " order by " + h.NAME + " asc";
+		String query = "SELECT " + h.ID + ", " + h.NAME + ", " + h.CITY_ID + " FROM " + h.TABLE_NAME + " order by " + h.NAME + " asc";
 		
 		try {
 			
@@ -26,7 +26,7 @@ public class HospitalsDAO extends DAO{
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()) {
-				hospital = new Hospital(rs.getInt(1), rs.getString(2));
+				hospital = new Hospital(rs.getInt(1), rs.getString(2), rs.getInt(3));
 				list.add(hospital);
 			}
 			
