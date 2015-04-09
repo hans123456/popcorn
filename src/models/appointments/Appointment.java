@@ -6,10 +6,10 @@ public class Appointment {
 
 	public int id;
 	public String name;
-	public Date date;
+	public String date;
 	public String time;
 	
-	public Appointment(int id, String name, Date date, String time) {
+	public Appointment(int id, String name, String date, String time) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,7 +25,7 @@ public class Appointment {
 		return name;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 

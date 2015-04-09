@@ -54,8 +54,6 @@ public class ListOfDoctorsDAO extends DAO{
 			
 		query += " limit " + offset + ", " + noOfRecords;
 		
-		System.out.println(query);
-		
 		List<Doctor> list = new ArrayList<Doctor>();
 		Doctor doctor = null;
 
