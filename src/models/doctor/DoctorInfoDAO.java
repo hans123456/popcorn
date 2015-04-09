@@ -3,7 +3,6 @@ package models.doctor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import models.DAO;
@@ -68,7 +67,7 @@ public class DoctorInfoDAO extends DAO{
 		
 	}
 	
-	public List<Integer> getAvailableTimes(Date date, int did){
+	public List<Integer> getAvailableTimes(String date, int did){
 		
 		List<Integer> times = new ArrayList<Integer>();
 		
@@ -81,7 +80,7 @@ public class DoctorInfoDAO extends DAO{
 						av.TIME_ID + " NOT IN (" + 
 						"SELECT " + ap.TIME_ID + " FROM " + d.TABLE_NAME + "," + ap.TABLE_NAME + 
 						" WHERE " + d.ID + "=" + ap.DOCTOR_ID + " and " +
-						ap.DATE + "=" + date.toString() + " and " + // change date
+						ap.DATE + "='" + date + "' and " + 
 						d.ID + "=" + did + ")";
 		
 		try {
@@ -114,5 +113,5 @@ public class DoctorInfoDAO extends DAO{
 		return times;
 		
 	}
-
+	
 }

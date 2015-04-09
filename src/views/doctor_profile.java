@@ -1,10 +1,7 @@
 package views;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import utilities.DateParser;
+import models.appointments.AppointmentsDAO;
 import models.doctor.Doctor;
 import models.doctor.DoctorInfoDAO;
+import models.user.User;
+import utilities.DateParser;
 import enums.doctor_info_enum;
 
 /**
@@ -60,8 +59,17 @@ public class doctor_profile extends HttpServlet {
 					request.setAttribute(i.toString(), doctor.getInformation(i.toString()));
 				}
 				
-				String param_date = request.getParameter("date");
-				System.out.println(DateParser.parseDateForDatabase(param_date));
+				String date = DateParser.parseDateForDatabase(request.getParameter("date"));
+				List<Integer> times = dao.getAvailableTimes(date, doctor.getId());
+				
+				request.setAttribute("times", times);
+				
+				User user = (User) request.getSession().getAttribute("user");
+				
+				if(user!=null){
+					AppointmentsDAO dao2 = new AppointmentsDAO();
+					request.setAttribute("appointments", dao2.getUserAppointmentForDoctor(date, user.getId(), did));
+				}
 				
 				request.getRequestDispatcher("/WEB-INF/doctor_profile.jsp").forward(request, response);
 				

@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
@@ -85,6 +86,11 @@
 										</tr>
 									</thead>
 									<tbody id="AMschedule">
+										<tr><td>8:00AM</td><td id="avail_1"></td></tr>
+										<tr><td>9:00AM</td><td id="avail_2"></td></tr>
+										<tr><td>10:00AM</td><td id="avail_3"></td></tr>
+										<tr><td>11:00AM</td><td id="avail_4"></td></tr>
+										<tr><td>12:00PM</td><td id="avail_5"></td></tr>
 									</tbody>
 								</table>
 								<table class="hoverable bordered centered col m6 s12">
@@ -100,6 +106,11 @@
 										</tr>
 									</thead>
 									<tbody id="PMschedule">
+										<tr><td>1:00PM</td><td id="avail_6"></td></tr>
+										<tr><td>2:00PM</td><td id="avail_7"></td></tr>
+										<tr><td>3:00PM</td><td id="avail_8"></td></tr>
+										<tr><td>4:00PM</td><td id="avail_9"></td></tr>
+										<tr><td>5:00PM</td><td id="avail_10"></td></tr>
 									</tbody>
 								</table>
 							</div>
@@ -205,37 +216,45 @@
 			<h4>Schedule An Appointment</h4>
 			<div class="flow-text margin-top30">Choose Your Appointment Time : </div>
 			<div class="row margin-top10">
-				<div class="margin-top15 col m6 s12">
-					<input class="with-gap" name="group3" type="radio" id="test1" checked />
-					<label for="test1">8:00AM</label>
+				<div class="margin-top15 col m6 s12" id="sched_1">
+					<input class="with-gap" name="sched" type="radio" id="sched1" />
+					<label for="sched1">8:00AM</label>
 				</div>
-				<div class="margin-top15 col m6 s12">
-					<input class="with-gap" name="group3" type="radio" id="test2" checked />
-					<label for="test2">9:00AM</label>
+				<div class="margin-top15 col m6 s12" id="sched_2">
+					<input class="with-gap" name="sched" type="radio" id="sched2"/>
+					<label for="sched2">9:00AM</label>
 				</div>
-				<div class="margin-top15 col m6 s12">
-					<input class="with-gap" name="group3" type="radio" id="test3" checked />
-					<label for="test3">10:00AM</label>
+				<div class="margin-top15 col m6 s12" id="sched_3">
+					<input class="with-gap" name="sched" type="radio" id="sched3"/>
+					<label for="sched3">10:00AM</label>
 				</div>
-				<div class="margin-top15 col m6 s12">
-					<input class="with-gap" name="group3" type="radio" id="test4" checked />
-					<label for="test4">12:00PM</label>
+				<div class="margin-top15 col m6 s12" id="sched_4">
+					<input class="with-gap" name="sched" type="radio" id="sched4"/>
+					<label for="sched4">11:00AM</label>
 				</div>
-				<div class="margin-top15 col m6 s12">
-					<input class="with-gap" name="group3" type="radio" id="test5" checked />
-					<label for="test5">1:00PM</label>
+				<div class="margin-top15 col m6 s12" id="sched_5">
+					<input class="with-gap" name="sched" type="radio" id="sched5"/>
+					<label for="sched5">12:00PM</label>
 				</div>
-				<div class="margin-top15 col m6 s12">
-					<input class="with-gap" name="group3" type="radio" id="test6" checked />
-					<label for="test6">2:00PM</label>
+				<div class="margin-top15 col m6 s12" id="sched_6">
+					<input class="with-gap" name="sched" type="radio" id="sched6"/>
+					<label for="sched6">1:00PM</label>
 				</div>
-				<div class="margin-top15 col m6 s12">
-					<input class="with-gap" name="group3" type="radio" id="test7" checked />
-					<label for="test7">3:00PM</label>
+				<div class="margin-top15 col m6 s12" id="sched_7">
+					<input class="with-gap" name="sched" type="radio" id="sched7"/>
+					<label for="sched7">2:00PM</label>
+				</div>
+				<div class="margin-top15 col m6 s12" id="sched_8">
+					<input class="with-gap" name="sched" type="radio" id="sched8"/>
+					<label for="sched8">3:00PM</label>
 				</div>					
-				<div class="margin-top15 col m6 s12">
-					<input class="with-gap" name="group3" type="radio" id="test8" checked />
-					<label for="test8">4:00PM</label>
+				<div class="margin-top15 col m6 s12" id="sched_9">
+					<input class="with-gap" name="sched" type="radio" id="sched9"/>
+					<label for="sched9">4:00PM</label>
+				</div>
+				<div class="margin-top15 col m6 s12" id="sched_10">
+					<input class="with-gap" name="sched" type="radio" id="sched10"/>
+					<label for="sched10">5:00PM</label>
 				</div>
 			</div>
 		</div>
@@ -276,26 +295,27 @@
 				});
 			});
 			
-			var schedule = $("#AMschedule");
-			
-			schedule.append("<tr><td>8:00AM</td><td class='green white-text'>YES</td></tr>");
-			schedule.append("<tr><td>9:00AM</td><td class='green white-text'>YES</td></tr>");
-			schedule.append("<tr><td>10:00AM</td><td class='green white-text'>YES</td></tr>");
-			schedule.append("<tr><td>11:00AM</td><td class='red white-text'>NO</td></tr>");
-			schedule.append("<tr><td>12:00PM</td><td class='green white-text'>YES</td></tr>");
-			
-			var schedule = $("#PMschedule");
-			
-			schedule.append("<tr><td>1:00PM</td><td class='red white-text'>NO</td></tr>");
-			schedule.append("<tr><td>2:00PM</td><td class='green white-text'>YES</td></tr>");
-			schedule.append("<tr><td>3:00PM</td><td class='green white-text'>YES</td></tr>");
-			schedule.append("<tr><td>4:00PM</td><td class='green white-text'>YES</td></tr>");
-			schedule.append("<tr><td>5:00PM</td><td class='red white-text'>NO</td></tr>");
-			
 			$('.modal-trigger').leanModal();
 			
+			<%
+				List<Integer> times = (List<Integer>) request.getAttribute("times");
+				for(int i=1; i<=10; i++){
+					if(times.contains(i)){
+			%>
+						$("#avail_"+<%=i%>).toggleClass("green white-text");
+						$("#avail_"+<%=i%>).text("YES");
+			<%
+					} else { 
+			%>
+						$("#avail_"+<%=i%>).toggleClass("red white-text");
+						$("#avail_"+<%=i%>).text("NO");
+						$("#sched_"+<%=i%>).remove();
+			<%
+					}
+				}
+			%>
+			
 		});
-		
 		
 	</script>
 
