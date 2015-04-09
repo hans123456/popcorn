@@ -84,12 +84,12 @@
 				<form action="login" method="post">
 					<div class="input-field col s6 margin-top15">
 						<i class="mdi-communication-email prefix"></i>
-						<input id="icon_prefix" type="email" class="validate">
+						<input id="icon_prefix" type="email" class="validate" name="login_email">
 						<label for="icon_prefix">Email Address</label>
 					</div>
 					<div class="input-field col s6">
 						<i class="mdi-action-lock prefix"></i>
-						<input id="icon_prefix" type="password" class="validate">
+						<input id="icon_prefix" type="password" class="validate" name="login_password">
 						<label for="icon_prefix">Password</label>
 					</div>
 					<div class="right-align">

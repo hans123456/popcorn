@@ -443,10 +443,10 @@
 	
 	var mapping = new Array();
 	<%
-		Map<String, List<Hospital>> map = (Map<String, List<Hospital>>)request.getAttribute("cityHospitalMapping");
-		for (Map.Entry<String, List<Hospital>>  entry : map.entrySet()) {
+		Map<Integer, List<Hospital>> map = (Map<Integer, List<Hospital>>)request.getAttribute("cityHospitalMapping");
+		for (Map.Entry<Integer, List<Hospital>>  entry : map.entrySet()) {
 	%>
-			mapping["<%=entry.getKey()%>"] = new Array();
+			mapping[<%=entry.getKey()%>] = new Array();
 	<%
 			for(int i = 0; i < entry.getValue().size(); i++) {
 	%>
@@ -476,7 +476,7 @@
 			var city = document.getElementById("cities").value;
 			var result = mapping[city];
 
-		    $("#hospitals").append($("<option></option>").attr("value", "").text("Hospital").Attr("selected", true).Attr("disabled", true));
+		    $("#hospitals").append($("<option></option>").attr("value", "").text("Hospital").attr("selected", true).attr("disabled", true));
 			for(var i = 0 ; i < result.length; i++){
 				var value = result[i];
 			    $("#hospitals").append($("<option></option>").attr("value",value.id).text(value.name));

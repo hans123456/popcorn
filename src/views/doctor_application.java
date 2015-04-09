@@ -44,7 +44,7 @@ public class doctor_application extends HttpServlet {
 		
 		List<City> cities = cityDao.getCities();
 		List<Hospital> hospitals = hospitalDao.getHospitals();
-		Map<String, List<Hospital>> cityHospitalMapping = new HashMap<String, List<Hospital>>(); 
+		Map<Integer, List<Hospital>> cityHospitalMapping = new HashMap<Integer, List<Hospital>>(); 
 		
 		for(City city: cities) {
 			List<Hospital> hospitalPerCity = new ArrayList<Hospital>();
@@ -53,7 +53,7 @@ public class doctor_application extends HttpServlet {
 					hospitalPerCity.add(hospital);
 				}
 			}
-			cityHospitalMapping.put(city.getName(), hospitalPerCity);
+			cityHospitalMapping.put(city.getId(), hospitalPerCity);
 		}
 
 		request.setAttribute("specializations", speDao.getSpecializations());

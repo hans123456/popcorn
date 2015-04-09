@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.user.User;
+import models.user.UserDAO;
 import enums.login_enum;
 
 /**
@@ -44,10 +46,15 @@ public class login extends HttpServlet {
 		
 		ServletContext sc = request.getServletContext();
 		
+		UserDAO dao = new UserDAO();
+		
 		String email = request.getParameter(login_enum.EMAIL.toString());
 		String password = request.getParameter(login_enum.PASSWORD.toString());
 		
-		if(true){ // check if account correct
+		User user = dao.login(email, password);
+		
+		if(user!=null){ // check if account correct
+			request.getSession().setAttribute("user", user);
 			response.sendRedirect("success#Success");
 		}else {
 			sc.setAttribute(invalid, "Invalid Email or Password");

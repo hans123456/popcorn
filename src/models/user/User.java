@@ -8,7 +8,6 @@ public class User {
 	private int id;
 	//private String name;
 	private Map<String, String> info;
-	private boolean isAdmin;
 	private boolean isDoctor;
 	private int doctorId;
 	
@@ -21,14 +20,6 @@ public class User {
 		super();
 		this.id = id;
 		this.info = new HashMap<String, String>();
-	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
 	}
 
 	public boolean isDoctor() {
@@ -47,10 +38,6 @@ public class User {
 	public int getId() {
 		return id;
 	}
-
-//	public String getName() {
-//		return name;
-//	}
 	
 	public void setInformation(String key, String value){
 		info.put(key, value);

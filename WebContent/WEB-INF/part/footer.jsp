@@ -21,7 +21,9 @@
 						<li><a class="grey-text text-lighten-3" href="index#Register">Register</a></li>
 					</c:if>
 					<c:if test="${user!=null}">
-						<li><a class="grey-text text-lighten-3" href="doctor_profile">Doctor Profile</a></li>
+						<c:if test="${user.isDoctor()==true}">
+							<li><a class="grey-text text-lighten-3" href="doctor_profile">Doctor Profile</a></li>
+						</c:if>
 						<li><a class="grey-text text-lighten-3" href="user_profile">User Profile</a></li>
 						<li><a class="grey-text text-lighten-3" href="logout">Logout</a></li>
 					</c:if>

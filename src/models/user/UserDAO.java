@@ -14,16 +14,19 @@ public class UserDAO extends DAO{
 
 	public User login(String email, String password){
 		
-		User user = new User();
+		User user = null;
 		
 		Users_Table u = new Users_Table();
 		Doctors_Table d = new Doctors_Table();
 		
-		String query1 = "SELECT " + u.ID + ", CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ")` " + 
-						"FROM " + u.TABLE_NAME + " where lower(" + u.EMAIL + ") = lower('" + email + "') " +
+		String query1 = "SELECT " + u.ID + ", CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ") as `name`, " + 
+						u.GENDER + "," + u.BIRTHDATE + "," + u.CONTACTNUMBER + 
+						" FROM " + u.TABLE_NAME + " where lower(" + u.EMAIL + ") = lower('" + email + "') " +
 						"and " + u.PASSWORD + " = SHA2('" + password + "', 512)";
 		
-		String query2 = "SELECT " + d.ID + " FROM " + d.TABLE_NAME + " WHERE " + d.USER_ID + " = " + u.ID;
+		String query2 = "SELECT " + d.ID + " FROM " + d.TABLE_NAME + " WHERE " + d.USER_ID + " = ";
+		
+		System.out.println(query1);
 		
 		try {
 			
@@ -34,16 +37,26 @@ public class UserDAO extends DAO{
 			if(rs.next()){
 				user = new User(rs.getInt(1));
 				user.setInformation(user_info_enum.NAME.getKey(), rs.getString(2));
+				user.setInformation(user_info_enum.GENDER.getKey(), rs.getString(3));
+				user.setInformation(user_info_enum.BIRTHDATE.getKey(), rs.getString(4));
+				user.setInformation(user_info_enum.CONTACTNUMBER.getKey(), rs.getString(5));
 			}
 			
 			rs.close();
 			
-			rs = stmt.executeQuery(query2);
+			if(user!=null){
 			
-			if(rs.next()){
-				user.setDoctor(rs.getInt(1), true);
-			}else{
-				user.setDoctor(0, false);
+				query2 += user.getId();
+				rs = stmt.executeQuery(query2);
+				
+				if(rs.next()){
+					user.setDoctor(rs.getInt(1), true);
+				}else{
+					user.setDoctor(0, false);
+				}
+				
+				rs.close();
+				
 			}
 			
 		} catch (SQLException e) {
