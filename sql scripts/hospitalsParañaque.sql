@@ -7,5 +7,5 @@ VALUES
 ("Protacio Medical Services", 10),
 ("South Superhighway Medical Center", 10),
 ("Sta. Rita de Baclaran Hospital", 10),
-("Sto. NiÃ±o de Cebu Maternity Hospital", 10),
-("UHBI ParaÃ±aque Doctors' Hospital", 10)
+("Sto. Niño de Cebu Maternity Hospital", 10),
+("UHBI Parañaque Doctors' Hospital", 10)

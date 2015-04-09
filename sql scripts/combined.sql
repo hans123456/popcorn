@@ -134,7 +134,6 @@ DROP TABLE IF EXISTS `appointments`;
 		`user_id` int(11) unsigned,
 		`doctor_id` int(11) unsigned,
 		PRIMARY KEY (`id`),
-		FOREIGN KEY fk_time(`time_id`) REFERENCES `times`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 		FOREIGN KEY fk_user(`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 		FOREIGN KEY fk_doctor(`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -185,26 +184,13 @@ VALUES
 
 INSERT INTO `days` (`name`)
 VALUES
+('Sunday'),
 ('Monday'),
 ('Tuesday'),
 ('Wednesday'),
 ('Thursday'),
 ('Friday'),
-('Saturday'),
-('Sunday');
-
-INSERT INTO `times` (`time`)
-VALUES
-('08:00'),
-('09:00'),
-('10:00'),
-('11:00'),
-('12:00'),
-('13:00'),
-('14:00'),
-('15:00'),
-('16:00'),
-('17:00');
+('Saturday');
 
 INSERT INTO `hospitals` (`name`, `city_id`)
 VALUES
@@ -220,7 +206,7 @@ VALUES
 ("Jean Demegillo Maternity and Lying", 1),
 ("John Paul Hospital", 1),
 ("Lady of Lourdes Hospital of Caybiga, Inc.", 1),
-("MCU–Filemon Dionisio Tanchoco Medical Foundation Hospital", 1),
+("MCU Filemon Dionisio Tanchoco Medical Foundation Hospital", 1),
 ("Martinez Memorial Hospital[2]", 1),
 ("Nephrology Center of Caloocan Dialysis Center, Inc.", 1),
 ("Nodado General Hospital", 1),
@@ -247,7 +233,7 @@ INSERT INTO `hospitals` (`name`, `city_id`)
 VALUES
 ("Beverly Hills Medical Group", 3),
 ("M. Tech Medical Center", 3),
-("Makati Medical Center[5]", 3),
+("Makati Medical Center", 3),
 ("Maria Lourdes Maternity Hospital", 3),
 ("Ospital ng Makati", 3),
 ("Ospital ng Makati", 3),
@@ -367,12 +353,126 @@ VALUES
 ("Medical Center Paranaque", 10),
 ("Olivarez General Hospital", 10),
 ("Our Lady of Peace Hospital", 10),
-("Parañaque Community Hospital", 10),
+("ParaÃ±aque Community Hospital", 10),
 ("Protacio Medical Services", 10),
 ("South Superhighway Medical Center", 10),
 ("Sta. Rita de Baclaran Hospital", 10),
 ("Sto. Niño de Cebu Maternity Hospital", 10),
 ("UHBI Parañaque Doctors' Hospital", 10);
+
+INSERT INTO `hospitals` (`name`, `city_id`)
+VALUES
+("Manila Adventist Medical Center", 11),
+("Pasay City General Hospital", 11),
+("Philippine Air Force General Hospital", 11),
+("San Juan De Dios Hospital", 11);
+
+INSERT INTO `hospitals` (`name`, `city_id`)
+VALUES
+("Alfonso Specialist Hospital", 12),
+("Glen Eagles Healthcare", 12),
+("Health Solutions Corporation", 12),
+("Javillonar Clinic and Hospital", 12),
+("John F. Cotton Hospital", 12),
+("Mary Immaculate Hospital", 12),
+("Medicomm Pacific, Inc.", 12),
+("Metro Psych Facility", 12),
+("Mission Hospital", 12),
+("Mother Regina Hospital", 12),
+("Pasig City General Hospital", 12),
+("Pasig Doctors Medical Center", 12),
+("Pasig Medical and Maternity Hospital Foundation", 12),
+("Rizal Medical Center", 12),
+("Sabater General Hospital", 12),
+("Salve Regina General Hospital", 12),
+("Saint Threse Hospital", 12),
+("The Medical City", 12),
+("Wellness Pro, Inc.", 12);
+
+INSERT INTO `hospitals` (`name`, `city_id`)
+VALUES
+("Ann Francis Maternity Hospital", 14),
+("AFP Medical Center", 14),
+("Bernardino General Hospital", 14),
+("Bernardino General Hospital II", 14),
+("Camp General Emilio Aguinaldo Station Hospital", 14),
+("Capitol Medical Center", 14),
+("Casaul General Hospital", 14),
+("Commonwealth Hospital and Medical Center", 14),
+("Cruz Dalida Maternity Hospital", 14),
+("De Los Santosâ€“STI Medical Center", 14),
+("Dihmesco General Hospital", 14),
+("Dr. Fe del Mundo Medical Center Foundation Philippines", 14),
+("Dr. Carlos Lanting Hospital", 14),
+("Dr. Jesus C. Delgado Memorial Medical Center", 14),
+("Dr. Montano Ramos General Hospital", 14),
+("East Avenue Medical Center", 14),
+("Fairview General Hospital", 14),
+("Far Eastern University â€“ Nicanor Reyes Medical Foundation", 14),
+("General Miguel Malvar Medical Foundation Hospital", 14),
+("J. P. Sioson General Hospital and Colleges, Inc.", 14),
+("Lung Center of the Philippines", 14),
+("National Children's Hospital", 14),
+("National Kidney and Transplant Institute", 14),
+("Neopolitan General Hospital", 14),
+("New Era General Hospital", 14),
+("Nodado General Hospital", 14),
+("Novaliches District Hospital", 14),
+("Novaliches General Hospital", 14),
+("OCW General Hospital", 14),
+("PNP General Hospital", 14),
+("PNP General Hospital Annex", 14),
+("Pascual General Hospital", 14),
+("Philippine Children's Medical Center", 14),
+("Philippine Heart Center", 14),
+("Philippine Orthopedic Center", 14),
+("Quezon City General Hospital", 14),
+("Queensberry Hospital", 14),
+("Quezon Institute", 14),
+("Quirino Memorial Medical Center", 14),
+("St. Luke's Medical Center", 14),
+("Saint Agnes General Hospital", 14),
+("San Lorenzo General Hospital", 14),
+("Santa Teresita General Hospital", 14),
+("United Doctors Medical Center", 14),
+("University of the East Ramon Magsaysay Memorial Medical Center", 14),
+("University of the Philippines Medical Services", 14),
+("Valdez Padron Hospital", 14),
+("Villarosa Hospital", 14),
+("Veterans Memorial Medical Center", 14),
+("World Citi Medical Center", 14);
+
+INSERT INTO `hospitals` (`name`, `city_id`)
+VALUES
+("Cardinal Santos Medical Center", 15),
+("Saint Martin de Porres Charity Hospital", 15),
+("San Juan Medical Center", 15);
+
+INSERT INTO `hospitals` (`name`, `city_id`)
+VALUES
+("Cruz Rabe General Hospital", 16),
+("Dr. Sabili General Hospital and Health Services", 16),
+("Fort Bonifacio General Hospital", 16),
+("Holy Mary Family Hospital", 16),
+("Jovince Medical Hospital", 16),
+("St. Luke's Medical Center Global City", 16),
+("Manila Naval Hospital", 16),
+("Taguig Doctors' Hospital", 16),
+("Taguig City Hospital", 16);
+
+INSERT INTO `hospitals` (`name`, `city_id`)
+VALUES
+("Angelus Medical and Maternity Clinic", 17),
+("Calalang General Hospital", 17),
+("Carlos Clinic", 17),
+("Fatima Medical Center", 17),
+("F and P Hernandez Maternity and Lying", 17),
+("Pasolo Maternity and Medical Clinic", 17),
+("Saint John's Hospital", 17),
+("Sanctissimo Rosario General Hospital", 17),
+("Valenzuela City Emergency Hospital", 17),
+("Valenzuela City General Hospital", 17),
+("Vian Family Hospital", 17);
 
 INSERT INTO `specializations` (`name`, `description`)
 VALUES
@@ -420,119 +520,18 @@ VALUES
 ('Surgery, Colon and Rectal','Diseases of the large intestine (bowel), rectum and anus that require surgical operation for diagnosis or treatment.'),
 ('Surgery, Urology','Diseases of the kidneys, bladder and male reproductive tract that require surgical operation.');
 
-INSERT INTO `hospitals` (`name`, `city_id`)
+INSERT INTO `times` (`time`)
 VALUES
-("Manila Adventist Medical Center", 11),
-("Pasay City General Hospital", 11),
-("Philippine Air Force General Hospital", 11),
-("San Juan De Dios Hospital", 11);
-
-INSERT INTO `hospitals` (`name`, `city_id`)
-VALUES
-("Alfonso Specialist Hospital", 12),
-("Glen Eagles Healthcare", 12),
-("Health Solutions Corporation", 12),
-("Javillonar Clinic and Hospital", 12),
-("John F. Cotton Hospital", 12),
-("Mary Immaculate Hospital", 12),
-("Medicomm Pacific, Inc.", 12),
-("Metro Psych Facility", 12),
-("Mission Hospital", 12),
-("Mother Regina Hospital", 12),
-("Pasig City General Hospital", 12),
-("Pasig Doctors Medical Center", 12),
-("Pasig Medical and Maternity Hospital Foundation", 12),
-("Rizal Medical Center", 12),
-("Sabater General Hospital", 12),
-("Salve Regina General Hospital", 12),
-("Saint Threse Hospital", 12),
-("The Medical City", 12),
-("Wellness Pro, Inc.", 12);
-
-INSERT INTO `hospitals` (`name`, `city_id`)
-VALUES
-("Ann Francis Maternity Hospital", 14),
-("AFP Medical Center", 14),
-("Bernardino General Hospital", 14),
-("Bernardino General Hospital II", 14),
-("Camp General Emilio Aguinaldo Station Hospital", 14),
-("Capitol Medical Center", 14),
-("Casaul General Hospital", 14),
-("Commonwealth Hospital and Medical Center", 14),
-("Cruz Dalida Maternity Hospital", 14),
-("De Los Santos–STI Medical Center", 14),
-("Dihmesco General Hospital", 14),
-("Dr. Fe del Mundo Medical Center Foundation Philippines", 14),
-("Dr. Carlos Lanting Hospital", 14),
-("Dr. Jesus C. Delgado Memorial Medical Center", 14),
-("Dr. Montano Ramos General Hospital", 14),
-("East Avenue Medical Center", 14),
-("Fairview General Hospital", 14),
-("Far Eastern University – Nicanor Reyes Medical Foundation", 14),
-("General Miguel Malvar Medical Foundation Hospital", 14),
-("J. P. Sioson General Hospital and Colleges, Inc.", 14),
-("Lung Center of the Philippines", 14),
-("National Children's Hospital", 14),
-("National Kidney and Transplant Institute", 14),
-("Neopolitan General Hospital", 14),
-("New Era General Hospital", 14),
-("Nodado General Hospital", 14),
-("Novaliches District Hospital", 14),
-("Novaliches General Hospital", 14),
-("OCW General Hospital", 14),
-("PNP General Hospital", 14),
-("PNP General Hospital Annex", 14),
-("Pascual General Hospital", 14),
-("Philippine Children's Medical Center", 14),
-("Philippine Heart Center", 14),
-("Philippine Orthopedic Center", 14),
-("Quezon City General Hospital", 14),
-("Queensberry Hospital", 14),
-("Quezon Institute", 14),
-("Quirino Memorial Medical Center", 14),
-("St. Luke's Medical Center", 14),
-("Saint Agnes General Hospital", 14),
-("San Lorenzo General Hospital", 14),
-("Santa Teresita General Hospital", 14),
-("United Doctors Medical Center", 14),
-("University of the East Ramon Magsaysay Memorial Medical Center", 14),
-("University of the Philippines Medical Services", 14),
-("Valdez Padron Hospital", 14),
-("Villarosa Hospital", 14),
-("Veterans Memorial Medical Center", 14),
-("World Citi Medical Center", 14);
-
-INSERT INTO `hospitals` (`name`, `city_id`)
-VALUES
-("Cardinal Santos Medical Center", 15),
-("Saint Martin de Porres Charity Hospital", 15),
-("San Juan Medical Center", 15);
-
-INSERT INTO `hospitals` (`name`, `city_id`)
-VALUES
-("Angelus Medical and Maternity Clinic", 17),
-("Calalang General Hospital", 17),
-("Carlos Clinic", 17),
-("Fatima Medical Center", 17),
-("F and P Hernandez Maternity and Lying", 17),
-("Pasolo Maternity and Medical Clinic", 17),
-("Saint John's Hospital", 17),
-("Sanctissimo Rosario General Hospital", 17),
-("Valenzuela City Emergency Hospital", 17),
-("Valenzuela City General Hospital", 17),
-("Vian Family Hospital", 17);
-
-INSERT INTO `hospitals` (`name`, `city_id`)
-VALUES
-("Cruz Rabe General Hospital", 16),
-("Dr. Sabili General Hospital and Health Services", 16),
-("Fort Bonifacio General Hospital", 16),
-("Holy Mary Family Hospital", 16),
-("Jovince Medical Hospital", 16),
-("St. Luke's Medical Center Global City", 16),
-("Manila Naval Hospital", 16),
-("Taguig Doctors' Hospital", 16),
-("Taguig City Hospital", 16);
+('08:00'),
+('09:00'),
+('10:00'),
+('11:00'),
+('12:00'),
+('13:00'),
+('14:00'),
+('15:00'),
+('16:00'),
+('17:00');
 
 INSERT INTO `users` (`first_name`, `last_name`, `gender`, `birth_date`, `contact_number`, `email`, `password`) 
 VALUES 
@@ -542,6 +541,14 @@ INSERT INTO `admins` (`user_id`)
 VALUES
 (1);
 
-INSERT INTO `doctors` (`specialization_id`, `city_id`, `hospital_id`, `user_id`)
-VALUES
-(9, 11, 277, 1);
+INSERT INTO `doctors` (`specialization_id`, `city_id`, `hospital_id`, `user_id`) 
+VALUE
+(9, 11, 139, 1);
+
+INSERT INTO `available times` (`day_id`, `time_id`, `doctor_id`)
+VALUE
+(2, 1, 1), (2, 2, 1), (2, 4, 1), (2, 5, 1);
+
+INSERT INTO `appointments` (`date`, `time_id`, `user_id`, `doctor_id`)
+VALUE
+('2015-04-20', 2, 1, 1), ('2015-04-20', 1, 1, 1);

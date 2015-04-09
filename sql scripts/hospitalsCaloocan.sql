@@ -12,7 +12,7 @@ VALUES
 ("Jean Demegillo Maternity and Lying", 1),
 ("John Paul Hospital", 1),
 ("Lady of Lourdes Hospital of Caybiga, Inc.", 1),
-("MCU–Filemon Dionisio Tanchoco Medical Foundation Hospital", 1),
+("MCU Filemon Dionisio Tanchoco Medical Foundation Hospital", 1),
 ("Martinez Memorial Hospital[2]", 1),
 ("Nephrology Center of Caloocan Dialysis Center, Inc.", 1),
 ("Nodado General Hospital", 1),

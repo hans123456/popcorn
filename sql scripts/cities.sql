@@ -9,7 +9,7 @@ VALUES
 ('Marikina'),
 ('Muntinlupa'),
 ('Navotas'),
-('ParaÃ±aque'),
+('Parañaque'),
 ('Pasay'),
 ('Pasig'),
 ('Pateros'),

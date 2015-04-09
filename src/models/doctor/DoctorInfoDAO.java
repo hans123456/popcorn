@@ -77,6 +77,7 @@ public class DoctorInfoDAO extends DAO{
 		
 		String query = "SELECT " + av.TIME_ID + " FROM " + d.TABLE_NAME + "," + av.TABLE_NAME +
 						" WHERE " + d.ID + "=" + av.DOCTOR_ID + " and " + d.ID + "=" + did + " and " + 
+						av.DAY_ID + "= DAYOFWEEK(' " + date + "') and " +
 						av.TIME_ID + " NOT IN (" + 
 						"SELECT " + ap.TIME_ID + " FROM " + d.TABLE_NAME + "," + ap.TABLE_NAME + 
 						" WHERE " + d.ID + "=" + ap.DOCTOR_ID + " and " +
