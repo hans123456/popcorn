@@ -59,7 +59,7 @@
 			<div class="left-align board-padding col s12 ">
 				<div class="section col s12">
 					<h1>About</h1>
-					<p class="flow-text justify">Lorem ipsum dolor sit amet, porro clita imperdiet id pri. Ne mea prima antiopam, ut vis enim doming voluptua. Nihil inimicus ut eam, oratio latine mei in, ut purto inciderint vim. Cu dolores singulis est, has ad quot tamquam voluptua, pro cu eius perfecto assentior. Eos fierent constituam ea, ea clita maiorum suavitate pri. No nostro debitis efficiantur duo, prima iuvaret et duo, solet consequat omittantur an eos.</p>
+					<p class="flow-text justify">An online doctor appointment system.</p>
 				</div>
 				<div class="row col s12">
 				</div>

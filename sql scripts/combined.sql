@@ -134,6 +134,7 @@ DROP TABLE IF EXISTS `appointments`;
 		`user_id` int(11) unsigned,
 		`doctor_id` int(11) unsigned,
 		PRIMARY KEY (`id`),
+		UNIQUE (`date`, `time_id`),
 		FOREIGN KEY fk_user(`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 		FOREIGN KEY fk_doctor(`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -549,6 +550,10 @@ INSERT INTO `available times` (`day_id`, `time_id`, `doctor_id`)
 VALUE
 (2, 1, 1), (2, 2, 1), (2, 4, 1), (2, 5, 1);
 
+INSERT INTO `users` (`first_name`, `last_name`, `gender`, `birth_date`, `contact_number`, `email`, `password`) 
+VALUES 
+('a', 'a', 'M', '1990-01-01', '0000', 'a@a.com', sha2('b', 512));
+
 INSERT INTO `appointments` (`date`, `time_id`, `user_id`, `doctor_id`)
 VALUE
-('2015-04-20', 2, 1, 1), ('2015-04-20', 1, 1, 1);
+('2015-04-20', 2, 2, 1), ('2015-04-20', 1, 2, 1);

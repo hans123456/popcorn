@@ -29,8 +29,8 @@ public class ListOfDoctorsDAO extends DAO{
 		
 		String query = "";
 		
-		query += "SELECT " + d.ID + ", CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ") as 'whole name', " + 
-				 c.NAME + ", " + s.NAME;
+		query += "SELECT * FROM (SELECT " + d.ID + " as `id`, CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ") as `whole`, " + 
+				 c.NAME + " as `city`, " + s.NAME + " as `specialization` ";
 		
 		query += " FROM " + d.TABLE_NAME + ", " + c.TABLE_NAME + ", " + s.TABLE_NAME + 
 				 ", " + u.TABLE_NAME + " where " + d.CITY_ID + " = " + c.ID + " and " + 
@@ -48,11 +48,15 @@ public class ListOfDoctorsDAO extends DAO{
 			if(constraints.get("hospital")[0].equals("0")==false)
 			 query += " and " + d.HOSPITAL_ID + " = " + constraints.get("hospital")[0];
 		
+		query += ") as `table` ";
+		
 		if(constraints.get("search")!=null)
 			if(constraints.get("search")[0].equals("0")==false)
-				query += " and 'whole name' like \"%" + constraints.get("search")[0] + "%\"";
+				query += " WHERE `table`.whole like '%" + constraints.get("search")[0] + "%'";
 			
 		query += " limit " + offset + ", " + noOfRecords;
+		
+		System.out.println(query);
 		
 		List<Doctor> list = new ArrayList<Doctor>();
 		Doctor doctor = null;

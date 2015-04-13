@@ -76,48 +76,51 @@
 							<table class="hoverable center-align centered bordered">
 								<thead>
 									<tr>
-										<th data-field="name">Name</th>
-										<th data-field="date">Date</th>
-										<th data-field="time">Time</th>
+										<th data-field="id">Name</th>
+										<th data-field="name">Date</th>
+										<th data-field="price">Time</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>Alvin</td>
-										<td>March 13, 2015</td>
-										<td>01:00 PM</td>
-									</tr>
-									<tr>
-										<td>Alan</td>
-										<td>March 13, 2015</td>
-										<td>02:00 PM</td>
-									</tr>
-									<tr>
-										<td>Jonathan</td>
-										<td>March 13, 2015</td>
-										<td>03:00 PM</td>
-									</tr>
-									<tr>
-										<td>Jonathan</td>
-										<td>March 13, 2015</td>
-										<td>04:00 PM</td>
-									</tr>
-									<tr>
-										<td>Jonathan</td>
-										<td>March 13, 2015</td>
-										<td>05:00 PM</td>
-									</tr>
+								<tbody id="list_of_appointments">
+									<c:forEach var="appointment" items="${appointments}">
+										<tr onclick="location.href='doctor_profile?did=${appointment.getDoctorId()}'">											
+										    <td>${appointment.getDoctorName()}</td>
+										    <td>${appointment.getDate()}</td>
+										    <td>${appointment.getTime()}</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
-							<ul class="pagination col s12 center-align" style="width: auto">
-								<li class="disabled"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>
-								<li class="active"><a href="#!">1</a></li>
-								<li class="waves-effect"><a href="#!">2</a></li>
-								<li class="waves-effect"><a href="#!">3</a></li>
-								<li class="waves-effect"><a href="#!">4</a></li>
-								<li class="waves-effect"><a href="#!">5</a></li>
-								<li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
-							</ul>
+							<div class="row center">
+								<ul class="pagination col s12 center-align" style="width: auto">
+								
+									<c:if test="${currentPage == 1}">
+										<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
+									</c:if>
+									<c:if test="${currentPage != 1}">
+										<li class="disabled"><a href="user_profile?page=${currentPage - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
+									</c:if>
+									
+									<c:forEach begin="1" end="${noOfPages}" var="i">
+						                <c:choose>
+						                    <c:when test="${currentPage eq i}">
+						                    	<li class="active">${i}</li>
+						                    </c:when>
+						                    <c:otherwise>
+						                    	<li class="waves-effect"><a href="user_profile?page=${i}${parameter}">${i}</a></li>
+						                    </c:otherwise>
+						                </c:choose>
+						            </c:forEach>
+						            
+						            <c:if test="${currentPage lt noOfPages}">
+										<li class="waves-effect"><a href="user_profile?page=${currentPage + 1}${parameter}"><i class="mdi-navigation-chevron-right"></i></a></li>
+									</c:if>
+									<c:if test="${currentPage ge noOfPages}">
+										<li class="disabled"><i class="mdi-navigation-chevron-right"></i></li>
+									</c:if>
+									
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>

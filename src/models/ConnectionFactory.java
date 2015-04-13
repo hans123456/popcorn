@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 	//static reference to itself
 	private static ConnectionFactory instance = new ConnectionFactory();
-	String url = "jdbc:mysql://localhost/webapps";
+	String url = "jdbc:mysql://localhost/northwind";
 	String user = "root";
-	String password = "";
+	String password = "1234";
 	String driverClass = "com.mysql.jdbc.Driver"; 
 	 
 	//private constructor

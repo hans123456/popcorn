@@ -64,6 +64,25 @@ public class user_profile extends HttpServlet {
 			
 				AppointmentsDAO dao = new AppointmentsDAO();
 				request.setAttribute("appointments", dao.getUserAppointments(user.getId()));
+
+				int page = 1;
+				int recordsPerPage = 5;
+				if(request.getParameter("page") != null){
+					try{
+						page = Integer.parseInt(request.getParameter("page"));
+					}catch(NumberFormatException e){
+						
+					}
+				}
+				
+				int noOfRecords = dao.getNoOfRecords();
+				int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+				
+				if(noOfPages<page)
+					page = noOfPages;
+				
+				request.setAttribute("noOfPages", noOfPages);
+				request.setAttribute("currentPage", page);
 				
 				request.getRequestDispatcher("/WEB-INF/user_profile.jsp").forward(request, response);
 			

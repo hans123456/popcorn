@@ -78,7 +78,7 @@ public class view_doctors extends HttpServlet {
 		
 		request.setAttribute("parameter", parameter);
 		
-		int noOfRecords = 5;//dao.getNoOfRecords();
+		int noOfRecords = dao.getNoOfRecords();
 		int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 		
 		if(noOfPages<page)

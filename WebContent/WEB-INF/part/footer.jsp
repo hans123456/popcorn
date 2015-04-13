@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col l6 s12">
 				<h5 class="white-text">POPCORN</h5>
-				<p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, porro clita imperdiet id pri. Ne mea prima antiopam, ut vis enim doming voluptua. Nihil inimicus ut eam, oratio latine mei in, ut purto inciderint vim.</p>
+				<p class="grey-text text-lighten-4">An online doctor appointment system.</p>
 			</div>
 			<div class="col l4 offset-l2 s12">
 				<h5 class="white-text">Links</h5>

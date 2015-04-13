@@ -127,7 +127,7 @@
 									<label for="monday5">10:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="2" type="checkbox" id="monday6" value="8 "/>
+									<input class="with-gap" name="2" type="checkbox" id="monday6" value="8"/>
 									<label for="monday6">3:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
