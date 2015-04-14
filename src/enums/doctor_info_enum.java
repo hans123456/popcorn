@@ -5,7 +5,8 @@ public enum doctor_info_enum {
 	NAME ("name", 2),
 	CITY ("city", 3),
 	HOSPITAL ("hospital", 4),
-	SPECIALIZATION ("specialization", 5);
+	SPECIALIZATION ("specialization", 5),
+	CONSULTATION ("consultation", -1);
 	
 	private final String key;
 	private final int column_no;

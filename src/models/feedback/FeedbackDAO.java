@@ -5,24 +5,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import tables.Doctors_Table;
 import tables.Feedbacks_Table;
-import tables.Users_Table;
 import models.DAO;
-import models.doctor.Doctor;
-import models.user.User;
 
 public class FeedbackDAO extends DAO{
 	
-	public boolean addFeedback(User user, Doctor doctor, Feedback feedback){
+	public boolean addFeedback(int userId, int doctor_id, Feedback feedback){
 		boolean result = true;
 		Feedbacks_Table f = new Feedbacks_Table();
-		Doctors_Table d = new Doctors_Table();
-		Users_Table u = new Users_Table();
 		
 		String query = "INSERT INTO " + f.TABLE_NAME + " ( " + f.RATE + ", " + f.COMMENT + ", " +
 						f.USER_ID + ", " + f.DOCTOR_ID + " ) VALUES ( " + feedback.getRate() + ", '" +
-						feedback.getComment() + "', " + user.getId() + ", " + doctor.getId() + " )";
+						feedback.getComment() + "', " + userId + ", " + doctor_id + " )";
+		
+		System.out.println(query);
 		
 		try {
 			connection = getConnection();
@@ -48,14 +44,17 @@ public class FeedbackDAO extends DAO{
 		return result;
 	}
 	
-	public List<Feedback> getFeedbacksofDoctor(Doctor doctor) {
+	private int noOfRecords;
+	
+	public List<Feedback> getFeedbacksofDoctor(int doctor_id) {
 		List<Feedback> feedbacks = null;
 		
 		Feedbacks_Table f = new Feedbacks_Table();
-		Doctors_Table d = new Doctors_Table();
 		
 		String query = "SELECT " + f.RATE + ", " + f.COMMENT + " FROM " + f.TABLE_NAME +
-						" WHERE " + f.DOCTOR_ID + " = " + doctor.getId();
+						" WHERE " + f.DOCTOR_ID + " = " + doctor_id;
+		
+		System.out.println(query);
 		
 		try {
 			connection = getConnection();
@@ -67,6 +66,15 @@ public class FeedbackDAO extends DAO{
 			while(rs.next()){
 				feedbacks.add(new Feedback(rs.getInt(1), rs.getString(2)));
 			}
+			
+			rs.close();
+			
+			rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+			   
+			if(rs.next())
+				this.noOfRecords = rs.getInt(1);
+			
+			rs.close();
 			
 		} catch (SQLException e) {
 		   e.printStackTrace();
@@ -85,5 +93,10 @@ public class FeedbackDAO extends DAO{
 		
 		return feedbacks;
 	}
-
+	
+	
+	public int getNoOfRecords() {
+		return noOfRecords;
+	}
+	
 }

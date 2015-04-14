@@ -53,6 +53,8 @@ public class doctor_apply extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		ServletContext sc = request.getServletContext();
+		String prompt = "";
+		boolean invalid = false;
 		
 		String first_name = request.getParameter(user_registration_enum.FIRSTNAME.getKey());
 		String last_name = request.getParameter(user_registration_enum.LASTNAME.getKey());
@@ -86,41 +88,103 @@ public class doctor_apply extends HttpServlet {
 		}
 		
 		if(first_name.length()==0){
-			sc.setAttribute(invalid, "First Name is Empty");
-		}else if(last_name.length()==0){
-			sc.setAttribute(invalid, "Last Name is Empty");
-		}else if(email.length()==0){
-			sc.setAttribute(invalid, "Email is Empty");
-		}else if (!(email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))) {
-			sc.setAttribute(invalid, "Invalid Email");
-		}else if(contact.length()==0){
-			sc.setAttribute(invalid, "Contact is Empty");
-		}else if(date == null) {
-			sc.setAttribute(invalid, "Birthdate is Empty");
-		}else if(date.after(new Date())) {
-			sc.setAttribute(invalid, "Invalid Birthdate");
-		}else if(hospital == null) {
-			sc.setAttribute(invalid, "No hospital chosen");
-		}else if(specialization == null) {
-			sc.setAttribute(invalid, "No specialization chosen");
-		}else if(city == null) {
-			sc.setAttribute(invalid, "No city chosen");
-		}else if(gender == null){
-			sc.setAttribute(invalid, "No gender chosen");
-		}else if(consultHours.size()==0) {
-			sc.setAttribute(invalid, "No consultation hours");
-		}else if(password.length()==0){
-			sc.setAttribute(invalid, "Password is Empty");
-		}else if(password.equals(confirm_password)==false){
-			sc.setAttribute(invalid, "Passwords Do Not Match");
+			prompt += "First name is empty. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.FIRSTNAME.getKey(), first_name);
+		}
+		
+		if(last_name.length()==0){
+			prompt += "Last name is empty. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.LASTNAME.getKey(), last_name);
+		}
+		
+		if(email.length()==0){
+			prompt += "Email is empty. ";
+			invalid = true;
+		} else if (!(email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))){
+			prompt += "Email is invalid. ";	
+			invalid = true;
+		}else {
+			sc.setAttribute(user_registration_enum.EMAIL.getKey(), email);
+		}
+		
+		if(contact.length()==0){
+			prompt += "Contact is empty. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.CONTACTNUMBER.getKey(), contact);
+		}
+		
+		if(password.length()==0){
+			prompt += "Password is empty. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.PASSWORD.getKey(), password);
+		}
+		
+		if(password.equals(confirm_password)==false){
+			prompt += "Confirm password does not match password. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.CONFIRMPASSWORD.getKey(), confirm_password);
+		}
+		
+		if(date == null) {
+			prompt += "No birthday chosen. ";
+			invalid = true;
+		} else if (date.after(new Date())) {
+			prompt += "Birthday is invalid. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.BIRTHDATE.getKey(), request.getParameter(user_registration_enum.BIRTHDATE.getKey()));
+		}
+		
+		if(gender == null) {
+			prompt += "No gender chosen. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.GENDER.getKey(), gender);
 		}
 		
 		
+		if(hospital == null) {
+			prompt += "No hospital chosen. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(doctor_info_enum.HOSPITAL.toString(), hospital);
+		}
+		
+		
+		if(specialization == null) {
+			prompt += "No specialization chosen. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(doctor_info_enum.SPECIALIZATION.toString(), specialization);			
+		}
+		
+		if(city == null) {
+			prompt += "No city chosen. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(doctor_info_enum.CITY.toString(), city);
+		}
+		
+		if(consultHours.size()==0) {
+			prompt += "No consultation hours. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(doctor_info_enum.CONSULTATION.toString(), consultHours);
+		}
 		
 		
 		// change to != if checking already okay
-		if(sc.getAttribute(invalid)!=null)
+		if(invalid) {
+			sc.setAttribute(this.invalid, prompt);
 			response.sendRedirect("doctor_application#Apply");
+		}
 		else{
 			User user = new User();
 			user.setInformation(user_registration_enum.FIRSTNAME.getKey(), first_name);

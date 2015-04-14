@@ -45,19 +45,10 @@ public class register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		ServletContext sc = request.getServletContext();
-//		
-//		for(user_registration_enum i : user_registration_enum.values()){
-//			System.out.println(i.toString());
-//			String val = request.getParameter(i.toString());
-//			
-//			if(val.length()>0){
-//				sc.setAttribute(i.toString(), val);  
-//			}
-//			
-//		}
-//		
+		
+		boolean invalid = false;
+		String prompt = "";
 		
 		String first_name = request.getParameter(user_registration_enum.FIRSTNAME.getKey());
 		String last_name = request.getParameter(user_registration_enum.LASTNAME.getKey());
@@ -70,30 +61,72 @@ public class register extends HttpServlet {
 		String gender = request.getParameter(user_registration_enum.GENDER.getKey());
 		
 		if(first_name.length()==0){
-			sc.setAttribute(invalid, "First Name is Empty");
-		}else if(last_name.length()==0){
-			sc.setAttribute(invalid, "Last Name is Empty");
-		}else if(email.length()==0){
-			sc.setAttribute(invalid, "Email is Empty");
-		}else if (!(email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))) {
-			sc.setAttribute(invalid, "Invalid Email");
-		}else if(contact.length()==0){
-			sc.setAttribute(invalid, "Contact is Empty");
-		}else if(password.length()==0){
-			sc.setAttribute(invalid, "Password is Empty");
-		}else if(password.equals(confirm_password)==false){
-			sc.setAttribute(invalid, "Passwords Do Not Match");
-		}else if(date == null) {
-			sc.setAttribute(invalid, "Birthdate is Empty");
-		}else if(date.after(new Date())) {
-			sc.setAttribute(invalid, "Invalid Birthdate");
-		}else if(gender == null) {
-			sc.setAttribute(invalid, "No Gender Selected");
+			prompt += "First name is empty. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.FIRSTNAME.getKey(), first_name);
+		}
+		
+		if(last_name.length()==0){
+			prompt += "Last name is empty. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.LASTNAME.getKey(), last_name);
+		}
+		
+		if(email.length()==0){
+			prompt += "Email is empty. ";
+			invalid = true;
+		} else if (!(email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$"))){
+			prompt += "Email is invalid. ";	
+			invalid = true;
+		}else {
+			sc.setAttribute(user_registration_enum.EMAIL.getKey(), email);
+		}
+		
+		if(contact.length()==0){
+			prompt += "Contact is empty. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.CONTACTNUMBER.getKey(), contact);
+		}
+		
+		if(password.length()==0){
+			prompt += "Password is empty. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.PASSWORD.getKey(), password);
+		}
+		
+		if(password.equals(confirm_password)==false){
+			prompt += "Confirm password does not match password. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.CONFIRMPASSWORD.getKey(), confirm_password);
+		}
+		
+		if(birth_date == null) {
+			prompt += "No birthday chosen. ";
+			invalid = true;
+		} else if (date.after(new Date())) {
+			prompt += "Birthday is invalid. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.BIRTHDATE.getKey(), request.getParameter(user_registration_enum.BIRTHDATE.getKey()));
+		}
+		
+		if(gender == null) {
+			prompt += "No gender chosen. ";
+			invalid = true;
+		} else {
+			sc.setAttribute(user_registration_enum.GENDER.getKey(), gender);
 		}
 		
 		// change to != if checking already okay
-		if(sc.getAttribute(invalid)!=null)
+		if(invalid) {
+			sc.setAttribute(this.invalid, prompt);
 			response.sendRedirect("index#Register");
+		}
 		else{
 			User user = new User();
 			user.setInformation(user_registration_enum.FIRSTNAME.getKey(), first_name);

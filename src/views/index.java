@@ -46,10 +46,11 @@ public class index extends HttpServlet {
 		sc.removeAttribute(key2);
 		
 		for(user_registration_enum i : user_registration_enum.values()){
-			String val = (String) sc.getAttribute(i.toString());
+			String val = (String) sc.getAttribute(i.getKey());
+			
 			if(val!=null){
-				request.setAttribute(i.toString(), val);
-				sc.removeAttribute(i.toString());
+				request.setAttribute(i.getKey(), val);
+				sc.removeAttribute(i.getKey());
 			}
 		}
 		
@@ -74,10 +75,11 @@ public class index extends HttpServlet {
 		sc.removeAttribute(key2);
 		
 		for(user_registration_enum i : user_registration_enum.values()){
-			String val = (String) sc.getAttribute(i.toString());
+			String val = (String) sc.getAttribute(i.getKey());
 			if(val!=null){
-				request.setAttribute(i.toString(), val);
-				sc.removeAttribute(i.toString());
+				request.setAttribute(i.getKey(), val);
+				sc.removeAttribute(i.getKey());
+				
 			}
 		}
 		

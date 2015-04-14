@@ -47,10 +47,10 @@ public class doctor_application extends HttpServlet {
 		ServletContext sc = request.getServletContext();
 		
 		for(user_registration_enum i : user_registration_enum.values()){
-			String val = (String) sc.getAttribute(i.toString());
+			String val = (String) sc.getAttribute(i.getKey());
 			if(val!=null){
-				request.setAttribute(i.toString(), val);
-				sc.removeAttribute(i.toString());
+				request.setAttribute(i.getKey(), val);
+				sc.removeAttribute(i.getKey());
 			}
 		}
 		
@@ -80,6 +80,10 @@ public class doctor_application extends HttpServlet {
 			cityHospitalMapping.put(city.getId(), hospitalPerCity);
 		}
 
+		String key1 = register.invalid;
+		request.setAttribute(key1, sc.getAttribute(key1));
+		sc.removeAttribute(key1);
+		
 		request.setAttribute("specializations", speDao.getSpecializations());
 		request.setAttribute("cities", cities);
 		request.setAttribute("hospitals", cityHospitalMapping.get(cities.get(0).getName()));

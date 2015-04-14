@@ -139,54 +139,61 @@
 					<div class="row">
 						<div class="card-panel margin-top30">
 							<c:if test="${doc==false}">
-							<a class="waves-effect waves-light btn blue modal-trigger right " href="#give_feedback_modal">Give Feedback</a>
+								<c:if test="${sessionScope.user!=null}">
+								<a class="waves-effect waves-light btn blue modal-trigger right " href="#give_feedback_modal">Give Feedback</a>
+								</c:if>
 							</c:if>
 							<div class="flow-text">
 								Feedbacks
 							</div>
-							<div class="row margin-top30">
-								<table class="hoverable bordered col s12">
-									<tbody>
-										<tr>
-											<td class="container">
-												<div>
-													<div class="flow-text">
-														test
-													</div>
-													<div>
-														a
-													</div>
-												</div>
-											</td>
+							<div class="row top-margin30">
+							<table class="hoverable center-align centered bordered">
+								<thead>
+									<tr>
+										<th data-field="rate">Rate</th>
+										<th data-field="comment">Comment</th>
+									</tr>
+								</thead>
+								<tbody id="list_of_feedbacks">
+									<c:forEach var="feedback" items="${feedbacks}">
+										<tr>											
+										    <td>${feedback.getRate()}</td>
+										    <td>${feedback.getComment()}</td>
 										</tr>
-										<tr>
-											<td class="container">
-												<div>
-													<div class="flow-text">
-														test
-													</div>
-													<div>
-														Lorem ipsum dolor sit amet, porro clita imperdiet id pri. Ne mea prima antiopam, ut vis enim doming voluptua. Nihil inimicus ut eam, oratio latine mei in, ut purto inciderint vim.
-													</div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+									</c:forEach>
+								</tbody>
+							</table>
 							<div class="row center">
 								<ul class="pagination col s12 center-align" style="width: auto">
-									<li class="disabled"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>
-									<li class="active"><a href="#!">1</a></li>
-									<li class="waves-effect"><a href="#!">2</a></li>
-									<li class="waves-effect"><a href="#!">3</a></li>
-									<li class="waves-effect"><a href="#!">4</a></li>
-									<li class="waves-effect"><a href="#!">5</a></li>
-									<li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
+								
+									<c:if test="${currentPage == 1}">
+										<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
+									</c:if>
+									<c:if test="${currentPage != 1}">
+										<li class="disabled"><a href="user_profile?page=${currentPage - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
+									</c:if>
+									
+									<c:forEach begin="1" end="${noOfPages}" var="i">
+						                <c:choose>
+						                    <c:when test="${currentPage eq i}">
+						                    	<li class="active">${i}</li>
+						                    </c:when>
+						                    <c:otherwise>
+						                    	<li class="waves-effect"><a href="user_profile?page=${i}${parameter}">${i}</a></li>
+						                    </c:otherwise>
+						                </c:choose>
+						            </c:forEach>
+						            
+						            <c:if test="${currentPage lt noOfPages}">
+										<li class="waves-effect"><a href="user_profile?page=${currentPage + 1}${parameter}"><i class="mdi-navigation-chevron-right"></i></a></li>
+									</c:if>
+									<c:if test="${currentPage ge noOfPages}">
+										<li class="disabled"><i class="mdi-navigation-chevron-right"></i></li>
+									</c:if>
+									
 								</ul>
 							</div>
 						</div>
-					</div>
 
 				</div>
 
@@ -198,20 +205,30 @@
 	<c:import url="part/footer.jsp"></c:import>
 	
 	<c:if test="${doc==false}">
-	
+	<form action = "add_feedback" method = "POST">
+	<input id="doc_id" value="${did}"  name="did" class="hide"></input>	
 	<div id="give_feedback_modal" class="modal">
 		<div class="modal-content">
 			<h4>Feedback</h4>
 			<div class="input-field col s12 margin-top30">
-				<textarea id="textarea1" class="materialize-textarea"></textarea>
-				<label for="textarea1">Feedback here</label>
-			  </div>
+				<textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+				<label for="comment">Feedback here</label>
+				<select id="rate" name="rate">
+					<option value="" selected disabled>Rate</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
 		</div>
 		<div class="modal-footer">
-			<a class="waves-effect waves-green btn-flat modal-action modal-close">Submit</a>
-			<a class="waves-effect waves-teal btn-flat modal-action modal-close">Cancel</a>
+			<button class="waves-effect waves-green btn-flat modal-action" type="submit">Submit</button>
+			<button class="waves-effect waves-teal btn-flat modal-action modal-close">Cancel</button>
 		</div>
 	</div>
+	</form>
 	
 	<form action = "cancel_appointment" method = "POST">
 	<input id="appointment_id" name="apid" class="hide"></input>	

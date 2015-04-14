@@ -42,45 +42,127 @@
 				<form action="doctor_apply" method="POST" class="col s12">
 					<div class="row">
 						<div class="input-field col m6 s12">
-							<input id="user_reg_first_name" name="user_reg_first_name" type="text" class="validate">
-							<label for="user_reg_first_name">First Name</label>
+							<c:choose>
+								<c:when test="${user_reg_first_name == null }">
+									<input id="user_reg_first_name" name="user_reg_first_name" type="text" class="validate">
+									<label for="user_reg_first_name">First Name</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_first_name" name="user_reg_first_name" value="${user_reg_first_name}" type="text" class="validate">
+									<label for="user_reg_first_name">First Name</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_last_name" name="user_reg_last_name" type="text" class="validate">
-							<label for="user_reg_last_name">Last Name</label>
+							<c:choose>
+								<c:when test="${user_reg_last_name == null }">
+									<input id="user_reg_last_name" name="user_reg_last_name" type="text" class="validate">
+									<label for="user_reg_last_name">Last Name</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_last_name" name="user_reg_last_name" value="${user_reg_last_name}" type="text" class="validate">
+									<label for="user_reg_last_name">Last Name</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_email" name="user_reg_email" type="email" class="validate">
-							<label for="user_reg_email">Email</label>
+							<c:choose>
+								<c:when test="${user_reg_email == null }">
+									<input id="user_reg_email" name="user_reg_email" type="text" class="validate">
+									<label for="user_reg_email">Email</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_email" name="user_reg_email" value="${user_reg_email}" type="text" class="validate">
+									<label for="user_reg_email">Email</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_contact_number" name="user_reg_contact_number" type="text" class="validate">
-							<label for="user_reg_contact_number">Contact Number</label>
+							<c:choose>
+								<c:when test="${user_reg_contact_number == null }">
+									<input id="user_reg_contact_number" name="user_reg_contact_number" type="text" class="validate">
+									<label for="user_reg_contact_number">Contact Number</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_contact_number" name="user_reg_contact_number" value="${user_reg_contact_number}" type="text" class="validate">
+									<label for="user_reg_contact_number">Contact Number</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12 select">
 							<select id="user_reg_gender" name="user_reg_gender">
 								<option value="" selected disabled>Gender</option>
-								<option value="M">Male</option>
-								<option value="F">Female</option>
-							</select> 
+								<c:choose>
+									<c:when test="${user_reg_gender == null}">
+										<option value="M">Male</option>
+										<option value="F">Female</option>
+									</c:when>
+									<c:when test="${user_reg_gender == 'F'}">
+										<option value="M">Male</option>
+										<option value="F" selected>Female</option>
+									</c:when>
+									<c:otherwise>
+										<option value="M" selected>Male</option>
+										<option value="F">Female</option>
+									</c:otherwise>
+								</c:choose>
+							</select>
 						</div>
 						<div class="input-field col m6 s12">
- 							<input id="user_reg_birthdate" name="user_reg_birthdate" type="date" class="datepicker">
-							<label for="user_reg_birthdate">Birthdate</label>
+							<c:choose>
+								<c:when test="${user_reg_birthdate == null}">
+ 									<input id="user_reg_birthdate" name="user_reg_birthdate" type="date" class="datepicker">
+									<label for="user_reg_birthdate">Birthdate</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_birthdate" name="user_reg_birthdate" value="${user_reg_birthdate}" type="date" class="datepicker">
+									<label for="user_reg_birthdate">Birthdate</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_password" name="user_reg_password" type="password" class="validate">
-							<label for="user_reg_password">Password</label>
+							<c:choose>
+								<c:when test="${user_reg_password == null}">
+									<input id="user_reg_password" name="user_reg_password" type="password" class="validate">
+									<label for="user_reg_password">Password</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_password" name="user_reg_password" value="${user_reg_password}" type="password" class="validate">
+									<label for="user_reg_password">Password</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_confirm_password" name="user_reg_confirm_password" type="password" class="validate">
-							<label for="user_reg_confirm_password">Confirm Password</label>
+							<c:choose>
+								<c:when test="${user_reg_confirm_password == null}">
+									<input id="user_reg_confirm_password" name="user_reg_confirm_password" type="password" class="validate">
+									<label for="user_reg_confirm_password">Confirm Password</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_confirm_password" name="user_reg_confirm_password" value="${user_reg_confirm_password}" type="password" class="validate">
+									<label for="user_reg_confirm_password">Confirm Password</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12 select">
 							<select id="specializations" name="specializations">
 								<option value="" selected disabled>Specialization</option>
 								<c:forEach items="${specializations}" var="curItem">
-									<option value="${curItem.getId()}">${curItem.getName()}</option>
+									<c:choose>
+										<c:when test="${specialization == null}">
+											<option value="${curItem.getId()}">${curItem.getName()}</option>
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${curItem.getId() == specialization}">
+													<option value="${curItem.getId()}" selected>${curItem.getName()}</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${curItem.getId()}">${curItem.getName()}</option>
+												</c:otherwise>
+											</c:choose>
+									</c:otherwise>
+								</c:choose>
 								</c:forEach>
 							</select>
 						</div>
@@ -88,16 +170,26 @@
 							<select id="cities" name="cities">
 								<option value="" selected disabled>City</option>
 								<c:forEach items="${cities}" var="curItem">
-									<option value="${curItem.getId()}">${curItem.getName()}</option>
+									<c:choose>
+										<c:when test="${city == null}">
+											<option value="${curItem.getId()}">${curItem.getName()}</option>
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${curItem.getId() == city}">
+													<option value="${curItem.getId()}" selected>${curItem.getName()}</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${curItem.getId()}">${curItem.getName()}</option>
+												</c:otherwise>
+											</c:choose>
+									</c:otherwise>
+								</c:choose>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="input-field col m6 s12">
 							<select id="hospitals" name="hospitals" class="browser-default">
-								<option value="" selected disabled>Hospital</option>
-								<c:forEach items="${hospitals}" var="curItem">
-									<option value="${curItem.getId()}">${curItem.getName()}</option>
-								</c:forEach>
 							</select>
 						</div>
 					</div>
@@ -506,7 +598,53 @@
 		    // re-initialize (update)
 		    $(this).material_select();
 		  });
-		 
+	});
+	
+	$("#hospitals").ready(function(){
+	  	var city = document.getElementById("cities").value;
+		var result = mapping[city];
+		
+		var $selectDropdown = 
+		      $("#hospitals")
+		        .empty()
+		        .html(' ');
+		
+		$selectDropdown.append($("<option></option>").attr("value", "").text("Hospital").attr("selected", true).attr("disabled", true));
+
+		if(result != null) {
+	    
+	    var hospital = <%=request.getAttribute("hospital")%>
+		for(var i = 0 ; i < result.length; i++){
+			var value = result[i];
+			if(value.id == hospital) {
+		    	$selectDropdown.append($("<option></option>").attr("value",value.id).attr("selected", true).text(value.name));
+			} else {
+				$selectDropdown.append($("<option></option>").attr("value",value.id).text(value.name));
+			}
+		}
+	    
+
+	    // trigger event
+	    $selectDropdown.trigger('contentChanged');
+		}
+	});
+
+	$("#user_reg_birthdate").ready(function(){
+		var monthNames = ["January", "February", "March", "April", "May", "June",
+		                  "July", "August", "September", "October", "November", "December"
+		                ];
+		
+	    var date = new Date();
+	
+	    var day = date.getDate();
+	    var month = date.getMonth();
+	    var year = date.getFullYear();
+	    
+	    
+	
+	    var today = day + " " + monthNames[month] + ", " + year;       
+	    console.log(today);
+	    $("#user_reg_birthdate").val(today);
 	});
  
 </script>

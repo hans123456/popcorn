@@ -13,6 +13,7 @@ import models.appointments.AppointmentsDAO;
 import models.doctor.Doctor;
 import models.doctor.DoctorInfoDAO;
 import models.doctor.Time;
+import models.feedback.FeedbackDAO;
 import models.user.User;
 import utilities.DateParser;
 import enums.doctor_info_enum;
@@ -58,6 +59,31 @@ public class doctor_profile extends HttpServlet {
 			request.getRequestDispatcher("/view_doctors").forward(request, response);
 			
 		}else {
+			
+			//idk
+			FeedbackDAO feedbackDao = new FeedbackDAO();
+			request.setAttribute("feedbacks", feedbackDao.getFeedbacksofDoctor(did));
+
+			int page = 1;
+			int recordsPerPage = 5;
+			if(request.getParameter("page") != null){
+				try{
+					page = Integer.parseInt(request.getParameter("page"));
+				}catch(NumberFormatException e){
+							
+				}
+			}
+					
+			int noOfRecords = feedbackDao.getNoOfRecords();
+			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+				
+			if(noOfPages<page)
+				page = noOfPages;
+					
+			request.setAttribute("noOfPages", noOfPages);
+			request.setAttribute("currentPage", page);
+			//idk
+			
 			DoctorInfoDAO dao = new DoctorInfoDAO();
 			Doctor doctor = dao.getDoctorInfo(did);
 			
@@ -104,6 +130,8 @@ public class doctor_profile extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		//even not login...anyone can see doctor's feedback from other user	
+		
 		int did = 0;
 		User user = (User) request.getSession().getAttribute("user");
 		
@@ -117,6 +145,7 @@ public class doctor_profile extends HttpServlet {
 				did = user.getDoctorId();
 			}
 		}
+		
 		
 		if(did==0){
 			request.getRequestDispatcher("/view_doctors").forward(request, response);
@@ -159,6 +188,8 @@ public class doctor_profile extends HttpServlet {
 			}
 			
 		}
+		
+		
 		
 	}
 
