@@ -55,10 +55,18 @@ public class doctor_application extends HttpServlet {
 		}
 		
 		for(doctor_info_enum i : doctor_info_enum.values()){
-			String val = (String) sc.getAttribute(i.toString());
-			if(val!=null){
-				request.setAttribute(i.toString(), val);
-				sc.removeAttribute(i.toString());
+			if(!i.toString().equals(doctor_info_enum.CONSULTATION.toString())){
+				String val = (String) sc.getAttribute(i.toString());
+				if(val!=null){
+					request.setAttribute(i.toString(), val);
+					sc.removeAttribute(i.toString());
+				}
+			} else {
+				Map<String, List<String>> consultHours = (Map<String, List<String>>)sc.getAttribute(i.toString());
+				if(consultHours!=null){
+					request.setAttribute(i.toString(), consultHours);
+					sc.removeAttribute(i.toString());
+				}
 			}
 		}
 		

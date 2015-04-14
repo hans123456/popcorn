@@ -203,36 +203,36 @@
 									<label for="monday1">8:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="2" type="checkbox" id="monday2" value="6" />
-									<label for="monday2">1:00PM</label>
+									<input class="with-gap" name="2" type="checkbox" id="monday6" value="6" />
+									<label for="monday6">1:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="2" type="checkbox" id="monday3" value="2" />
-									<label for="monday3">9:00AM</label>
+									<input class="with-gap" name="2" type="checkbox" id="monday2" value="2" />
+									<label for="monday2">9:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="2" type="checkbox" id="monday4" value="7" />
-									<label for="monday4">2:00PM</label>
+									<input class="with-gap" name="2" type="checkbox" id="monday7" value="7" />
+									<label for="monday7">2:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="2" type="checkbox" id="monday5" value="3" />
-									<label for="monday5">10:00AM</label>
+									<input class="with-gap" name="2" type="checkbox" id="monday3" value="3" />
+									<label for="monday3">10:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="2" type="checkbox" id="monday6" value="8"/>
-									<label for="monday6">3:00PM</label>
+									<input class="with-gap" name="2" type="checkbox" id="monday8" value="8"/>
+									<label for="monday8">3:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="2" type="checkbox" id="monday7" value="4"/>
-									<label for="monday7">11:00AM</label>
+									<input class="with-gap" name="2" type="checkbox" id="monday4" value="4"/>
+									<label for="monday4">11:00AM</label>
 								</div>					
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="2" type="checkbox" id="monday8" value="9"/>
-									<label for="monday8">4:00PM</label>
+									<input class="with-gap" name="2" type="checkbox" id="monday9" value="9"/>
+									<label for="monday9">4:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="2" type="checkbox" id="monday9" value="5"/>
-									<label for="monday9">12:00PM</label>
+									<input class="with-gap" name="2" type="checkbox" id="monday5" value="5"/>
+									<label for="monday5">12:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="2" type="checkbox" id="monday10" value="10"/>
@@ -249,36 +249,36 @@
 									<label for="tuesday1">8:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="3" type="checkbox" id="tuesday2" value="6" />
-									<label for="tuesday2">1:00PM</label>
+									<input class="with-gap" name="3" type="checkbox" id="tuesday6" value="6" />
+									<label for="tuesday6">1:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="3" type="checkbox" id="tuesday3" value="2" />
-									<label for="tuesday3">9:00AM</label>
+									<input class="with-gap" name="3" type="checkbox" id="tuesday2" value="2" />
+									<label for="tuesday2">9:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="3" type="checkbox" id="tuesday4" value="7" />
-									<label for="tuesday4">2:00PM</label>
+									<input class="with-gap" name="3" type="checkbox" id="tuesday7" value="7" />
+									<label for="tuesday7">2:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="3" type="checkbox" id="tuesday5" value="3" />
-									<label for="tuesday5">10:00AM</label>
+									<input class="with-gap" name="3" type="checkbox" id="tuesday3" value="3" />
+									<label for="tuesday3">10:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="3" type="checkbox" id="tuesday6" value="8"/>
-									<label for="tuesday6">3:00PM</label>
+									<input class="with-gap" name="3" type="checkbox" id="tuesday8" value="8"/>
+									<label for="tuesday8">3:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="3" type="checkbox" id="tuesday7" value="4"/>
-									<label for="tuesday7">11:00AM</label>
+									<input class="with-gap" name="3" type="checkbox" id="tuesday4" value="4"/>
+									<label for="tuesday4">11:00AM</label>
 								</div>					
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="3" type="checkbox" id="tuesday8" value="9"/>
-									<label for="tuesday8">4:00PM</label>
+									<input class="with-gap" name="3" type="checkbox" id="tuesday9" value="9"/>
+									<label for="tuesday9">4:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="3" type="checkbox" id="tuesday9" value="5"/>
-									<label for="tuesday9">12:00PM</label>
+									<input class="with-gap" name="3" type="checkbox" id="tuesday5" value="5"/>
+									<label for="tuesday5">12:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="3" type="checkbox" id="tuesday10" value="10"/>
@@ -295,36 +295,36 @@
 									<label for="wednesday1">8:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="4" type="checkbox" id="wednesday2" value="6" />
-									<label for="wednesday2">1:00PM</label>
+									<input class="with-gap" name="4" type="checkbox" id="wednesday6" value="6" />
+									<label for="wednesday6">1:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="4" type="checkbox" id="wednesday3" value="2" />
-									<label for="wednesday3">9:00AM</label>
+									<input class="with-gap" name="4" type="checkbox" id="wednesday2" value="2" />
+									<label for="wednesday2">9:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="4" type="checkbox" id="wednesday4" value="7" />
-									<label for="wednesday4">2:00PM</label>
+									<input class="with-gap" name="4" type="checkbox" id="wednesday7" value="7" />
+									<label for="wednesday7">2:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="4" type="checkbox" id="wednesday5" value="3" />
-									<label for="wednesday5">10:00AM</label>
+									<input class="with-gap" name="4" type="checkbox" id="wednesday3" value="3" />
+									<label for="wednesday3">10:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="4" type="checkbox" id="wednesday6" value="8"/>
-									<label for="wednesday6">3:00PM</label>
+									<input class="with-gap" name="4" type="checkbox" id="wednesday8" value="8"/>
+									<label for="wednesday8">3:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="4" type="checkbox" id="wednesday7" value="4"/>
-									<label for="wednesday7">11:00AM</label>
+									<input class="with-gap" name="4" type="checkbox" id="wednesday4" value="4"/>
+									<label for="wednesday4">11:00AM</label>
 								</div>					
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="4" type="checkbox" id="wednesday8" value="9"/>
-									<label for="wednesday8">4:00PM</label>
+									<input class="with-gap" name="4" type="checkbox" id="wednesday9" value="9"/>
+									<label for="wednesday9">4:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="4" type="checkbox" id="wednesday9" value="5"/>
-									<label for="wednesday9">12:00PM</label>
+									<input class="with-gap" name="4" type="checkbox" id="wednesday5" value="5"/>
+									<label for="wednesday5">12:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="4" type="checkbox" id="wednesday10" value="10"/>
@@ -341,36 +341,36 @@
 									<label for="thursday1">8:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="5" type="checkbox" id="thursday2" value="6" />
-									<label for="thursday2">1:00PM</label>
+									<input class="with-gap" name="5" type="checkbox" id="thursday6" value="6" />
+									<label for="thursday6">1:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="5" type="checkbox" id="thursday3" value="2" />
-									<label for="thursday3">9:00AM</label>
+									<input class="with-gap" name="5" type="checkbox" id="thursday2" value="2" />
+									<label for="thursday2">9:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="5" type="checkbox" id="thursday4" value="7" />
-									<label for="thursday4">2:00PM</label>
+									<input class="with-gap" name="5" type="checkbox" id="thursday7" value="7" />
+									<label for="thursday7">2:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="5" type="checkbox" id="thursday5" value="3" />
-									<label for="thursday5">10:00AM</label>
+									<input class="with-gap" name="5" type="checkbox" id="thursday3" value="3" />
+									<label for="thursday3">10:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="5" type="checkbox" id="thursday6" value="8"/>
-									<label for="thursday6">3:00PM</label>
+									<input class="with-gap" name="5" type="checkbox" id="thursday8" value="8"/>
+									<label for="thursday8">3:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="5" type="checkbox" id="thursday7" value="4"/>
-									<label for="thursday7">11:00AM</label>
+									<input class="with-gap" name="5" type="checkbox" id="thursday4" value="4"/>
+									<label for="thursday4">11:00AM</label>
 								</div>					
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="5" type="checkbox" id="thursday8" value="9"/>
-									<label for="thursday8">4:00PM</label>
+									<input class="with-gap" name="5" type="checkbox" id="thursday9" value="9"/>
+									<label for="thursday9">4:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="5" type="checkbox" id="thursday9" value="5"/>
-									<label for="thursday9">12:00PM</label>
+									<input class="with-gap" name="5" type="checkbox" id="thursday5" value="5"/>
+									<label for="thursday5">12:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="5" type="checkbox" id="thursday10" value="10"/>
@@ -387,36 +387,36 @@
 									<label for="friday1">8:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="6" type="checkbox" id="friday2" value="6" />
-									<label for="friday2">1:00PM</label>
+									<input class="with-gap" name="6" type="checkbox" id="friday6" value="6" />
+									<label for="friday6">1:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="6" type="checkbox" id="friday3" value="2" />
-									<label for="friday3">9:00AM</label>
+									<input class="with-gap" name="6" type="checkbox" id="friday2" value="2" />
+									<label for="friday2">9:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="6" type="checkbox" id="friday4" value="7" />
-									<label for="friday4">2:00PM</label>
+									<input class="with-gap" name="6" type="checkbox" id="friday7" value="7" />
+									<label for="friday7">2:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="6" type="checkbox" id="friday5" value="3" />
-									<label for="friday5">10:00AM</label>
+									<input class="with-gap" name="6" type="checkbox" id="friday3" value="3" />
+									<label for="friday3">10:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="6" type="checkbox" id="friday6" value="8"/>
-									<label for="friday6">3:00PM</label>
+									<input class="with-gap" name="6" type="checkbox" id="friday8" value="8"/>
+									<label for="friday8">3:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="6" type="checkbox" id="friday7" value="4"/>
-									<label for="friday7">11:00AM</label>
+									<input class="with-gap" name="6" type="checkbox" id="friday4" value="4"/>
+									<label for=""friday4"">11:00AM</label>
 								</div>					
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="6" type="checkbox" id="friday8" value="9"/>
-									<label for="friday8">4:00PM</label>
+									<input class="with-gap" name="6" type="checkbox" id="friday9" value="9"/>
+									<label for="friday9">4:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="6" type="checkbox" id="friday9" value="5"/>
-									<label for="friday9">12:00PM</label>
+									<input class="with-gap" name="6" type="checkbox" id="friday5" value="5"/>
+									<label for="friday5">12:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="6" type="checkbox" id="friday10" value="10"/>
@@ -433,36 +433,36 @@
 									<label for="saturday1">8:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="7" type="checkbox" id="saturday2" value="6" />
-									<label for="saturday2">1:00PM</label>
+									<input class="with-gap" name="7" type="checkbox" id="saturday6" value="6" />
+									<label for="saturday6">1:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="7" type="checkbox" id="saturday3" value="2" />
-									<label for="saturday3">9:00AM</label>
+									<input class="with-gap" name="7" type="checkbox" id="saturday2" value="2" />
+									<label for="saturday2">9:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="7" type="checkbox" id="saturday4" value="7" />
-									<label for="saturday4">2:00PM</label>
+									<input class="with-gap" name="7" type="checkbox" id="saturday7" value="7" />
+									<label for="saturday7">2:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="7" type="checkbox" id="saturday5" value="3" />
-									<label for="saturday5">10:00AM</label>
+									<input class="with-gap" name="7" type="checkbox" id="saturday3" value="3" />
+									<label for="saturday3">10:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="7" type="checkbox" id="saturday6" value="8"/>
-									<label for="saturday6">3:00PM</label>
+									<input class="with-gap" name="7" type="checkbox" id="saturday8" value="8"/>
+									<label for="saturday8">3:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="7" type="checkbox" id="saturday7" value="4"/>
-									<label for="saturday7">11:00AM</label>
+									<input class="with-gap" name="7" type="checkbox" id="saturday4" value="4"/>
+									<label for="saturday4">11:00AM</label>
 								</div>					
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="7" type="checkbox" id="saturday8" value="9"/>
-									<label for="saturday8">4:00PM</label>
+									<input class="with-gap" name="7" type="checkbox" id="saturday9" value="9"/>
+									<label for="saturday9">4:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="7" type="checkbox" id="saturday9" value="5"/>
-									<label for="saturday9">12:00PM</label>
+									<input class="with-gap" name="7" type="checkbox" id="saturday5" value="5"/>
+									<label for="saturday5">12:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="7" type="checkbox" id="saturday10" value="10"/>
@@ -479,36 +479,36 @@
 									<label for="sunday1">8:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="1" type="checkbox" id="sunday2" value="6" />
-									<label for="sunday2">1:00PM</label>
+									<input class="with-gap" name="1" type="checkbox" id="sunday6" value="6" />
+									<label for="sunday6">1:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="1" type="checkbox" id="sunday3" value="2" />
-									<label for="sunday3">9:00AM</label>
+									<input class="with-gap" name="1" type="checkbox" id="sunday2" value="2" />
+									<label for="sunday2">9:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="1" type="checkbox" id="sunday4" value="7" />
-									<label for="sunday4">2:00PM</label>
+									<input class="with-gap" name="1" type="checkbox" id="sunday7" value="7" />
+									<label for="sunday7">2:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="1" type="checkbox" id="sunday5" value="3" />
-									<label for="sunday5">10:00AM</label>
+									<input class="with-gap" name="1" type="checkbox" id="sunday3" value="3" />
+									<label for="sunday3">10:00AM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="1" type="checkbox" id="sunday6" value="8"/>
-									<label for="sunday6">3:00PM</label>
+									<input class="with-gap" name="1" type="checkbox" id="sunday8" value="8"/>
+									<label for="sunday8">3:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="1" type="checkbox" id="sunday7" value="4"/>
-									<label for="sunday7">11:00AM</label>
+									<input class="with-gap" name="1" type="checkbox" id="sunday4" value="4"/>
+									<label for="sunday4">11:00AM</label>
 								</div>					
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="1" type="checkbox" id="sunday8" value="9"/>
-									<label for="sunday8">4:00PM</label>
+									<input class="with-gap" name="1" type="checkbox" id="sunday9" value="9"/>
+									<label for="sunday9">4:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
-									<input class="with-gap" name="1" type="checkbox" id="sunday9" value="5"/>
-									<label for="sunday9">12:00PM</label>
+									<input class="with-gap" name="1" type="checkbox" id="sunday5" value="5"/>
+									<label for="sunday5">12:00PM</label>
 								</div>
 								<div class="margin-top15 col m6 s12">
 									<input class="with-gap" name="1" type="checkbox" id="sunday10" value="10"/>
@@ -563,8 +563,26 @@
 	   	selectYears: 15 // Creates a dropdown of 15 years to control year
 	});
 	
-
-	$(document).ready(function() {
+	var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+	<%
+		Map<String, List<String>> consultHours = (Map<String, List<String>>)request.getAttribute("consultation");
+		if(consultHours != null){
+			for(Map.Entry<String, List<String>> entry: consultHours.entrySet()) {
+	%>
+	<%			for(String time: entry.getValue()) {
+	%>
+					$("#" + days[<%=Integer.parseInt(entry.getKey()) -1 %>] + <%=time%>).prop('checked', true); 
+					
+	<%
+				}
+	%>
+				
+	<%
+			}
+		}
+	%>
+	
+	$(document).ready(function() {	
 		
 		$('select').material_select();
 
@@ -646,6 +664,8 @@
 	    console.log(today);
 	    $("#user_reg_birthdate").val(today);
 	});
+	
+	
  
 </script>
 
