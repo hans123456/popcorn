@@ -55,7 +55,7 @@ public class doctor_application extends HttpServlet {
 		}
 		
 		for(doctor_info_enum i : doctor_info_enum.values()){
-			if(!i.toString().equals(doctor_info_enum.CONSULTATION.toString())){
+			if(!i.toString().equals("consultation")){
 				String val = (String) sc.getAttribute(i.toString());
 				if(val!=null){
 					request.setAttribute(i.toString(), val);
