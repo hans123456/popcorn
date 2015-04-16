@@ -117,9 +117,9 @@
 							</div>
 						</div>
 					</div>
+				</div>
 					
-					<c:if test="${doc==false}">
-					
+				<c:if test="${doc==false}">
 					<div class="row">
 						<span class="right">
 							
@@ -129,39 +129,36 @@
 							<a class="waves-effect waves-light btn green modal-trigger" href="#schedule_appointment_modal">Schedule Appointment</a>
 						</span>
 					</div>
-					
-					</c:if>
-					
-				</div>
+				</c:if>	
+			</div>
 				
-				<div id="feedbacks" class="col s12">
-				
-					<div class="row">
-						<div class="card-panel margin-top30">
-							<c:if test="${doc==false}">
-								<c:if test="${sessionScope.user!=null}">
-								<a class="waves-effect waves-light btn blue modal-trigger right " href="#give_feedback_modal">Give Feedback</a>
-								</c:if>
+			<div id="feedbacks" class="col s12">
+				<div class="row">
+					<div class="card-panel margin-top30">
+						<c:if test="${doc==false}">
+							<c:if test="${sessionScope.user!=null}">
+							<a class="waves-effect waves-light btn blue modal-trigger right " href="#give_feedback_modal">Give Feedback</a>
 							</c:if>
-							<div class="flow-text">
-								Feedbacks
-							</div>
-							<div class="row top-margin30">
-							<table class="hoverable center-align centered bordered">
-								<thead>
-									<tr>
-										<th data-field="rate">Rate</th>
-										<th data-field="comment">Comment</th>
+						</c:if>
+						<div class="flow-text">
+							Feedbacks
+						</div>
+						<div class="row top-margin30">
+						<table class="hoverable center-align centered bordered">
+							<thead>
+								<tr>
+									<th data-field="rate">Rate</th>
+									<th data-field="comment">Comment</th>
+								</tr>
+							</thead>
+							<tbody id="list_of_feedbacks">
+								<c:forEach var="feedback" items="${feedbacks}">
+									<tr>											
+										<td>${feedback.getRate()}</td>
+										<td>${feedback.getComment()}</td>
 									</tr>
-								</thead>
-								<tbody id="list_of_feedbacks">
-									<c:forEach var="feedback" items="${feedbacks}">
-										<tr>											
-										    <td>${feedback.getRate()}</td>
-										    <td>${feedback.getComment()}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
+								</c:forEach>
+							</tbody>
 							</table>
 							<div class="row center">
 								<ul class="pagination col s12 center-align" style="width: auto">
@@ -194,158 +191,156 @@
 								</ul>
 							</div>
 						</div>
-
+					</div>
 				</div>
-
 			</div>
 
-		</div>
-	</div>
 	
 	<c:import url="part/footer.jsp"></c:import>
 	
-	<c:if test="${doc==false}">
-	<form action = "add_feedback" method = "POST">
-	<input id="doc_id" value="${did}"  name="did" class="hide"></input>	
-	<div id="give_feedback_modal" class="modal">
-		<div class="modal-content">
-			<h4>Feedback</h4>
-			<div class="input-field col s12 margin-top30">
-				<textarea id="comment" name="comment" class="materialize-textarea"></textarea>
-				<label for="comment">Feedback here</label>
-				<select id="rate" name="rate">
-					<option value="" selected disabled>Rate</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-				</select>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button class="waves-effect waves-green btn-flat modal-action" type="submit">Submit</button>
-			<button class="waves-effect waves-teal btn-flat modal-action modal-close">Cancel</button>
-		</div>
-	</div>
-	</form>
+		<c:if test="${doc==false}">
+			<form action = "add_feedback" method = "POST">
+				<input id="doc_id" value="${did}"  name="did" class="hide"></input>	
+				<div id="give_feedback_modal" class="modal">
+					<div class="modal-content">
+						<h4>Feedback</h4>
+						<div class="input-field col s12 margin-top30">
+							<textarea id="comment" name="comment" class="materialize-textarea"></textarea>
+							<label for="comment">Feedback here</label>
+								<select id="rate" name="rate">
+									<option value="" selected disabled>Rate</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="waves-effect waves-green btn-flat modal-action" type="submit">Submit</button>
+						<button class="waves-effect waves-teal btn-flat modal-action modal-close">Cancel</button>
+					</div>
+				</div>
+			</form>
 	
-	<form action = "cancel_appointment" method = "POST">
-	<input id="appointment_id" name="apid" class="hide"></input>	
-	<input id="doctor_id" name="did" class="hide"></input>	
-	<div id="cancel_appointment_modal" class="modal">
-		<div class="modal-content">
-			<h4>Cancel Appointment</h4>
-			<p>You really want to cancel your appointment?</p>
-			<div class="flow-text margin-top30">Choose Your Appointment Time To Be Cancelled: </div>
-			<div class="row margin-top10">
-				<div class="margin-top15 col m6 s12" id="appointment_1">
-					<input class="with-gap" name="time" type="radio" id="appointment1" value="1"/>
-					<label for="appointment1">8:00AM</label>
+			<form action = "cancel_appointment" method = "POST">
+				<input id="appointment_id" name="apid" class="hide"></input>	
+				<input id="doctor_id" name="did" class="hide"></input>	
+				<div id="cancel_appointment_modal" class="modal">
+					<div class="modal-content">
+						<h4>Cancel Appointment</h4>
+						<p>You really want to cancel your appointment?</p>
+							<div class="flow-text margin-top30">Choose Your Appointment Time To Be Cancelled: </div>
+							<div class="row margin-top10">
+								<div class="margin-top15 col m6 s12" id="appointment_1">
+									<input class="with-gap" name="time" type="radio" id="appointment1" value="1"/>
+									<label for="appointment1">8:00AM</label>
+								</div>
+								<div class="margin-top15 col m6 s12" id="appointment_2">
+									<input class="with-gap" name="time" type="radio" id="appointment2" value="2"/>
+									<label for="appointment2">9:00AM</label>
+								</div>
+								<div class="margin-top15 col m6 s12" id="appointment_3">
+									<input class="with-gap" name="time" type="radio" id="appointment3" value="3"/>
+									<label for="appointment3">10:00AM</label>
+								</div>
+								<div class="margin-top15 col m6 s12" id="appointment_4">
+									<input class="with-gap" name="time" type="radio" id="appointment4" value="4"/>
+									<label for="appointment4">11:00AM</label>
+								</div>
+								<div class="margin-top15 col m6 s12" id="appointment_5">
+									<input class="with-gap" name="time" type="radio" id="appointment5" value="5"/>
+									<label for="appointment5">12:00PM</label>
+								</div>
+								<div class="margin-top15 col m6 s12" id="appointment_6">
+									<input class="with-gap" name="time" type="radio" id="appointment6" value="6"/>
+									<label for="appointment6">1:00PM</label>
+								</div>
+								<div class="margin-top15 col m6 s12" id="appointment_7">
+									<input class="with-gap" name="time" type="radio" id="appointment7" value="7"/>
+									<label for="appointment7">2:00PM</label>
+								</div>
+								<div class="margin-top15 col m6 s12" id="appointment_8">
+									<input class="with-gap" name="time" type="radio" id="appointment8" value="8"/>
+									<label for="appointment8">3:00PM</label>
+								</div>					
+								<div class="margin-top15 col m6 s12" id="appointment_9">
+									<input class="with-gap" name="time" type="radio" id="appointment9" value="9"/>
+									<label for="appointment9">4:00PM</label>
+								</div>
+								<div class="margin-top15 col m6 s12" id="appointment_10">
+									<input class="with-gap" name="time" type="radio" id="appointment10" value="10"/>
+									<label for="appointment10">5:00PM</label>
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer">
+						<button class="waves-effect waves-green btn-flat modal-action" type="submit">Unshedule</button>
+						<button class="waves-effect waves-teal btn-flat modal-action modal-close">Cancel</button>
+					</div>
 				</div>
-				<div class="margin-top15 col m6 s12" id="appointment_2">
-					<input class="with-gap" name="time" type="radio" id="appointment2" value="2"/>
-					<label for="appointment2">9:00AM</label>
+			</form>
+			
+			<form action="schedule_appointment" method="POST">
+				<input name="did" value="${did}" class="hide"></input>
+				<input name="date" value="<c:if test="${param.date!=null}">${param.date}</c:if>" class="hide"></input>
+				<div id="schedule_appointment_modal" class="modal modal-fixed-footer">
+					<div class="modal-content">
+						<h4>Schedule An Appointment</h4>
+						<div class="flow-text margin-top30">Choose Your Appointment Time : </div>
+						<div class="row margin-top10">
+							<div class="margin-top15 col m6 s12" id="sched_1">
+								<input class="with-gap" name="time" type="radio" id="sched1" value="1"/>
+								<label for="sched1">8:00AM</label>
+							</div>
+							<div class="margin-top15 col m6 s12" id="sched_2">
+								<input class="with-gap" name="time" type="radio" id="sched2" value="2"/>
+								<label for="sched2">9:00AM</label>
+							</div>
+							<div class="margin-top15 col m6 s12" id="sched_3">
+								<input class="with-gap" name="time" type="radio" id="sched3" value="3"/>
+								<label for="sched3">10:00AM</label>
+							</div>
+							<div class="margin-top15 col m6 s12" id="sched_4">
+								<input class="with-gap" name="time" type="radio" id="sched4" value="4"/>
+								<label for="sched4">11:00AM</label>
+							</div>
+							<div class="margin-top15 col m6 s12" id="sched_5">
+								<input class="with-gap" name="time" type="radio" id="sched5" value="5"/>
+								<label for="sched5">12:00PM</label>
+							</div>
+							<div class="margin-top15 col m6 s12" id="sched_6">
+								<input class="with-gap" name="time" type="radio" id="sched6" value="6"/>
+								<label for="sched6">1:00PM</label>
+							</div>
+							<div class="margin-top15 col m6 s12" id="sched_7">
+								<input class="with-gap" name="time" type="radio" id="sched7" value="7"/>
+								<label for="sched7">2:00PM</label>
+							</div>
+							<div class="margin-top15 col m6 s12" id="sched_8">
+								<input class="with-gap" name="time" type="radio" id="sched8" value="8"/>
+								<label for="sched8">3:00PM</label>
+							</div>					
+							<div class="margin-top15 col m6 s12" id="sched_9">
+								<input class="with-gap" name="time" type="radio" id="sched9" value="9"/>
+								<label for="sched9">4:00PM</label>
+							</div>
+							<div class="margin-top15 col m6 s12" id="sched_10">
+								<input class="with-gap" name="time" type="radio" id="sched10" value="10"/>
+								<label for="sched10">5:00PM</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="waves-effect waves-green btn-flat modal-action" type="submit">Schedule</button>
+						<button class="waves-effect waves-teal btn-flat modal-action modal-close">Cancel</button>
+					</div>
 				</div>
-				<div class="margin-top15 col m6 s12" id="appointment_3">
-					<input class="with-gap" name="time" type="radio" id="appointment3" value="3"/>
-					<label for="appointment3">10:00AM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="appointment_4">
-					<input class="with-gap" name="time" type="radio" id="appointment4" value="4"/>
-					<label for="appointment4">11:00AM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="appointment_5">
-					<input class="with-gap" name="time" type="radio" id="appointment5" value="5"/>
-					<label for="appointment5">12:00PM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="appointment_6">
-					<input class="with-gap" name="time" type="radio" id="appointment6" value="6"/>
-					<label for="appointment6">1:00PM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="appointment_7">
-					<input class="with-gap" name="time" type="radio" id="appointment7" value="7"/>
-					<label for="appointment7">2:00PM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="appointment_8">
-					<input class="with-gap" name="time" type="radio" id="appointment8" value="8"/>
-					<label for="appointment8">3:00PM</label>
-				</div>					
-				<div class="margin-top15 col m6 s12" id="appointment_9">
-					<input class="with-gap" name="time" type="radio" id="appointment9" value="9"/>
-					<label for="appointment9">4:00PM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="appointment_10">
-					<input class="with-gap" name="time" type="radio" id="appointment10" value="10"/>
-					<label for="appointment10">5:00PM</label>
-				</div>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button class="waves-effect waves-green btn-flat modal-action" type="submit">Unshedule</button>
-			<button class="waves-effect waves-teal btn-flat modal-action modal-close">Cancel</button>
-		</div>
+			</form>
+		</c:if>
 	</div>
-	</form>
-	
-	<form action="schedule_appointment" method="POST">
-	<input name="did" value="${did}" class="hide"></input>
-	<input name="date" value="<c:if test="${param.date!=null}">${param.date}</c:if>" class="hide"></input>
-	<div id="schedule_appointment_modal" class="modal modal-fixed-footer">
-		<div class="modal-content">
-			<h4>Schedule An Appointment</h4>
-			<div class="flow-text margin-top30">Choose Your Appointment Time : </div>
-			<div class="row margin-top10">
-				<div class="margin-top15 col m6 s12" id="sched_1">
-					<input class="with-gap" name="time" type="radio" id="sched1" value="1"/>
-					<label for="sched1">8:00AM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="sched_2">
-					<input class="with-gap" name="time" type="radio" id="sched2" value="2"/>
-					<label for="sched2">9:00AM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="sched_3">
-					<input class="with-gap" name="time" type="radio" id="sched3" value="3"/>
-					<label for="sched3">10:00AM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="sched_4">
-					<input class="with-gap" name="time" type="radio" id="sched4" value="4"/>
-					<label for="sched4">11:00AM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="sched_5">
-					<input class="with-gap" name="time" type="radio" id="sched5" value="5"/>
-					<label for="sched5">12:00PM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="sched_6">
-					<input class="with-gap" name="time" type="radio" id="sched6" value="6"/>
-					<label for="sched6">1:00PM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="sched_7">
-					<input class="with-gap" name="time" type="radio" id="sched7" value="7"/>
-					<label for="sched7">2:00PM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="sched_8">
-					<input class="with-gap" name="time" type="radio" id="sched8" value="8"/>
-					<label for="sched8">3:00PM</label>
-				</div>					
-				<div class="margin-top15 col m6 s12" id="sched_9">
-					<input class="with-gap" name="time" type="radio" id="sched9" value="9"/>
-					<label for="sched9">4:00PM</label>
-				</div>
-				<div class="margin-top15 col m6 s12" id="sched_10">
-					<input class="with-gap" name="time" type="radio" id="sched10" value="10"/>
-					<label for="sched10">5:00PM</label>
-				</div>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button class="waves-effect waves-green btn-flat modal-action" type="submit">Schedule</button>
-			<button class="waves-effect waves-teal btn-flat modal-action modal-close">Cancel</button>
-		</div>
-	</div>
-	</form>
-	
-	</c:if>
+</div>
 	
 </body>
 
