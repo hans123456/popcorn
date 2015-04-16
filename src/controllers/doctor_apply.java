@@ -176,7 +176,7 @@ public class doctor_apply extends HttpServlet {
 			prompt += "No consultation hours. ";
 			invalid = true;
 		} else {
-			sc.setAttribute(doctor_info_enum.CONSULTATION.toString(), consultHours);
+			sc.setAttribute("consultation", consultHours);
 		}
 		
 		
