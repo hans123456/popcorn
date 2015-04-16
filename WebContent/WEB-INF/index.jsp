@@ -223,7 +223,7 @@
 						<button type="submit" class="waves-effect waves-light btn margin-top10"><i class="mdi-content-send right"></i>Register</button>
 					</div>
 					<div class="left-align flow-text">
-						A doctor? apply <a href="/Popcorn/doctor_application">here</a>
+						A doctor? apply <a href="doctor_application">here</a>
 					</div>
 				</form>
 				</div>
