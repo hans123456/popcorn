@@ -42,7 +42,8 @@ public class DoctorInfoDAO extends DAO{
 			while (rs.next()) {
 				doctor = new Doctor(rs.getInt(1));
 				for(doctor_info_enum i : doctor_info_enum.values()){
-					doctor.setInformation(i.toString(), rs.getString(i.getColumnNo()));
+					if(i.getColumnNo() > 1)
+						doctor.setInformation(i.toString(), rs.getString(i.getColumnNo()));
 				}
 			}
 			
