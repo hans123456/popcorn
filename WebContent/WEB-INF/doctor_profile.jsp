@@ -118,19 +118,36 @@
 						</div>
 					</div>
 					
-					<c:if test="${doc==false}">
+					<c:choose>
+						<c:when test="${doc==false}">
 					
-					<div class="row">
-						<span class="right">
+						<div class="row">
+							<span class="right">
 							
-							<c:if test="${sessionScope.user!=null}">
-								<a class="waves-effect waves-light btn red modal-trigger" href="#cancel_appointment_modal">Cancel Appointment</a>
-							</c:if>
-							<a class="waves-effect waves-light btn green modal-trigger" href="#schedule_appointment_modal">Schedule Appointment</a>
-						</span>
-					</div>
+							<c:choose>
+								<c:when test="${sessionScope.user!=null}">
+									<a class="waves-effect waves-light btn red modal-trigger" href="#cancel_appointment_modal">Cancel Appointment</a>
+									<a class="waves-effect waves-light btn green modal-trigger" href="#schedule_appointment_modal">Schedule Appointment</a>
+								</c:when>
+								<c:otherwise>
+									<a class="waves-effect waves-light btn green" href="index#Login">Schedule Appointment</a>
+								</c:otherwise>
+							</c:choose>
+							</span>
+						</div>
 					
-					</c:if>
+						</c:when>
+						<c:otherwise>
+							<div class="row">
+							<span class="right">
+							
+								<c:if test="${sessionScope.user!=null}">
+									<a class="waves-effect waves-light btn red modal-trigger" href="#cancel_appointment_modal">Cancel Appointment</a>
+								</c:if>
+							</span>
+						</div>
+						</c:otherwise>
+					</c:choose>
 					
 				</div>
 				
@@ -229,6 +246,7 @@
 		</div>
 	</div>
 	</form>
+	</c:if>
 	
 	<form action = "cancel_appointment" method = "POST">
 	<input id="appointment_id" name="apid" class="hide"></input>	
@@ -288,6 +306,7 @@
 	</div>
 	</form>
 	
+	<c:if test="${doc==false}">
 	<form action="schedule_appointment" method="POST">
 	<input name="did" value="${did}" class="hide"></input>
 	<input name="date" value="<c:if test="${param.date!=null}">${param.date}</c:if>" class="hide"></input>

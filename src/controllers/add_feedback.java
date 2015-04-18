@@ -69,7 +69,7 @@ public class add_feedback extends HttpServlet {
 			
 			FeedbackDAO feedbackDao = new FeedbackDAO();
 			if(feedbackDao.addFeedback(user.getId(), Integer.parseInt(did), feedback))
-				response.sendRedirect("success#Success");
+				response.sendRedirect("doctor_profile?did=" + did + "#feedbacks");
 			else{
 				System.out.println("error");
 				response.sendRedirect("doctor_profile?did=" + did + "#feedbacks");
