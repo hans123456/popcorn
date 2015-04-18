@@ -250,7 +250,7 @@
 	
 	<form action = "cancel_appointment" method = "POST">
 	<input id="appointment_id" name="apid" class="hide"></input>	
-	<input id="doctor_id" name="did" class="hide"></input>	
+	<input id="doctor_id" name="did" class="hide" value="${did}"></input>
 	<div id="cancel_appointment_modal" class="modal">
 		<div class="modal-content">
 			<h4>Cancel Appointment</h4>
@@ -298,6 +298,13 @@
 					<label for="appointment10">5:00PM</label>
 				</div>
 			</div>
+			<c:if test="${doc==true}">
+				<div class="flow-text margin-top30">Reason: </div>
+				<div class="input-field col s12 margin-top30">
+					<input id="reason" name="reason" type="text" class="validate">
+					<label for="reason">Reason</label>
+				</div>
+			</c:if>
 		</div>
 		<div class="modal-footer">
 			<button class="waves-effect waves-green btn-flat modal-action" type="submit">Unshedule</button>

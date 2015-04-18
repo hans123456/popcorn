@@ -38,21 +38,24 @@ public class cancel_appointment extends HttpServlet {
 		
 		String apid = request.getParameter("apid");
 		String did = request.getParameter("did");
+		int apidint = 0;
+
 		
-		int apidint = Integer.parseInt(apid);
-		int didint = Integer.parseInt(did);
+		try{
+			apidint = Integer.parseInt(apid);
+		}catch(NumberFormatException e){
+		}
 		
 		System.out.println(apid);
 		
 		User user = (User) request.getSession().getAttribute("user");
 		
-		if(apid == null){
-			sc.setAttribute(invalid, "error");
+		if(apidint==0){
+			response.sendRedirect("doctor_profile?did="+did);
 		}
 		else{
 			AppointmentsDAO appointmentDao = new AppointmentsDAO();
 
-			
 			if(appointmentDao.deleteAppointment(apidint)){
 				response.sendRedirect("success#Success");
 			} else{
