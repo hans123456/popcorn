@@ -67,6 +67,51 @@ public class AppointmentsDAO extends DAO{
 		
 	}
 	
+	public List<Appointment> getAppointmentForDoctor(String date, int did){
+		
+		List<Appointment> appointments = new ArrayList<Appointment>();
+		Appointment appointment = null;
+		
+		Appointments_Table a = new Appointments_Table();
+		Users_Table u = new Users_Table();
+		Doctors_Table d = new Doctors_Table();
+		Times_Table t = new Times_Table();
+		
+		String query = "SELECT * from " + a.TABLE_NAME + " WHERE " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " +
+						a.DATE + " = '" + date + "'";
+		
+		try {
+			
+			connection = getConnection();
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			while(rs.next()) {
+				appointment = new Appointment(rs.getInt(1), rs.getInt(5), rs.getInt(4), rs.getString(2), rs.getInt(3));
+				appointments.add(appointment);
+			}
+			
+			rs.close();
+			
+		} catch (SQLException e) {
+		   e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+		   e.printStackTrace();
+		}finally {
+			try {
+				if(stmt != null)
+					stmt.close();
+				if(connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return appointments;
+		
+	}
+	
 	private int noOfRecords;
 	
 	// for user profile

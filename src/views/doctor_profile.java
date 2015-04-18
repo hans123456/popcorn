@@ -99,6 +99,7 @@ public class doctor_profile extends HttpServlet {
 			
 			if(doctor==null){
 				request.getRequestDispatcher("/view_doctors").forward(request, response);
+				
 			}else{
 				
 				for(doctor_info_enum i : doctor_info_enum.values()){
@@ -110,8 +111,10 @@ public class doctor_profile extends HttpServlet {
 				
 				request.setAttribute("times", times);
 				
-				if(user!=null){
-					AppointmentsDAO dao2 = new AppointmentsDAO();
+				AppointmentsDAO dao2 = new AppointmentsDAO();
+				if(user != null && user.getDoctorId() == did){
+					request.setAttribute("appointments", dao2.getAppointmentForDoctor(date, did));
+				} else if(user != null) {
 					request.setAttribute("appointments", dao2.getUserAppointmentForDoctor(date, user.getId(), did));
 				}
 				

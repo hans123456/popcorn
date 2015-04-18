@@ -445,31 +445,31 @@
 			
 			<c:if test="${sessionScope.user!=null}">
 			
-		var appointments = new Array();
-		<%
-			List<Appointment> appointments = (List<Appointment>) request.getAttribute("appointments");
-			doc = false;
-				
-			if(request.getAttribute("doc")!=null){
-				doc = (Boolean) request.getAttribute("doc");
-			}
+				var appointments = new Array();
+				<%
+					List<Appointment> appointments = (List<Appointment>) request.getAttribute("appointments");
+					doc = false;
+						
+					if(request.getAttribute("doc")!=null){
+						doc = (Boolean) request.getAttribute("doc");
+					}
+					
+					for(Appointment i : appointments){
+				%>
+						appointments[<%=i.getTimeId()%>] = <%=i.getId()%>+"";
+						$("#appointment"+<%=i.getTimeId()%>).click(function DoTheThing(i){
+																		$("#appointment_id").val("<%=i.getId()%>");
+																		$("#doctor_id").val("<%=i.getDoctorId()%>");
+																	});
+				<%
+					}
+				%>
 			
-			for(Appointment i : appointments){
-		%>
-				appointments[<%=i.getTimeId()%>] = <%=i.getId()%>+"";
-				$("#appointment"+<%=i.getTimeId()%>).click(function DoTheThing(i){
-																$("#appointment_id").val("<%=i.getId()%>");
-																$("#doctor_id").val("<%=i.getDoctorId()%>");
-															});
-		<%
-			}
-		%>
-	
-		for(var i=1; i<=10; i++){
-			if(appointments[i]==null){
-				$("#appointment_"+i).remove();
-			}
-		}
+				for(var i=1; i<=10; i++){
+					if(appointments[i]==null){
+						$("#appointment_"+i).remove();
+					}
+				}
 		</c:if>
 		
 		<c:if test="${invalid!=null}">
