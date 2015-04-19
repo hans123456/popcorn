@@ -91,19 +91,20 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							
 							<div class="row center">
 								<ul class="pagination col s12 center-align" style="width: auto">
 								
-									<c:if test="${currentPage == 1}">
+									<c:if test="${currentPageAppointment == null || currentPageAppointment == 1}">
 										<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
 									</c:if>
-									<c:if test="${currentPage != 1}">
-										<li class="disabled"><a href="user_profile?page=${currentPage - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
+									<c:if test="${currentPageAppointment > 1}">
+										<li class="waves-effect"><a href="user_profile?page=${currentPageAppointment - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
 									</c:if>
 									
-									<c:forEach begin="1" end="${noOfPages}" var="i">
+									<c:forEach begin="1" end="${noOfPagesAppointment}" var="i">
 						                <c:choose>
-						                    <c:when test="${currentPage eq i}">
+						                    <c:when test="${currentPageAppointment eq i}">
 						                    	<li class="active">${i}</li>
 						                    </c:when>
 						                    <c:otherwise>
@@ -112,10 +113,10 @@
 						                </c:choose>
 						            </c:forEach>
 						            
-						            <c:if test="${currentPage lt noOfPages}">
-										<li class="waves-effect"><a href="user_profile?page=${currentPage + 1}${parameter}"><i class="mdi-navigation-chevron-right"></i></a></li>
+						            <c:if test="${currentPageAppointment lt noOfPagesAppointment}">
+										<li class="waves-effect"><a href="user_profile?page=${currentPageAppointment + 1}${parameter}"><i class="mdi-navigation-chevron-right"></i></a></li>
 									</c:if>
-									<c:if test="${currentPage ge noOfPages}">
+									<c:if test="${currentPageAppointment ge noOfPagesAppointment}">
 										<li class="disabled"><i class="mdi-navigation-chevron-right"></i></li>
 									</c:if>
 									
@@ -124,6 +125,69 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="row">
+					<p class="flow-text">
+						<strong>
+							Cancelled Appointments
+						</strong>
+					</p>
+					<div class="card-panel">
+						<div class="row">
+							<table class="hoverable center-align centered bordered">
+								<thead>
+									<tr>
+										<th data-field="id">Name</th>
+										<th data-field="name">Date</th>
+										<th data-field="price">Time</th>
+										<th data-field="price">Reason</th>
+									</tr>
+								</thead>
+								<tbody id="list_of_appointments">
+									<c:forEach var="cancelled_appointment" items="${cancelled_appointments}">
+										<tr onclick="location.href='doctor_profile?did=${cancelled_appointment.getDoctorId()}'">											
+										    <td>${cancelled_appointment.getDoctorName()}</td>
+										    <td>${cancelled_appointment.getDate()}</td>
+										    <td>${cancelled_appointment.getTime()}</td>
+										    <td>${cancelled_appointment.getReason()}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<div class="row center">
+								<ul class="pagination col s12 center-align" style="width: auto">
+								
+									<c:if test="${currentPageCancelled == 1 || currentPageCancelled == null}">
+										<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
+									</c:if>
+									<c:if test="${currentPageCancelled != 1}">
+										<li class="disabled"><a href="user_profile?page=${currentPageCancelled - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
+									</c:if>
+									
+									<c:forEach begin="1" end="${noOfPagesCancelled}" var="i">
+						                <c:choose>
+						                    <c:when test="${currentPageCancelled eq i}">
+						                    	<li class="active">${i}</li>
+						                    </c:when>
+						                    <c:otherwise>
+						                    	<li class="waves-effect"><a href="user_profile?page=${i}${parameter}">${i}</a></li>
+						                    </c:otherwise>
+						                </c:choose>
+						            </c:forEach>
+						            
+						            <c:if test="${currentPageCancelled lt noOfPagesCancelled}">
+										<li class="waves-effect"><a href="user_profile?page=${currentPageCancelled + 1}${parameter}"><i class="mdi-navigation-chevron-right"></i></a></li>
+									</c:if>
+									<c:if test="${currentPageCancelled ge noOfPagesCancelled}">
+										<li class="disabled"><i class="mdi-navigation-chevron-right"></i></li>
+									</c:if>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 				
 				</c:if>
 				

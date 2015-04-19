@@ -8,6 +8,7 @@ import java.util.List;
 import models.DAO;
 import tables.Appointments_Table;
 import tables.Available_times_Table;
+import tables.Cancelled_appointments_Table;
 import tables.Cities_Table;
 import tables.Doctors_Table;
 import tables.Hospitals_Table;
@@ -76,6 +77,7 @@ public class DoctorInfoDAO extends DAO{
 		Appointments_Table ap = new Appointments_Table();
 		Doctors_Table d = new Doctors_Table();
 		Users_Table u = new Users_Table();
+		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
 		String query = "SELECT " + av.TIME_ID + " as `time id`, '' as `name`, '' as `appointee id`" + 
 						" FROM " + d.TABLE_NAME + "," + av.TABLE_NAME +
@@ -83,15 +85,18 @@ public class DoctorInfoDAO extends DAO{
 						av.DAY_ID + "= DAYOFWEEK(' " + date + "') and " +
 						av.TIME_ID + " NOT IN (" + 
 						"SELECT " + ap.TIME_ID + " FROM " + d.TABLE_NAME + "," + ap.TABLE_NAME + 
-						" WHERE " + d.ID + "=" + ap.DOCTOR_ID + " and " +
+						" WHERE " + " NOT EXISTS ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME +
+						" WHERE " + ap.ID + " = " + c.APPOINTMENT_ID + " ) " + " and " +
+						d.ID + "=" + ap.DOCTOR_ID + " and " +
 						ap.DATE + "='" + date + "' and " + 
 						d.ID + "=" + did + ") " + 
 						"UNION " + "SELECT " + ap.TIME_ID + " as `time id`, CONCAT( " + u.FIRSTNAME + ", ' ', " + u.LASTNAME +
 						") as `name`, " + u.ID + " FROM " + d.TABLE_NAME + "," + ap.TABLE_NAME + "," + u.TABLE_NAME + 
-						" WHERE " + d.ID + "=" + ap.DOCTOR_ID + " and " + u.ID + "=" + ap.USER_ID + " and " + 
+						" WHERE " + " NOT EXISTS ( SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME + " WHERE " + ap.ID + " = " + c.APPOINTMENT_ID + ") and " +
+						 d.ID + "=" + ap.DOCTOR_ID + " and " + u.ID + "=" + ap.USER_ID + " and " + 
 						ap.DATE + "='" + date + "' and " + d.ID + "=" + did;
 		
-		System.out.println(query);
+
 		
 		try {
 			

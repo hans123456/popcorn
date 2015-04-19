@@ -4,7 +4,8 @@ public enum doctor_info_short_enum {
 
 	NAME ("name", 2),
 	CITY ("city", 3),
-	SPECIALIZATION ("specialization", 4);
+	SPECIALIZATION ("specialization", 4),
+	HOSPITAL ("hospital", 5);
 	
 	private final String key;
 	private final int column_no;

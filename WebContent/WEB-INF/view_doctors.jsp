@@ -132,6 +132,7 @@
 													<th data-field="id">Name</th>
 													<th data-field="name">Location</th>
 													<th data-field="price">Specialization</th>
+													<th data-field="price">Hospital</th>
 												</tr>
 											</thead>
 											<tbody id="list_of_doctors">
@@ -149,7 +150,7 @@
 								<div class="row center">
 									<ul class="pagination col s12 center-align" style="width: auto">
 									
-										<c:if test="${currentPage == 1}">
+										<c:if test="${currentPage == 1 || currentPage == null}">
 											<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
 										</c:if>
 										<c:if test="${currentPage != 1}">

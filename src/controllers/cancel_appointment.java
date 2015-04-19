@@ -34,12 +34,15 @@ public class cancel_appointment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ServletContext sc = request.getServletContext();
 		
 		String apid = request.getParameter("apid");
 		String did = request.getParameter("did");
+		String reason = request.getParameter("reason");
 		int apidint = 0;
 
+		if(reason == null) {
+			reason = "I cancelled it.";
+		}
 		
 		try{
 			apidint = Integer.parseInt(apid);
@@ -56,7 +59,7 @@ public class cancel_appointment extends HttpServlet {
 		else{
 			AppointmentsDAO appointmentDao = new AppointmentsDAO();
 
-			if(appointmentDao.deleteAppointment(apidint)){
+			if(appointmentDao.cancelAppointment(apidint, reason)){
 				response.sendRedirect("success#Success");
 			} else{
 				response.sendRedirect("doctor_profile?did="+did);

@@ -14,6 +14,7 @@ import models.DAO;
 import models.doctor.Doctor;
 import models.user.User;
 import tables.Appointments_Table;
+import tables.Cancelled_appointments_Table;
 import tables.Doctors_Table;
 import tables.Times_Table;
 import tables.Users_Table;
@@ -28,12 +29,14 @@ public class AppointmentsDAO extends DAO{
 		Appointment appointment = null;
 		
 		Appointments_Table a = new Appointments_Table();
-		Users_Table u = new Users_Table();
-		Doctors_Table d = new Doctors_Table();
-		Times_Table t = new Times_Table();
+		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
-		String query = "SELECT * from " + a.TABLE_NAME + " WHERE " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " and " +
-						a.DATE + " = '" + date + "'";
+//		String query = "SELECT * from " + a.TABLE_NAME + " WHERE " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " and " +
+//						a.DATE + " = '" + date + "'";
+		
+		String query = "SELECT * from " + a.TABLE_NAME + " WHERE NOT EXISTS ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME +
+						" WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) " + " and " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " and " +
+						a.DATE + " = '" + date + "'"; 
 		
 		try {
 			
@@ -67,18 +70,20 @@ public class AppointmentsDAO extends DAO{
 		
 	}
 	
-	public List<Appointment> getAppointmentForDoctor(String date, int did){
+	public List<Appointment> getAppointmentsForDoctor(String date, int did){
 		
 		List<Appointment> appointments = new ArrayList<Appointment>();
 		Appointment appointment = null;
 		
 		Appointments_Table a = new Appointments_Table();
-		Users_Table u = new Users_Table();
-		Doctors_Table d = new Doctors_Table();
-		Times_Table t = new Times_Table();
+		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
-		String query = "SELECT * from " + a.TABLE_NAME + " WHERE " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " +
-						a.DATE + " = '" + date + "'";
+//		String query = "SELECT * from " + a.TABLE_NAME + " WHERE " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " +
+//						a.DATE + " = '" + date + "'";
+		
+		String query = "SELECT * from " + a.TABLE_NAME + " WHERE NOT EXISTS ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME +
+				" WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) " + " and " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " +
+				a.DATE + " = '" + date + "'"; 
 		
 		try {
 			
@@ -112,7 +117,11 @@ public class AppointmentsDAO extends DAO{
 		
 	}
 	
-	private int noOfRecords;
+	private int appointmentNoOfRecords;
+	
+	public int appointmentGetNoOfRecords() {
+		return appointmentNoOfRecords;
+	}
 	
 	// for user profile
 	public List<Appointment> getUserAppointments(int uid){
@@ -124,14 +133,18 @@ public class AppointmentsDAO extends DAO{
 		Users_Table u = new Users_Table();
 		Doctors_Table d = new Doctors_Table();
 		Times_Table t = new Times_Table();
+		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
 		String query2 = "";
 		
 		String query = "SELECT " + a.ID + ", "+ 
 						"DATE_FORMAT(" + a.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + a.DOCTOR_ID + " FROM " + 
 						a.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +
-						" WHERE " + d.USER_ID + "=" + a.DOCTOR_ID + " and " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
+						" WHERE NOT EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME + " WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) and " +
+						d.USER_ID + "=" + a.DOCTOR_ID + " and " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
 						a.DATE + " >= NOW() and " + u.ID + "=" + uid;
+		
+		System.out.println(query);
 		
 		Statement stmt2 = null;
 		
@@ -153,7 +166,9 @@ public class AppointmentsDAO extends DAO{
 				
 				query2 = "SELECT CONCAT(" + u.FIRSTNAME + ",' '," + u.LASTNAME + ") as `name` " + " FROM " + 
 						u.TABLE_NAME + "," + d.TABLE_NAME +
-						" WHERE " + d.USER_ID + "=" + u.ID + " and " + u.ID + " = " + doctor_id;
+						" WHERE " + d.USER_ID + "=" + u.ID + " and " + d.ID + " = " + doctor_id;
+				
+				System.out.println(query2);
 				
 				rs2 = stmt2.executeQuery(query2);
 				
@@ -173,7 +188,7 @@ public class AppointmentsDAO extends DAO{
 			rs = stmt.executeQuery("SELECT FOUND_ROWS()");
 			   
 			if(rs.next())
-				this.noOfRecords = rs.getInt(1);
+				this.appointmentNoOfRecords = rs.getInt(1);
 			
 			rs.close();
 			
@@ -195,6 +210,102 @@ public class AppointmentsDAO extends DAO{
 		}
 		
 		return appointments;
+		
+	}
+	
+	private int cancelledAppointmentNoOfRecords;
+	
+	public int cancelledAppointmentGetNoOfRecords() {
+		return cancelledAppointmentNoOfRecords;
+	}
+	
+	public List<CancelledAppointment> getUserCanccelledAppointments(int uid){
+		
+		List<CancelledAppointment> cancelled_appointments = new ArrayList<CancelledAppointment>();
+		CancelledAppointment cancelled_appointment = null;
+		
+		Appointments_Table a = new Appointments_Table();
+		Users_Table u = new Users_Table();
+		Doctors_Table d = new Doctors_Table();
+		Times_Table t = new Times_Table();
+		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
+		
+		String query2 = "";
+		
+		String query = "SELECT " + a.ID + ", "+ 
+						"DATE_FORMAT(" + a.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + a.DOCTOR_ID + ", " + c.REASON + " as `reason` " + " FROM " + 
+						a.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +  ", " + c.TABLE_NAME +
+						" WHERE EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME + " WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) and " +
+						d.USER_ID + "=" + a.DOCTOR_ID + " and " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
+						a.DATE + " >= NOW() and " + u.ID + "=" + uid + " and " + c.APPOINTMENT_ID + " = " + a.ID;
+		
+		System.out.println(query);
+		
+		Statement stmt2 = null;
+		
+		try {
+			
+			connection = getConnection();
+			stmt = connection.createStatement();
+			stmt2 = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs2 = null;
+			
+			while(rs.next()) {
+				
+				int id = rs.getInt(1);
+				String date = rs.getString(2);
+				String time = rs.getString(3);
+				int doctor_id = rs.getInt(4);
+				String reason = rs.getString(5);
+				String doctor_name = "";
+				
+				query2 = "SELECT CONCAT(" + u.FIRSTNAME + ",' '," + u.LASTNAME + ") as `name` " + " FROM " + 
+						u.TABLE_NAME + "," + d.TABLE_NAME +
+						" WHERE " + d.USER_ID + "=" + u.ID + " and " + d.ID + " = " + doctor_id;
+				
+				System.out.println(query2);
+				
+				rs2 = stmt2.executeQuery(query2);
+				
+				if(rs2.next()){
+				doctor_name = rs2.getString(1);
+				}
+				rs2.close();
+				
+				cancelled_appointment = new CancelledAppointment(id, doctor_id, doctor_name, doctor_name, date, time, reason);
+				cancelled_appointments.add(cancelled_appointment);
+				
+			}
+			
+			rs.close();
+			
+			
+			rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+			   
+			if(rs.next())
+				this.cancelledAppointmentNoOfRecords = rs.getInt(1);
+			
+			rs.close();
+			
+		} catch (SQLException e) {
+		   e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+		   e.printStackTrace();
+		}finally {
+			try {
+				if(stmt != null)
+					stmt.close();
+				if(stmt2 != null)
+					stmt2.close();
+				if(connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return cancelled_appointments;
 		
 	}
 	
@@ -254,17 +365,17 @@ public class AppointmentsDAO extends DAO{
 		
 	}
 	
-	public int getNoOfRecords() {
-		return noOfRecords;
-	}
 	
 	public boolean isAppointee(int uid, int did) {
 		
 		boolean result = false;
 		
 		Appointments_Table a = new Appointments_Table();
+		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
-		String query = "SELECT * FROM " + a.TABLE_NAME + " WHERE " + a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " LIMIT 1";
+		String query = "SELECT * FROM " + a.TABLE_NAME + " WHERE NOT EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " +
+						c.TABLE_NAME + " WHERE " + c.APPOINTMENT_ID + " = " + a.ID + " ) and "		
+						+ a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " LIMIT 1";
 		
 		try {
 			
@@ -297,13 +408,15 @@ public class AppointmentsDAO extends DAO{
 		
 	}
 	
-public boolean deleteAppointment(int id){
+	public boolean cancelAppointment(int id, String reason){
 		
 		boolean result = true;
 		Appointments_Table a = new Appointments_Table();
+		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
 		//assume everyone has unique email...
-		String query = "DELETE FROM " + a.TABLE_NAME + " WHERE " + a.ID + " = " + id;
+	//	String query = "DELETE FROM " + a.TABLE_NAME + " WHERE " + a.ID + " = " + id;
+		String query = "INSERT INTO " + c.TABLE_NAME + " ( " + c.APPOINTMENT_ID + ", " + c.REASON + " ) values (" + id + ", '" + reason + "')";
 		
 		try {
 			connection = getConnection();

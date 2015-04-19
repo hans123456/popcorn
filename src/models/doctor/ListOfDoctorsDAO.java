@@ -8,6 +8,7 @@ import java.util.Map;
 
 import tables.Cities_Table;
 import tables.Doctors_Table;
+import tables.Hospitals_Table;
 import tables.Specializations_Table;
 import tables.Users_Table;
 import models.DAO;
@@ -26,15 +27,16 @@ public class ListOfDoctorsDAO extends DAO{
 		Users_Table u = new Users_Table();
 		Cities_Table c = new Cities_Table();
 		Specializations_Table s = new Specializations_Table();
+		Hospitals_Table h = new Hospitals_Table();
 		
 		String query = "";
 		
 		query += "SELECT * FROM (SELECT " + d.ID + " as `id`, CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ") as `whole`, " + 
-				 c.NAME + " as `city`, " + s.NAME + " as `specialization` ";
+				 c.NAME + " as `city`, " + s.NAME + " as `specialization` " + ", " + h.NAME + " as `hospital`";
 		
-		query += " FROM " + d.TABLE_NAME + ", " + c.TABLE_NAME + ", " + s.TABLE_NAME + 
+		query += " FROM " + d.TABLE_NAME + ", " + c.TABLE_NAME + ", " + s.TABLE_NAME + ", " + h.TABLE_NAME +
 				 ", " + u.TABLE_NAME + " where " + d.CITY_ID + " = " + c.ID + " and " + 
-				 d.SPECIALIZATION_ID + " = " + s.ID	+ " and " + d.USER_ID + " = " + u.ID;
+				 d.SPECIALIZATION_ID + " = " + s.ID	+ " and " + d.USER_ID + " = " + u.ID + " and " + d.HOSPITAL_ID + " = " + h.ID;
 
 		if(constraints.get("specialization")!=null)
 			if(constraints.get("specialization")[0].equals("0")==false)

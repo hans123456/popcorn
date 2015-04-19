@@ -52,6 +52,48 @@ public class user_profile extends HttpServlet {
 				boolean appointee = dao1.isAppointee(uid, user.getDoctorId());
 				
 				if(uid==0 || uid==user.getId()){
+					AppointmentsDAO dao = new AppointmentsDAO();
+					request.setAttribute("appointments", dao.getUserAppointments(user.getId()));
+					request.setAttribute("cancelled_appointments", dao.getUserCanccelledAppointments(user.getId()));
+
+					int pageCancelled = 1;
+					int recordsPerPageCancelled = 5;
+					if(request.getParameter("page") != null){
+						try{
+							pageCancelled = Integer.parseInt(request.getParameter("page"));
+						}catch(NumberFormatException e){
+							
+						}
+					}
+					
+					int noOfRecordsCancelled = dao.cancelledAppointmentGetNoOfRecords();
+					int noOfPagesCancelled = (int) Math.ceil(noOfRecordsCancelled * 1.0 / recordsPerPageCancelled);
+					
+					if(noOfPagesCancelled<pageCancelled)
+						pageCancelled = noOfPagesCancelled;
+					
+					request.setAttribute("noOfPagesCancelled", noOfPagesCancelled);
+					request.setAttribute("currentPageCancelled", pageCancelled);
+					
+					int pageAppointment = 1;
+					int recordsPerPageAppointment = 5;
+					if(request.getParameter("page") != null){
+						try{
+							pageAppointment = Integer.parseInt(request.getParameter("page"));
+						}catch(NumberFormatException e){
+							
+						}
+					}
+					
+					int noOfRecordsAppointment = dao.appointmentGetNoOfRecords();
+					int noOfPagesAppointment  = (int) Math.ceil(noOfRecordsAppointment  * 1.0 / recordsPerPageAppointment );
+					
+					if(noOfPagesAppointment <pageAppointment )
+						pageAppointment  = noOfPagesAppointment ;
+					
+					request.setAttribute("noOfPagesAppointment ", noOfPagesAppointment );
+					request.setAttribute("currentPageAppointment ", pageAppointment );
+					
 					request.getRequestDispatcher("/WEB-INF/user_profile.jsp").forward(request, response);
 				}else if(appointee){
 					request.setAttribute("appointee", dao2.getInfoForDoctor(uid));
@@ -64,26 +106,47 @@ public class user_profile extends HttpServlet {
 			
 				AppointmentsDAO dao = new AppointmentsDAO();
 				request.setAttribute("appointments", dao.getUserAppointments(user.getId()));
+				request.setAttribute("cancelled_appointments", dao.getUserCanccelledAppointments(user.getId()));
 
-				int page = 1;
-				int recordsPerPage = 5;
+				int pageCancelled = 1;
+				int recordsPerPageCancelled = 5;
 				if(request.getParameter("page") != null){
 					try{
-						page = Integer.parseInt(request.getParameter("page"));
+						pageCancelled = Integer.parseInt(request.getParameter("page"));
 					}catch(NumberFormatException e){
 						
 					}
 				}
 				
-				int noOfRecords = dao.getNoOfRecords();
-				int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+				int noOfRecordsCancelled = dao.cancelledAppointmentGetNoOfRecords();
+				int noOfPagesCancelled = (int) Math.ceil(noOfRecordsCancelled * 1.0 / recordsPerPageCancelled);
 				
-				if(noOfPages<page)
-					page = noOfPages;
+				if(noOfPagesCancelled<pageCancelled)
+					pageCancelled = noOfPagesCancelled;
 				
-				request.setAttribute("noOfPages", noOfPages);
-				request.setAttribute("currentPage", page);
+				request.setAttribute("noOfPagesCancelled", noOfPagesCancelled);
+				request.setAttribute("currentPageCancelled", pageCancelled);
 				
+				int pageAppointment = 1;
+				int recordsPerPageAppointment = 5;
+				if(request.getParameter("page") != null){
+					try{
+						pageAppointment = Integer.parseInt(request.getParameter("page"));
+					}catch(NumberFormatException e){
+						
+					}
+				}
+				
+				int noOfRecordsAppointment = dao.appointmentGetNoOfRecords();
+				int noOfPagesAppointment  = (int) Math.ceil(noOfRecordsAppointment  * 1.0 / recordsPerPageAppointment );
+				
+				if(noOfPagesAppointment < pageAppointment )
+					pageAppointment  = noOfPagesAppointment ;
+				
+				System.out.println(pageAppointment);
+				request.setAttribute("noOfPagesAppointment ", noOfPagesAppointment );
+				request.setAttribute("currentPageAppointment ", pageAppointment );
+
 				request.getRequestDispatcher("/WEB-INF/user_profile.jsp").forward(request, response);
 			
 			}
