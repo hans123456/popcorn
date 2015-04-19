@@ -124,7 +124,7 @@ public class AppointmentsDAO extends DAO{
 	}
 	
 	// for user profile
-	public List<Appointment> getUserAppointments(int uid){
+	public List<Appointment> getUserAppointments(int offset, int noOfRecords, int uid){
 		
 		List<Appointment> appointments = new ArrayList<Appointment>();
 		Appointment appointment = null;
@@ -143,6 +143,8 @@ public class AppointmentsDAO extends DAO{
 						" WHERE NOT EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME + " WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) and " +
 						d.USER_ID + "=" + a.DOCTOR_ID + " and " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
 						a.DATE + " >= NOW() and " + u.ID + "=" + uid;
+		
+		query += " limit " + offset + ", " + noOfRecords;
 		
 		System.out.println(query);
 		
@@ -168,12 +170,14 @@ public class AppointmentsDAO extends DAO{
 						u.TABLE_NAME + "," + d.TABLE_NAME +
 						" WHERE " + d.USER_ID + "=" + u.ID + " and " + d.ID + " = " + doctor_id;
 				
+				query2 += " limit 1";
+				
 				System.out.println(query2);
 				
 				rs2 = stmt2.executeQuery(query2);
 				
 				if(rs2.next()){
-				doctor_name = rs2.getString(1);
+					doctor_name = rs2.getString(1);
 				}
 				rs2.close();
 				
@@ -219,7 +223,7 @@ public class AppointmentsDAO extends DAO{
 		return cancelledAppointmentNoOfRecords;
 	}
 	
-	public List<CancelledAppointment> getUserCanccelledAppointments(int uid){
+	public List<CancelledAppointment> getUserCanccelledAppointments(int offset, int noOfRecords, int uid){
 		
 		List<CancelledAppointment> cancelled_appointments = new ArrayList<CancelledAppointment>();
 		CancelledAppointment cancelled_appointment = null;
@@ -238,6 +242,8 @@ public class AppointmentsDAO extends DAO{
 						" WHERE EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME + " WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) and " +
 						d.USER_ID + "=" + a.DOCTOR_ID + " and " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
 						a.DATE + " >= NOW() and " + u.ID + "=" + uid + " and " + c.APPOINTMENT_ID + " = " + a.ID;
+		
+		query += " limit " + offset + ", " + noOfRecords;
 		
 		System.out.println(query);
 		
@@ -263,6 +269,8 @@ public class AppointmentsDAO extends DAO{
 				query2 = "SELECT CONCAT(" + u.FIRSTNAME + ",' '," + u.LASTNAME + ") as `name` " + " FROM " + 
 						u.TABLE_NAME + "," + d.TABLE_NAME +
 						" WHERE " + d.USER_ID + "=" + u.ID + " and " + d.ID + " = " + doctor_id;
+				
+				query2 += " limit 1";
 				
 				System.out.println(query2);
 				

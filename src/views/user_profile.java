@@ -53,9 +53,7 @@ public class user_profile extends HttpServlet {
 				
 				if(uid==0 || uid==user.getId()){
 					AppointmentsDAO dao = new AppointmentsDAO();
-					request.setAttribute("appointments", dao.getUserAppointments(user.getId()));
-					request.setAttribute("cancelled_appointments", dao.getUserCanccelledAppointments(user.getId()));
-
+					
 					int pageCancelled = 1;
 					int recordsPerPageCancelled = 5;
 					if(request.getParameter("page") != null){
@@ -65,15 +63,6 @@ public class user_profile extends HttpServlet {
 							
 						}
 					}
-					
-					int noOfRecordsCancelled = dao.cancelledAppointmentGetNoOfRecords();
-					int noOfPagesCancelled = (int) Math.ceil(noOfRecordsCancelled * 1.0 / recordsPerPageCancelled);
-					
-					if(noOfPagesCancelled<pageCancelled)
-						pageCancelled = noOfPagesCancelled;
-					
-					request.setAttribute("noOfPagesCancelled", noOfPagesCancelled);
-					request.setAttribute("currentPageCancelled", pageCancelled);
 					
 					int pageAppointment = 1;
 					int recordsPerPageAppointment = 5;
@@ -85,11 +74,23 @@ public class user_profile extends HttpServlet {
 						}
 					}
 					
+					request.setAttribute("appointments", dao.getUserAppointments((pageAppointment-1)*recordsPerPageAppointment, recordsPerPageAppointment,user.getId()));
+					request.setAttribute("cancelled_appointments", dao.getUserCanccelledAppointments((pageCancelled-1)*recordsPerPageCancelled, recordsPerPageCancelled,user.getId()));
+
+					int noOfRecordsCancelled = dao.cancelledAppointmentGetNoOfRecords();
+					int noOfPagesCancelled = (int) Math.ceil(noOfRecordsCancelled * 1.0 / recordsPerPageCancelled);
+					
 					int noOfRecordsAppointment = dao.appointmentGetNoOfRecords();
 					int noOfPagesAppointment  = (int) Math.ceil(noOfRecordsAppointment  * 1.0 / recordsPerPageAppointment );
 					
+					if(noOfPagesCancelled<pageCancelled)
+						pageCancelled = noOfPagesCancelled;
+					
 					if(noOfPagesAppointment <pageAppointment )
 						pageAppointment  = noOfPagesAppointment ;
+					
+					request.setAttribute("noOfPagesCancelled", noOfPagesCancelled);
+					request.setAttribute("currentPageCancelled", pageCancelled);
 					
 					request.setAttribute("noOfPagesAppointment ", noOfPagesAppointment );
 					request.setAttribute("currentPageAppointment ", pageAppointment );
@@ -105,8 +106,6 @@ public class user_profile extends HttpServlet {
 			}else {
 			
 				AppointmentsDAO dao = new AppointmentsDAO();
-				request.setAttribute("appointments", dao.getUserAppointments(user.getId()));
-				request.setAttribute("cancelled_appointments", dao.getUserCanccelledAppointments(user.getId()));
 
 				int pageCancelled = 1;
 				int recordsPerPageCancelled = 5;
@@ -118,15 +117,6 @@ public class user_profile extends HttpServlet {
 					}
 				}
 				
-				int noOfRecordsCancelled = dao.cancelledAppointmentGetNoOfRecords();
-				int noOfPagesCancelled = (int) Math.ceil(noOfRecordsCancelled * 1.0 / recordsPerPageCancelled);
-				
-				if(noOfPagesCancelled<pageCancelled)
-					pageCancelled = noOfPagesCancelled;
-				
-				request.setAttribute("noOfPagesCancelled", noOfPagesCancelled);
-				request.setAttribute("currentPageCancelled", pageCancelled);
-				
 				int pageAppointment = 1;
 				int recordsPerPageAppointment = 5;
 				if(request.getParameter("page") != null){
@@ -137,13 +127,24 @@ public class user_profile extends HttpServlet {
 					}
 				}
 				
+				request.setAttribute("appointments", dao.getUserAppointments((pageAppointment-1)*recordsPerPageAppointment, recordsPerPageAppointment,user.getId()));
+				request.setAttribute("cancelled_appointments", dao.getUserCanccelledAppointments((pageCancelled-1)*recordsPerPageCancelled, recordsPerPageCancelled,user.getId()));
+
+				int noOfRecordsCancelled = dao.cancelledAppointmentGetNoOfRecords();
+				int noOfPagesCancelled = (int) Math.ceil(noOfRecordsCancelled * 1.0 / recordsPerPageCancelled);
+
 				int noOfRecordsAppointment = dao.appointmentGetNoOfRecords();
 				int noOfPagesAppointment  = (int) Math.ceil(noOfRecordsAppointment  * 1.0 / recordsPerPageAppointment );
-				
+
+				if(noOfPagesCancelled<pageCancelled)
+					pageCancelled = noOfPagesCancelled;
+
 				if(noOfPagesAppointment < pageAppointment )
 					pageAppointment  = noOfPagesAppointment ;
 				
-				System.out.println(pageAppointment);
+				request.setAttribute("noOfPagesCancelled", noOfPagesCancelled);
+				request.setAttribute("currentPageCancelled", pageCancelled);
+				
 				request.setAttribute("noOfPagesAppointment ", noOfPagesAppointment );
 				request.setAttribute("currentPageAppointment ", pageAppointment );
 
