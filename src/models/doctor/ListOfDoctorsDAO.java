@@ -31,7 +31,7 @@ public class ListOfDoctorsDAO extends DAO{
 		
 		String query = "";
 		
-		query += "SELECT * FROM (SELECT " + d.ID + " as `id`, CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ") as `whole`, " + 
+		query += "SELECT SQL_CALC_FOUND_ROWS * FROM (SELECT " + d.ID + " as `id`, CONCAT(" + u.FIRSTNAME + ", ' ', " + u.LASTNAME + ") as `whole`, " + 
 				 c.NAME + " as `city`, " + s.NAME + " as `specialization` " + ", " + h.NAME + " as `hospital`";
 		
 		query += " FROM " + d.TABLE_NAME + ", " + c.TABLE_NAME + ", " + s.TABLE_NAME + ", " + h.TABLE_NAME +

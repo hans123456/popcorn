@@ -16,28 +16,14 @@ DROP TABLE IF EXISTS `times`;
 
 DROP TABLE IF EXISTS `cancelled appointments`;
 
-	
 	CREATE TABLE `cancelled appointments` (
- 		
-	`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
- 		
-	`appointment_id` INT UNSIGNED NOT NULL,
- 		
-	`reason` VARCHAR(45) NOT NULL,
- 		
-	PRIMARY KEY (`id`),
- 		
-	INDEX `appointment_id_idx` (`appointment_id` ASC),
- 		
-	CONSTRAINT `appointment_id`
-   		
-	FOREIGN KEY (`appointment_id`)
-		
-	REFERENCES `webapps`.`appointments` (`id`)
-		
-	ON DELETE NO ACTION
-		
-	ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+		`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+		`appointment_id` INT(11) UNSIGNED NOT NULL,
+		`reason` VARCHAR(100) NOT NULL,
+		PRIMARY KEY (`id`),
+		UNIQUE (`appointment_id`),
+		FOREIGN KEY (`appointment_id`) REFERENCES `appointments`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `specializations`;
 

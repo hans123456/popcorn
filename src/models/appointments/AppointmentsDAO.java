@@ -137,7 +137,7 @@ public class AppointmentsDAO extends DAO{
 		
 		String query2 = "";
 		
-		String query = "SELECT " + a.ID + ", "+ 
+		String query = "SELECT SQL_CALC_FOUND_ROWS " + a.ID + ", "+ 
 						"DATE_FORMAT(" + a.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + a.DOCTOR_ID + " FROM " + 
 						a.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +
 						" WHERE NOT EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME + " WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) and " +
@@ -157,6 +157,16 @@ public class AppointmentsDAO extends DAO{
 			stmt2 = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			ResultSet rs2 = null;
+			ResultSet rs3 = null;
+
+			rs3 = stmt.executeQuery("SELECT FOUND_ROWS()");
+			   
+			if(rs3.next())
+				this.appointmentNoOfRecords = rs3.getInt(1);
+			
+			rs3.close();
+			
+			rs = stmt.executeQuery(query);
 			
 			while(rs.next()) {
 				
@@ -187,15 +197,7 @@ public class AppointmentsDAO extends DAO{
 			}
 			
 			rs.close();
-			
-			
-			rs = stmt.executeQuery("SELECT FOUND_ROWS()");
-			   
-			if(rs.next())
-				this.appointmentNoOfRecords = rs.getInt(1);
-			
-			rs.close();
-			
+
 		} catch (SQLException e) {
 		   e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -236,7 +238,7 @@ public class AppointmentsDAO extends DAO{
 		
 		String query2 = "";
 		
-		String query = "SELECT " + a.ID + ", "+ 
+		String query = "SELECT SQL_CALC_FOUND_ROWS " + a.ID + ", "+ 
 						"DATE_FORMAT(" + a.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + a.DOCTOR_ID + ", " + c.REASON + " as `reason` " + " FROM " + 
 						a.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +  ", " + c.TABLE_NAME +
 						" WHERE EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME + " WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) and " +
@@ -256,6 +258,16 @@ public class AppointmentsDAO extends DAO{
 			stmt2 = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			ResultSet rs2 = null;
+			ResultSet rs3 = null;
+			
+			rs3 = stmt.executeQuery("SELECT FOUND_ROWS()");
+			   
+			if(rs3.next())
+				this.cancelledAppointmentNoOfRecords = rs3.getInt(1);
+			
+			rs3.close();
+
+			rs = stmt.executeQuery(query);
 			
 			while(rs.next()) {
 				
@@ -285,14 +297,6 @@ public class AppointmentsDAO extends DAO{
 				cancelled_appointments.add(cancelled_appointment);
 				
 			}
-			
-			rs.close();
-			
-			
-			rs = stmt.executeQuery("SELECT FOUND_ROWS()");
-			   
-			if(rs.next())
-				this.cancelledAppointmentNoOfRecords = rs.getInt(1);
 			
 			rs.close();
 			

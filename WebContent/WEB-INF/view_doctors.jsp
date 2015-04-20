@@ -132,7 +132,6 @@
 													<th data-field="id">Name</th>
 													<th data-field="name">Location</th>
 													<th data-field="price">Specialization</th>
-													<th data-field="price">Hospital</th>
 												</tr>
 											</thead>
 											<tbody id="list_of_doctors">
