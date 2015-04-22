@@ -149,11 +149,11 @@
 								<div class="row center">
 									<ul class="pagination col s12 center-align" style="width: auto">
 									
-										<c:if test="${currentPage == 1 || currentPage == null}">
+										<c:if test="${currentPage le 1 || currentPage eq null}">
 											<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
 										</c:if>
-										<c:if test="${currentPage != 1}">
-											<li class="disabled"><a href="view_doctors?page=${currentPage - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
+										<c:if test="${currentPage gt 1 && currentPage le noOfPages}">
+											<li class="waves-effect"><a href="view_doctors?page=${currentPage - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
 										</c:if>
 										
 										<c:forEach begin="1" end="${noOfPages}" var="i">

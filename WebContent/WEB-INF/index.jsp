@@ -65,29 +65,29 @@
 	<c:if test="${user==null}">
 	
 	<div id="Login"></div>
-	<div class="board white lighten-4 valign-wrapper deep-orange accent-4">
+	<div class="board white lighten-4 valign-wrapper yellow lighten-4">
 		<div class="container valign row">
 			<div class="left-align board-padding col s12 ">
-				<div>
+				<div class="col s12" style="margin-bottom:20px;">
 					<h2 class="board-header display-inline">Login</h2>
-					<h5 class="white-text display-inline left-margin10">
+					<h5 class="red-text display-inline left-margin10">
 						<c:if test="${invalid_login!=null}">
 							${invalid_login}
 						</c:if>
 					</h5>
 				</div>
-				<form action="login" method="post" style="margin-top:30px;">
+				<form action="login" method="post">
 					<div>
-					<div class="input-field col s12 l6">
+					<div class="input-field col s12">
 						<i class="mdi-communication-email prefix"></i>
 						<input id="icon_prefix" type="email" class="validate" name="login_email">
-						<label for="icon_prefix">Email Address</label>
+						<label for="icon_prefix" class="black-text">Email Address</label>
 					</div>
 					</div>
-					<div class="input-field col s12 l6">
+					<div class="input-field col s12">
 						<i class="mdi-action-lock prefix"></i>
 						<input id="icon_prefix" type="password" class="validate" name="login_password">
-						<label for="icon_prefix">Password</label>
+						<label for="icon_prefix" class="black-text">Password</label>
 					</div>
 					<div class="right-align">
 						<button type="submit" class="waves-effect waves-light btn green darken-1 margin-top10"><i class="mdi-content-send right"></i>Login</button>

@@ -47,7 +47,6 @@
 	}
 	
 	.datepicker {
-		overflow : visible;
 	}
 	
 	.display-inline{
@@ -59,8 +58,12 @@
 	}
 	
 	.select {
-		margin-top : 0px;
 		margin-bottom : 0px;	
+	}
+	
+	.select-wrapper {
+		margin-top : 0px;
+		margin-bottom : 0px;
 	}
 	
 	#registerButton{
@@ -106,5 +109,10 @@
 		.register{
 			margin-top:40px
 		}
+	}
+	
+	.hidden {
+		display:none;
+		visibility: hidden;
 	}
 	
