@@ -1,20 +1,9 @@
-﻿DROP TABLE IF EXISTS `days`;
+DROP TABLE IF EXISTS `days`;
 
 	CREATE TABLE `days` (
 		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 		`name` varchar(10) NOT NULL,
 		PRIMARY KEY (`id`)
-	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `cancelled appointments`;
-
-	CREATE TABLE `cancelled appointments` (
-		`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-		`appointment_id` INT(11) UNSIGNED NOT NULL,
-		`reason` VARCHAR(100) NOT NULL,
-		PRIMARY KEY (`id`),
-		UNIQUE (`appointment_id`),
-		FOREIGN KEY (`appointment_id`) REFERENCES `appointments`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `times`;
@@ -115,6 +104,21 @@ DROP TABLE IF EXISTS `unavailable times`;
 		FOREIGN KEY fk_doctor(`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `cancelled appointments`;
+
+	CREATE TABLE `cancelled appointments` (
+		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+		`date` date NOT NULL,
+		`time_id` int(11) unsigned NOT NULL,
+		`user_id` int(11) unsigned NOT NULL,
+		`doctor_id` int(11) unsigned NOT NULL,
+		`reason` varchar(200),
+		PRIMARY KEY (`id`),
+		FOREIGN KEY fk_time(`time_id`) REFERENCES `times`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+		FOREIGN KEY fk_user(`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+		FOREIGN KEY fk_doctor(`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	
 DROP TABLE IF EXISTS `medications`;
 
 	CREATE TABLE `medications` (
