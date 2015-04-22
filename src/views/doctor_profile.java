@@ -113,7 +113,7 @@ public class doctor_profile extends HttpServlet {
 				
 				AppointmentsDAO dao2 = new AppointmentsDAO();
 				if(user != null && user.getDoctorId() == did){
-					request.setAttribute("appointments", dao2.getAppointmentsForDoctor(date, did));
+					request.setAttribute("appointments", dao2.getAppointmentForDoctor(date, did));
 				} else if(user != null) {
 					request.setAttribute("appointments", dao2.getUserAppointmentForDoctor(date, user.getId(), did));
 				}
@@ -180,10 +180,8 @@ public class doctor_profile extends HttpServlet {
 				
 				request.setAttribute("times", times);
 				
-				AppointmentsDAO dao2 = new AppointmentsDAO();
-				if(user != null && user.getDoctorId() == did){
-					request.setAttribute("appointments", dao2.getAppointmentsForDoctor(date, did));
-				} else if(user != null) {
+				if(user!=null){
+					AppointmentsDAO dao2 = new AppointmentsDAO();
 					request.setAttribute("appointments", dao2.getUserAppointmentForDoctor(date, user.getId(), did));
 				}
 				

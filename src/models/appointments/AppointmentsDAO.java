@@ -29,14 +29,12 @@ public class AppointmentsDAO extends DAO{
 		Appointment appointment = null;
 		
 		Appointments_Table a = new Appointments_Table();
-		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
+		Users_Table u = new Users_Table();
+		Doctors_Table d = new Doctors_Table();
+		Times_Table t = new Times_Table();
 		
-//		String query = "SELECT * from " + a.TABLE_NAME + " WHERE " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " and " +
-//						a.DATE + " = '" + date + "'";
-		
-		String query = "SELECT * from " + a.TABLE_NAME + " WHERE NOT EXISTS ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME +
-						" WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) " + " and " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " and " +
-						a.DATE + " = '" + date + "'"; 
+		String query = "SELECT * from " + a.TABLE_NAME + " WHERE " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " and " +
+						a.DATE + " = '" + date + "'";
 		
 		try {
 			
@@ -70,20 +68,18 @@ public class AppointmentsDAO extends DAO{
 		
 	}
 	
-	public List<Appointment> getAppointmentsForDoctor(String date, int did){
+	public List<Appointment> getAppointmentForDoctor(String date, int did){
 		
 		List<Appointment> appointments = new ArrayList<Appointment>();
 		Appointment appointment = null;
 		
 		Appointments_Table a = new Appointments_Table();
-		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
+		Users_Table u = new Users_Table();
+		Doctors_Table d = new Doctors_Table();
+		Times_Table t = new Times_Table();
 		
-//		String query = "SELECT * from " + a.TABLE_NAME + " WHERE " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " +
-//						a.DATE + " = '" + date + "'";
-		
-		String query = "SELECT * from " + a.TABLE_NAME + " WHERE NOT EXISTS ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME +
-				" WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) " + " and " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " +
-				a.DATE + " = '" + date + "'"; 
+		String query = "SELECT * from " + a.TABLE_NAME + " WHERE " + a.DATE + " > NOW() and " + a.DOCTOR_ID + "=" + did + " and " +
+						a.DATE + " = '" + date + "'";
 		
 		try {
 			
@@ -119,10 +115,6 @@ public class AppointmentsDAO extends DAO{
 	
 	private int appointmentNoOfRecords;
 	
-	public int appointmentGetNoOfRecords() {
-		return appointmentNoOfRecords;
-	}
-	
 	// for user profile
 	public List<Appointment> getUserAppointments(int offset, int noOfRecords, int uid){
 		
@@ -133,16 +125,14 @@ public class AppointmentsDAO extends DAO{
 		Users_Table u = new Users_Table();
 		Doctors_Table d = new Doctors_Table();
 		Times_Table t = new Times_Table();
-		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
 		String query2 = "";
 		
 		String query = "SELECT SQL_CALC_FOUND_ROWS " + a.ID + ", "+ 
-						"DATE_FORMAT(" + a.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + a.DOCTOR_ID + " FROM " + 
-						a.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +
-						" WHERE NOT EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME + " WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) and " +
-						d.USER_ID + "=" + a.DOCTOR_ID + " and " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
-						a.DATE + " >= NOW() and " + u.ID + "=" + uid;
+				"DATE_FORMAT(" + a.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + a.DOCTOR_ID + " FROM " + 
+				a.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +
+				" WHERE " + d.USER_ID + "=" + a.DOCTOR_ID + " and " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
+				a.DATE + " >= NOW() and " + u.ID + "=" + uid;
 		
 		query += " limit " + offset + ", " + noOfRecords;
 		
@@ -219,31 +209,31 @@ public class AppointmentsDAO extends DAO{
 		
 	}
 	
-	private int cancelledAppointmentNoOfRecords;
-	
-	public int cancelledAppointmentGetNoOfRecords() {
-		return cancelledAppointmentNoOfRecords;
+	public int appointmentGetNoOfRecords() {
+		return appointmentNoOfRecords;
 	}
 	
-	public List<CancelledAppointment> getUserCanccelledAppointments(int offset, int noOfRecords, int uid){
+	private int cancelledAppointmentNoOfRecords;
+	
+	// for user profile
+	public List<CancelledAppointment> getUserCancelledAppointments(int offset, int noOfRecords, int uid){
 		
-		List<CancelledAppointment> cancelled_appointments = new ArrayList<CancelledAppointment>();
-		CancelledAppointment cancelled_appointment = null;
+		List<CancelledAppointment> appointments = new ArrayList<CancelledAppointment>();
+		CancelledAppointment appointment = null;
 		
-		Appointments_Table a = new Appointments_Table();
+		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		Users_Table u = new Users_Table();
 		Doctors_Table d = new Doctors_Table();
 		Times_Table t = new Times_Table();
-		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
 		String query2 = "";
 		
-		String query = "SELECT SQL_CALC_FOUND_ROWS " + a.ID + ", "+ 
-						"DATE_FORMAT(" + a.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + a.DOCTOR_ID + ", " + c.REASON + " as `reason` " + " FROM " + 
-						a.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +  ", " + c.TABLE_NAME +
-						" WHERE EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " + c.TABLE_NAME + " WHERE " + a.ID + " = " + c.APPOINTMENT_ID + " ) and " +
-						d.USER_ID + "=" + a.DOCTOR_ID + " and " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
-						a.DATE + " >= NOW() and " + u.ID + "=" + uid + " and " + c.APPOINTMENT_ID + " = " + a.ID;
+		String query = "SELECT SQL_CALC_FOUND_ROWS " + c.ID + ", "+ 
+				"DATE_FORMAT(" + c.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + c.DOCTOR_ID + 
+				 ", " + c.REASON  + " FROM " + 
+				c.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +
+				" WHERE " + d.USER_ID + "=" + c.DOCTOR_ID + " and " + c.USER_ID + "=" + u.ID + " and " + t.ID + "=" + c.TIME_ID + " and " + 
+				c.DATE + " >= NOW() and " + u.ID + "=" + uid;
 		
 		query += " limit " + offset + ", " + noOfRecords;
 		
@@ -259,14 +249,14 @@ public class AppointmentsDAO extends DAO{
 			ResultSet rs = stmt.executeQuery(query);
 			ResultSet rs2 = null;
 			ResultSet rs3 = null;
-			
+
 			rs3 = stmt.executeQuery("SELECT FOUND_ROWS()");
 			   
 			if(rs3.next())
 				this.cancelledAppointmentNoOfRecords = rs3.getInt(1);
 			
 			rs3.close();
-
+			
 			rs = stmt.executeQuery(query);
 			
 			while(rs.next()) {
@@ -289,17 +279,17 @@ public class AppointmentsDAO extends DAO{
 				rs2 = stmt2.executeQuery(query2);
 				
 				if(rs2.next()){
-				doctor_name = rs2.getString(1);
+					doctor_name = rs2.getString(1);
 				}
 				rs2.close();
 				
-				cancelled_appointment = new CancelledAppointment(id, doctor_id, doctor_name, doctor_name, date, time, reason);
-				cancelled_appointments.add(cancelled_appointment);
+				appointment = new CancelledAppointment(id, doctor_id, doctor_name, doctor_name, date, time, reason);
+				appointments.add(appointment);
 				
 			}
 			
 			rs.close();
-			
+
 		} catch (SQLException e) {
 		   e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -317,9 +307,14 @@ public class AppointmentsDAO extends DAO{
 			}
 		}
 		
-		return cancelled_appointments;
+		return appointments;
 		
 	}
+	
+	public int cancelledAppointmentGetNoOfRecords() {
+		return cancelledAppointmentNoOfRecords;
+	}
+	
 	
 	// add appointment
 	public static synchronized boolean addAppointment(String date, int time, int uid, int did){
@@ -383,11 +378,8 @@ public class AppointmentsDAO extends DAO{
 		boolean result = false;
 		
 		Appointments_Table a = new Appointments_Table();
-		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
-		String query = "SELECT * FROM " + a.TABLE_NAME + " WHERE NOT EXISTS " + " ( " + " SELECT " + c.APPOINTMENT_ID + " from " +
-						c.TABLE_NAME + " WHERE " + c.APPOINTMENT_ID + " = " + a.ID + " ) and "		
-						+ a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " LIMIT 1";
+		String query = "SELECT * FROM " + a.TABLE_NAME + " WHERE " + a.DOCTOR_ID + "=" + did + " and " + a.USER_ID + "=" + uid + " LIMIT 1";
 		
 		try {
 			
@@ -420,22 +412,44 @@ public class AppointmentsDAO extends DAO{
 		
 	}
 	
-	public boolean cancelAppointment(int id, String reason){
+	public boolean deleteAppointment(int id, String reason){
 		
 		boolean result = true;
 		Appointments_Table a = new Appointments_Table();
 		Cancelled_appointments_Table c = new Cancelled_appointments_Table();
 		
 		//assume everyone has unique email...
-	//	String query = "DELETE FROM " + a.TABLE_NAME + " WHERE " + a.ID + " = " + id;
-		String query = "INSERT INTO " + c.TABLE_NAME + " ( " + c.APPOINTMENT_ID + ", " + c.REASON + " ) values (" + id + ", '" + reason + "')";
+		
+		
+		String query = "SELECT * FROM " + a.TABLE_NAME + " WHERE " + a.ID + " = " + id;
+		System.out.println(query);
+		
+		String query2 = "";
+		
+		String query3 = "DELETE FROM " + a.TABLE_NAME + " WHERE " + a.ID + " = " + id;
+		
+		CancelledAppointment capp = null;
 		
 		try {
 			connection = getConnection();
 			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
 			
-			System.out.println(query);
-			stmt.executeUpdate(query);
+			if(rs.next()) {
+				capp = new CancelledAppointment(rs.getInt(5), rs.getInt(4), rs.getString(2), rs.getInt(3), reason);
+			}
+			
+			rs.close();
+			
+			if(capp != null) {
+			query2 = "INSERT INTO " + c.TABLE_NAME + " ( " + c.DATE + ", " + c.TIME_ID + ", " + c.USER_ID + ", " + c.DOCTOR_ID + ", " + c.REASON
+					+ " ) values ( '" + capp.getDate() + "', " + capp.getTimeId() + ", " + capp.getUserId() + ", " + capp.getDoctorId() + ", '" + capp.getReason()
+					+ "')";
+			}
+			
+			stmt.execute(query2);
+			
+			stmt.executeUpdate(query3);
 			
 		} catch (SQLException e) {
 		   e.printStackTrace();

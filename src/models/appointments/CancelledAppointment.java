@@ -1,7 +1,7 @@
 package models.appointments;
 
 public class CancelledAppointment {
-
+	
 	private int id;
 	private String doctor_name;
 	private String appointee_name;
@@ -22,14 +22,24 @@ public class CancelledAppointment {
 		this.time = time;
 		this.reason = reason;
 	}
-	
-	public CancelledAppointment(int id, int doctor_id, int user_id, String date, int time_id) {
+
+	public CancelledAppointment(int id, int doctor_id, int user_id, String date, int time_id, String reason) {
 		super();
 		this.id = id;
 		this.doctor_id = doctor_id;
 		this.user_id = user_id;
 		this.date = date;
 		this.time_id = time_id;
+		this.reason = reason;
+	}
+	
+	public CancelledAppointment(int doctor_id, int user_id, String date, int time_id, String reason) {
+		super();
+		this.doctor_id = doctor_id;
+		this.user_id = user_id;
+		this.date = date;
+		this.time_id = time_id;
+		this.reason = reason;
 	}
 
 	public int getId() {
@@ -67,7 +77,7 @@ public class CancelledAppointment {
 	public void setDoctorName(String doctor_name) {
 		this.doctor_name = doctor_name;
 	}
-
+	
 	public String getReason() {
 		return reason;
 	}
@@ -76,6 +86,4 @@ public class CancelledAppointment {
 		this.reason = reason;
 	}
 
-	
-	
 }

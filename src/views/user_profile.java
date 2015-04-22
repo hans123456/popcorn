@@ -75,7 +75,7 @@ public class user_profile extends HttpServlet {
 					}
 					
 					request.setAttribute("appointments", dao.getUserAppointments((pageAppointment-1)*recordsPerPageAppointment, recordsPerPageAppointment,user.getId()));
-					request.setAttribute("cancelled_appointments", dao.getUserCanccelledAppointments((pageCancelled-1)*recordsPerPageCancelled, recordsPerPageCancelled,user.getId()));
+					request.setAttribute("cancelled_appointments", dao.getUserCancelledAppointments((pageCancelled-1)*recordsPerPageCancelled, recordsPerPageCancelled,user.getId()));
 
 					int noOfRecordsCancelled = dao.cancelledAppointmentGetNoOfRecords();
 					int noOfPagesCancelled = (int) Math.ceil(noOfRecordsCancelled * 1.0 / recordsPerPageCancelled);
@@ -128,7 +128,7 @@ public class user_profile extends HttpServlet {
 				}
 				
 				request.setAttribute("appointments", dao.getUserAppointments((pageAppointment-1)*recordsPerPageAppointment, recordsPerPageAppointment,user.getId()));
-				request.setAttribute("cancelled_appointments", dao.getUserCanccelledAppointments((pageCancelled-1)*recordsPerPageCancelled, recordsPerPageCancelled,user.getId()));
+				request.setAttribute("cancelled_appointments", dao.getUserCancelledAppointments((pageCancelled-1)*recordsPerPageCancelled, recordsPerPageCancelled,user.getId()));
 
 				int noOfRecordsCancelled = dao.cancelledAppointmentGetNoOfRecords();
 				int noOfPagesCancelled = (int) Math.ceil(noOfRecordsCancelled * 1.0 / recordsPerPageCancelled);
@@ -159,6 +159,5 @@ public class user_profile extends HttpServlet {
 		}
 		
 	}
-
-
 }
+
