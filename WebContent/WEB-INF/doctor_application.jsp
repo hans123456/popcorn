@@ -234,6 +234,7 @@
 
 <script>  
 	
+	// generate table
 	var ndays = 7;
 	var times = ["8:00AM", "1:00PM", "9:00AM", "2:00PM", "10:00AM", "3:00PM", "11:00AM", "4:00PM", "12:00PM", "5:00PM"];
 	var timesName = [1, 6, 2, 7, 3, 8, 4, 9, 5, 10];
@@ -243,7 +244,7 @@
 	for(var j=0; j<days.length; j++){
 		temp += '<div class="left-align board-padding col s12"><div class="row margin-top10">';
 		for(var k=0; k<times.length; k++){
-			temp += '<div class="margin-top15 col m6 s12"><input class="with-gap" name="' + j+1 + '" type="checkbox" id="' + days[j] + timesName[k] + '" value="' + timesName[k] + '"/><label for="' + days[j] + timesName[k] + '" class="black-text">' + times[k] + '</label></div>';
+			temp += '<div class="margin-top15 col m6 s12"><input class="with-gap" name="' + (j+1) + '" type="checkbox" id="' + days[j] + timesName[k] + '" value="' + timesName[k] + '"/><label for="' + days[j] + timesName[k] + '" class="black-text">' + times[k] + '</label></div>';
 		}
 		temp += "</div></div>";
 		$("#test" + (j+1)).html(temp);
