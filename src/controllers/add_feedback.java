@@ -62,8 +62,10 @@ public class add_feedback extends HttpServlet {
 		
 		User user = (User) request.getSession().getAttribute("user");
 		
-		if(sc.getAttribute(invalid)!=null)
+		if(sc.getAttribute(invalid)!=null){
 			response.sendRedirect("doctor_profile?did=" + did + "#feedbacks");
+			sc.removeAttribute(invalid);
+		}
 		else{
 			Feedback feedback = new Feedback(Integer.parseInt(rate), comment);
 			

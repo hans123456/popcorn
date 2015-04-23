@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS `days`;
+﻿DROP TABLE IF EXISTS `days`;
 
 	CREATE TABLE `days` (
 		`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -149,7 +149,7 @@ DROP TABLE IF EXISTS `appointments`;
 		`user_id` int(11) unsigned,
 		`doctor_id` int(11) unsigned,
 		PRIMARY KEY (`id`),
-		UNIQUE (`date`, `time_id`),
+		UNIQUE (`time_id`, `user_id`, `date`),
 		FOREIGN KEY fk_user(`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
 		FOREIGN KEY fk_doctor(`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;

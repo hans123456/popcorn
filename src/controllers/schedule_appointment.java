@@ -67,7 +67,7 @@ public class schedule_appointment extends HttpServlet {
 				request.setAttribute("invalid", "Success");
 				request.getRequestDispatcher("doctor_profile").forward(request, response);
 			}else {
-				request.setAttribute("invalid", "Someone already took the time");
+				request.setAttribute("invalid", "You already have an appointment with same date and time.");
 				request.getRequestDispatcher("doctor_profile").forward(request, response);
 			}
 			

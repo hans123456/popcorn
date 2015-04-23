@@ -443,6 +443,7 @@
 						} else {
 							$("#avail_"+<%=i.getTimeId()%>).toggleClass("blue white-text");
 							$("#avail_"+<%=i.getTimeId()%>).text('<%=i.getAppointeeName()%>');
+							$("#sched_"+<%=i.getTimeId()%>).remove();
 						}
 			<%
 					}
