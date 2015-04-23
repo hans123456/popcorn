@@ -9,9 +9,9 @@ public class ConnectionFactory {
 	private static ConnectionFactory instance = new ConnectionFactory();
 	String url = "jdbc:mysql://localhost/webapps";
 	String user = "root";
-	String password = "1234";
+	String password = "";
 	String driverClass = "com.mysql.jdbc.Driver"; 
-	 
+
 	//private constructor
 	private ConnectionFactory() {
 		try {

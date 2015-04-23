@@ -36,147 +36,110 @@
 	<div class="board">
 		<div class="container custom-container row center-align board-padding">
 			<div class="center-align col s12">
-				<div class="col l3 hide-on-med-and-down">
-					<div class="card">
-						<div class="card-content">
-							<p class="flow-text">Search</p>
-							<div class="input-field">
-								<input id="search" type="text" class="validate" name="search">
-								<label for="search">Doctor's Name (any)</label>
+				
+				<div class="col s12 l3">
+					
+					<ul class="collapsible" data-collapsible="accordion col s6">
+						<li>
+							<div class="collapsible-header active"><i class="mdi-action-search"></i>Search</div>
+							<div class="collapsible-body">
+								<div style="margin-top:30px;margin-left:10px;margin-right:10px;">
+									<div class="input-field">
+										<input id="search" type="text" class="validate" name="search">
+										<label for="search" class="black-text">Doctor's Name</label>
+									</div>
+									<div class="right-align">
+										<button type="submit" class="waves-effect waves-light btn white-text">Search</button>
+									</div>
+								</div>						
 							</div>
-							<div class="right-align">
-								<button type="submit" class="waves-effect waves-light btn white-text">Search</button>
+						</li>
+					</ul>
+					
+					<ul class="collapsible" data-collapsible="accordion col s6">
+						<li>
+							<div class="collapsible-header active"><i class="mdi-content-filter-list"></i>Filters</div>
+							<div class="collapsible-body">
+								<div style="margin-top:10px; margin-left:10px; margin-right:10px;">
+									<select id="specialization_selector" name="specialization" onchange="this.form.submit()" class="col m3">
+										<option value="" disabled selected>Specialization</option>
+										<option value="0">None</option>
+										<c:forEach items="${specializations}" var="specialization">
+									        <option value="${specialization.getId()}">${specialization.getName()}</option>
+									    </c:forEach>
+									</select>
+									<select id="city_selector" name="city" onchange="this.form.submit()" class="col s12 m3 l12">
+										<option value="" disabled selected>City</option>
+										<option value="0">None</option>
+										<c:forEach items="${cities}" var="city">
+									        <option value="${city.getId()}">${city.getName()}</option>
+									    </c:forEach>
+									</select>
+									<select id="hospital_selector" name="hospital" onchange="this.form.submit()" class="col m3">
+										<option value="" disabled selected>Hospital</option>
+										<option value="0">None</option>
+										<c:forEach items="${hospitals}" var="hospital">
+									        <option value="${hospital.getId()}">${hospital.getName()}</option>
+									    </c:forEach>
+									</select>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-content">
-							<p class="flow-text">Filters</p>
-							<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
-								<option value="" disabled selected>Specialization</option>
-								<option value="0">None</option>
-								<c:forEach items="${specializations}" var="specialization">
-							        <option value="${specialization.getId()}">${specialization.getName()}</option>
-							    </c:forEach>
-							</select>
-							<select id="city_selector" name="city" onchange="this.form.submit()">
-								<option value="" disabled selected>City</option>
-								<option value="0">None</option>
-								<c:forEach items="${cities}" var="city">
-							        <option value="${city.getId()}">${city.getName()}</option>
-							    </c:forEach>
-							</select>
-							<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
-								<option value="" disabled selected>Hospital</option>
-								<option value="0">None</option>
-								<c:forEach items="${hospitals}" var="hospital">
-							        <option value="${hospital.getId()}">${hospital.getName()}</option>
-							    </c:forEach>
-							</select>
-						</div>
-					</div>
+						</li>
+					</ul>
+
 				</div>
-				<div class="col l9 s12 list">
-					<div class="row">
-						<div class="col s12 hide-on-large-only">
-							<ul class="collapsible" data-collapsible="accordion">
-								<li>
-									<div class="collapsible-header"><i class="mdi-action-search"></i>Search</div>
-									<div class="collapsible-body"></div>
-								</li>
-								<li>
-									<div class="collapsible-header"><i class="mdi-content-filter-list"></i>Filters</div>
-									<div class="collapsible-body">
-										<div class="filter-small">
-											<div class="row">
-												<div class="col s12 m4">
-													<select id="specialization_selector" name="specialization" onchange="this.form.submit()">
-														<option value="" disabled selected>Specialization</option>
-														<option value="0">None</option>
-														<c:forEach items="${specializations}" var="specialization">
-													        <option value="${specialization.getId()}">${specialization.getName()}</option>
-													    </c:forEach>
-													</select>
-												</div>
-												<div class="col s12 m4">
-													<select id="city_selector" name="city" onchange="this.form.submit()">
-														<option value="" disabled selected>City</option>
-														<option value="0">None</option>
-														<c:forEach items="${cities}" var="city">
-													        <option value="${city.getId()}">${city.getName()}</option>
-													    </c:forEach>
-													</select>
-												</div>
-												<div class="col s12 m4">
-													<select id="hospital_selector" name="hospital" onchange="this.form.submit()">
-														<option value="" disabled selected>Hospital</option>
-														<option value="0">None</option>
-														<c:forEach items="${hospitals}" var="hospital">
-													        <option value="${hospital.getId()}">${hospital.getName()}</option>
-													    </c:forEach>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-								</li>
+				
+				<div class="col s12 l9 list row">
+					<div class="card-panel">
+					
+						<table class="hoverable center-align centered bordered">
+							<thead>
+								<tr>
+									<th data-field="id">Name</th>
+									<th data-field="name">Location</th>
+									<th data-field="price">Specialization</th>
+								</tr>
+							</thead>
+							<tbody id="list_of_doctors">
+								<c:forEach var="doctor" items="${doctorsList}">
+									<tr onclick="location.href='doctor_profile?did=${doctor.getId()}'">
+										<c:forEach items="<%=doctor_info_short_enum.values()%>" var="entry">
+										    <td>${doctor.getInformation(entry.toString())}</td>
+										</c:forEach>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						
+						<div class="row center">
+							<ul class="pagination col s12 center-align" style="width: auto">
+							
+								<c:if test="${currentPage le 1 || currentPage eq null}">
+									<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
+								</c:if>
+								<c:if test="${currentPage gt 1 && currentPage le noOfPages}">
+									<li class="waves-effect"><a href="view_doctors?page=${currentPage - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
+								</c:if>
+								
+								<c:forEach begin="1" end="${noOfPages}" var="i">
+					                <c:choose>
+					                    <c:when test="${currentPage eq i}">
+					                    	<li class="active">${i}</li>
+					                    </c:when>
+					                    <c:otherwise>
+					                    	<li class="waves-effect"><a href="view_doctors?page=${i}${parameter}">${i}</a></li>
+					                    </c:otherwise>
+					                </c:choose>
+					            </c:forEach>
+					            
+					            <c:if test="${currentPage lt noOfPages}">
+									<li class="waves-effect"><a href="view_doctors?page=${currentPage + 1}${parameter}"><i class="mdi-navigation-chevron-right"></i></a></li>
+								</c:if>
+								<c:if test="${currentPage ge noOfPages}">
+									<li class="disabled"><i class="mdi-navigation-chevron-right"></i></li>
+								</c:if>
+								
 							</ul>
-						</div>
-						<div class="col s12">
-							<div class="card-panel">
-								<div class="row">
-									<div class="col s12">
-										<table class="hoverable center-align centered bordered">
-											<thead>
-												<tr>
-													<th data-field="id">Name</th>
-													<th data-field="name">Location</th>
-													<th data-field="price">Specialization</th>
-												</tr>
-											</thead>
-											<tbody id="list_of_doctors">
-												<c:forEach var="doctor" items="${doctorsList}">
-													<tr onclick="location.href='doctor_profile?did=${doctor.getId()}'">
-														<c:forEach items="<%=doctor_info_short_enum.values()%>" var="entry">
-														    <td>${doctor.getInformation(entry.toString())}</td>
-														</c:forEach>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="row center">
-									<ul class="pagination col s12 center-align" style="width: auto">
-									
-										<c:if test="${currentPage le 1 || currentPage eq null}">
-											<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
-										</c:if>
-										<c:if test="${currentPage gt 1 && currentPage le noOfPages}">
-											<li class="waves-effect"><a href="view_doctors?page=${currentPage - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
-										</c:if>
-										
-										<c:forEach begin="1" end="${noOfPages}" var="i">
-							                <c:choose>
-							                    <c:when test="${currentPage eq i}">
-							                    	<li class="active">${i}</li>
-							                    </c:when>
-							                    <c:otherwise>
-							                    	<li class="waves-effect"><a href="view_doctors?page=${i}${parameter}">${i}</a></li>
-							                    </c:otherwise>
-							                </c:choose>
-							            </c:forEach>
-							            
-							            <c:if test="${currentPage lt noOfPages}">
-											<li class="waves-effect"><a href="view_doctors?page=${currentPage + 1}${parameter}"><i class="mdi-navigation-chevron-right"></i></a></li>
-										</c:if>
-										<c:if test="${currentPage ge noOfPages}">
-											<li class="disabled"><i class="mdi-navigation-chevron-right"></i></li>
-										</c:if>
-										
-									</ul>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -221,9 +184,6 @@
 		$(document).ready(function(){
 		
 			$('select').material_select();
-			$('.collapsible').collapsible({
-				accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-			});
 	
 			$('a[href^="#"]').on('click',function (e) {
 				e.preventDefault();
