@@ -113,39 +113,109 @@
 				<form class="col s12" action="register" method="post">
 					<div class="row">
 						<div class="input-field col m6 s12 black-text">
-							<input id="user_reg_first_name" name="user_reg_first_name" type="text" class="validate black-text">
-							<label for="user_reg_first_name" class="black-text">First Name</label>
+							<c:choose>
+								<c:when test="${user_reg_first_name == null }">
+									<input id="user_reg_first_name" name="user_reg_first_name" type="text" class="validate">
+									<label for="user_reg_first_name" class="black-text">First Name</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_first_name" name="user_reg_first_name" value="${user_reg_first_name}" type="text" class="validate">
+									<label for="user_reg_first_name" class="black-text">First Name</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_last_name" name="user_reg_last_name" type="text" class="validate black-text">
-							<label for="user_reg_last_name" class="black-text">Last Name</label>
+							<c:choose>
+								<c:when test="${user_reg_last_name == null }">
+									<input id="user_reg_last_name" name="user_reg_last_name" type="text" class="validate">
+									<label for="user_reg_last_name" class="black-text">Last Name</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_last_name" name="user_reg_last_name" value="${user_reg_last_name}" type="text" class="validate">
+									<label for="user_reg_last_name" class="black-text">Last Name</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_email" name="user_reg_email" type="email" class="validate black-text">
-							<label for="user_reg_email" class="black-text">Email</label>
+							<c:choose>
+								<c:when test="${user_reg_email == null }">
+									<input id="user_reg_email" name="user_reg_email" type="text" class="validate">
+									<label for="user_reg_email" class="black-text">Email</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_email" name="user_reg_email" value="${user_reg_email}" type="text" class="validate">
+									<label for="user_reg_email" class="black-text">Email</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_contact_number" name="user_reg_contact_number" type="text" class="validate black-text">
-							<label for="user_reg_contact_number" class="black-text">Contact Number</label>
+							<c:choose>
+								<c:when test="${user_reg_contact_number == null }">
+									<input id="user_reg_contact_number" name="user_reg_contact_number" type="text" class="validate">
+									<label for="user_reg_contact_number" class="black-text">Contact Number</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_contact_number" name="user_reg_contact_number" value="${user_reg_contact_number}" type="text" class="validate">
+									<label for="user_reg_contact_number" class="black-text">Contact Number</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_password" name="user_reg_password" type="password" class="validate black-text">
-							<label for="user_reg_password" class="black-text">Password</label>
+							<c:choose>
+								<c:when test="${user_reg_password == null}">
+									<input id="user_reg_password" name="user_reg_password" type="password" class="validate">
+									<label for="user_reg_password" class="black-text">Password</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_password" name="user_reg_password" value="${user_reg_password}" type="password" class="validate">
+									<label for="user_reg_password" class="black-text">Password</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12">
-							<input id="user_reg_confirm_password" name="user_reg_confirm_password" type="password" class="validate black-text">
-							<label for="user_reg_confirm_password" class="black-text">Confirm Password</label>
+							<c:choose>
+								<c:when test="${user_reg_confirm_password == null}">
+									<input id="user_reg_confirm_password" name="user_reg_confirm_password" type="password" class="validate">
+									<label for="user_reg_confirm_password" class="black-text">Confirm Password</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_confirm_password" name="user_reg_confirm_password" value="${user_reg_confirm_password}" type="password" class="validate">
+									<label for="user_reg_confirm_password" class="black-text">Confirm Password</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="input-field col m6 s12 select">
 							<select id="user_reg_gender" name="user_reg_gender">
-								<option value="" selected disabled>Gender</option>
-								<option value="M">Male</option>
-								<option value="F">Female</option>
+								<c:choose>
+									<c:when test="${user_reg_gender == null}">
+										<option value="" selected disabled>Gender</option>
+										<option value="M">Male</option>
+										<option value="F">Female</option>
+									</c:when>
+									<c:when test="${user_reg_gender == 'F'}">
+										<option value="" disabled>Gender</option>
+										<option value="M">Male</option>
+										<option value="F" selected>Female</option>
+									</c:when>
+									<c:otherwise>
+										<option value="" disabled>Gender</option>
+										<option value="M" selected>Male</option>
+										<option value="F">Female</option>
+									</c:otherwise>
+								</c:choose>
 							</select>
 						</div>
 						<div class="input-field col m6 s12">	
- 							<input id="user_reg_birthdate" name="user_reg_birthdate" type="date" class="datepicker black-text">
-							<label for="user_reg_birthdate" class="black-text">Birthdate</label>		
+ 							<c:choose>
+								<c:when test="${user_reg_birthdate == null}">
+ 									<input id="user_reg_birthdate" name="user_reg_birthdate" type="text" class="datepicker">
+									<label for="user_reg_birthdate" class="black-text">Birthdate</label>
+								</c:when>
+								<c:otherwise>
+									<input id="user_reg_birthdate" name="user_reg_birthdate" value="${user_reg_birthdate}" type="text" class="datepicker">
+									<label for="user_reg_birthdate" class="black-text">Birthdate</label>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<div class="right-align" style="float:right">
@@ -192,6 +262,22 @@
 			}
 		}
 	%>
+	
+	$("#user_reg_birthdate").ready(function(){
+		
+		var monthNames = [	"January", "February", "March", "April", "May", "June",
+		                  	"July", "August", "September", "October", "November", "December"	];
+		
+	    var date = new Date();
+	    var day = date.getDate();
+	    var month = date.getMonth();
+	    var year = date.getFullYear();
+	    
+	    var today = day + " " + monthNames[month] + ", " + year;       
+	    console.log(today);
+	    $("#user_reg_birthdate").val(today);
+	    
+	});
 		
 </script>
 
