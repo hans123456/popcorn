@@ -167,6 +167,10 @@
 </body>
 
 <script>
+	
+	<c:if test="${success!=null}">
+		alert("Successfully ${success}");
+	</c:if>
 		
 	$('.datepicker').pickadate({
 	   	selectMonths: true, // Creates a dropdown to control month

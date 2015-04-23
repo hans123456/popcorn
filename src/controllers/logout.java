@@ -1,6 +1,8 @@
 package controllers;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +30,9 @@ public class logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getSession().invalidate();
-		response.sendRedirect("success#Success");
+		ServletContext sc = request.getServletContext();
+		sc.setAttribute("success", "Logged Out");
+		response.sendRedirect("index#Home");
 	}
 
 }

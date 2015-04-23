@@ -3,6 +3,7 @@ package views;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,6 +54,12 @@ public class doctor_profile extends HttpServlet {
 				did = user.getDoctorId();
 			}
 		}
+		
+		ServletContext sc = request.getServletContext();
+		String key1 = "success";
+		
+		request.setAttribute(key1, sc.getAttribute(key1));
+		sc.removeAttribute(key1);
 		
 		if(did==0){
 			

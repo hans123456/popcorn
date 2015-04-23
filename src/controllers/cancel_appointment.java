@@ -66,10 +66,11 @@ public class cancel_appointment extends HttpServlet {
 			AppointmentsDAO appointmentDao = new AppointmentsDAO();
 
 			if(appointmentDao.deleteAppointment(apidint, reason)){
-				response.sendRedirect("success#Success");
-			} else{
-				response.sendRedirect("doctor_profile?did="+did);
-			}
+				sc.setAttribute("success", "Cancelled Appointment");
+			} 
+			
+			response.sendRedirect("doctor_profile?did="+did);
+
 		}
 			
 				

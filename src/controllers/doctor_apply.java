@@ -213,7 +213,8 @@ public class doctor_apply extends HttpServlet {
 				if(doctorApplyDao.registerDoctor(doctor, user)) {
 					//response.sendRedirect("success#Success");
 					if(doctorApplyDao.addSchedule(doctor, user)) {
-						response.sendRedirect("success#Success");
+						sc.setAttribute("success", "Registered");
+						response.sendRedirect("index#Home");
 					}
 					else {
 						doctorApplyDao.deleteDoctor(doctor, user);

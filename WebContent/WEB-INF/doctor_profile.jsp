@@ -492,6 +492,10 @@
 			alert("${invalid}");
 		</c:if>
 		
+		<c:if test="${success!=null}">
+			alert("Successfully ${success}");
+		</c:if>
+		
 		});
 		
 

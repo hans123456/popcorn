@@ -138,9 +138,10 @@ public class register extends HttpServlet {
 			user.setInformation(user_registration_enum.GENDER.getKey(), gender);
 			
 			UserDAO userDao = new UserDAO();
-			if(userDao.registerUser(user))			
-				response.sendRedirect("success#Success");
-			else
+			if(userDao.registerUser(user)){
+				sc.setAttribute("success", "Registered");
+				response.sendRedirect("index#Home");
+			}else
 				System.out.println("error");
 			//response.sendRedirect("index#Register");
 		}

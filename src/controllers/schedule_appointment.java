@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +41,7 @@ public class schedule_appointment extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		ServletContext sc = request.getServletContext();
 		String date = request.getParameter("date");
 		String time = request.getParameter("time");
 		String doctor_id = request.getParameter("did");
@@ -64,7 +66,7 @@ public class schedule_appointment extends HttpServlet {
 			System.out.println(result);
 			
 			if(result){
-				request.setAttribute("invalid", "Success");
+				sc.setAttribute("success", "Scheduled Appointment");
 				request.getRequestDispatcher("doctor_profile").forward(request, response);
 			}else {
 				request.setAttribute("invalid", "You already have an appointment with same date and time.");

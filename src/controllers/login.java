@@ -55,7 +55,8 @@ public class login extends HttpServlet {
 		
 		if(user!=null){ // check if account correct
 			request.getSession().setAttribute("user", user);
-			response.sendRedirect("success#Success");
+			sc.setAttribute("success", "Logged In");
+			response.sendRedirect("index#Home");
 		}else {
 			sc.setAttribute(invalid, "Invalid Email or Password");
 			response.sendRedirect("index#Login");

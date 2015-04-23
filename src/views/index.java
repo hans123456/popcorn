@@ -39,11 +39,14 @@ public class index extends HttpServlet {
 
 		String key1 = register.invalid;
 		String key2 = login.invalid;
+		String key3 = "success";
 		
 		request.setAttribute(key1, sc.getAttribute(key1));
 		request.setAttribute(key2, sc.getAttribute(key2));
+		request.setAttribute(key3, sc.getAttribute(key3));
 		sc.removeAttribute(key1);
 		sc.removeAttribute(key2);
+		sc.removeAttribute(key3);
 		
 		for(user_registration_enum i : user_registration_enum.values()){
 			String val = (String) sc.getAttribute(i.getKey());
