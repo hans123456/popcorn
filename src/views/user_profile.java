@@ -73,6 +73,12 @@ public class user_profile extends HttpServlet {
 							
 						}
 					}
+
+					if(pageCancelled<=0)
+						pageCancelled = 1;
+					
+					if(pageAppointment<=0)
+						pageAppointment = 1;
 					
 					request.setAttribute("appointments", dao.getUserAppointments((pageAppointment-1)*recordsPerPageAppointment, recordsPerPageAppointment,user.getId()));
 					request.setAttribute("cancelled_appointments", dao.getUserCancelledAppointments((pageCancelled-1)*recordsPerPageCancelled, recordsPerPageCancelled,user.getId()));
@@ -92,8 +98,8 @@ public class user_profile extends HttpServlet {
 					request.setAttribute("noOfPagesCancelled", noOfPagesCancelled);
 					request.setAttribute("currentPageCancelled", pageCancelled);
 					
-					request.setAttribute("noOfPagesAppointment ", noOfPagesAppointment );
-					request.setAttribute("currentPageAppointment ", pageAppointment );
+					request.setAttribute("noOfPagesAppointment", noOfPagesAppointment );
+					request.setAttribute("currentPageAppointment", pageAppointment );
 					
 					request.getRequestDispatcher("/WEB-INF/user_profile.jsp").forward(request, response);
 				}else if(appointee){
@@ -127,6 +133,12 @@ public class user_profile extends HttpServlet {
 					}
 				}
 				
+				if(pageCancelled<=0)
+					pageCancelled = 1;
+				
+				if(pageAppointment<=0)
+					pageAppointment = 1;
+				
 				request.setAttribute("appointments", dao.getUserAppointments((pageAppointment-1)*recordsPerPageAppointment, recordsPerPageAppointment,user.getId()));
 				request.setAttribute("cancelled_appointments", dao.getUserCancelledAppointments((pageCancelled-1)*recordsPerPageCancelled, recordsPerPageCancelled,user.getId()));
 
@@ -145,8 +157,8 @@ public class user_profile extends HttpServlet {
 				request.setAttribute("noOfPagesCancelled", noOfPagesCancelled);
 				request.setAttribute("currentPageCancelled", pageCancelled);
 				
-				request.setAttribute("noOfPagesAppointment ", noOfPagesAppointment );
-				request.setAttribute("currentPageAppointment ", pageAppointment );
+				request.setAttribute("noOfPagesAppointment", noOfPagesAppointment );
+				request.setAttribute("currentPageAppointment", pageAppointment );
 
 				request.getRequestDispatcher("/WEB-INF/user_profile.jsp").forward(request, response);
 			

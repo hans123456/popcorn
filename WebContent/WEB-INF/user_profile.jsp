@@ -95,10 +95,10 @@
 							<div class="row center">
 								<ul class="pagination col s12 center-align" style="width: auto">
 								
-									<c:if test="${currentPageAppointment == null || currentPageAppointment == 1}">
+									<c:if test="${currentPageAppointment eq null || currentPageAppointment le 1}">
 										<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
 									</c:if>
-									<c:if test="${currentPageAppointment > 1}">
+									<c:if test="${currentPageAppointment gt 1 && currentPageAppointment le noOfPagesAppointment}">
 										<li class="waves-effect"><a href="user_profile?page=${currentPageAppointment - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
 									</c:if>
 									
@@ -112,7 +112,7 @@
 						                    </c:otherwise>
 						                </c:choose>
 						            </c:forEach>
-						            
+									
 						            <c:if test="${currentPageAppointment lt noOfPagesAppointment}">
 										<li class="waves-effect"><a href="user_profile?page=${currentPageAppointment + 1}${parameter}"><i class="mdi-navigation-chevron-right"></i></a></li>
 									</c:if>
@@ -157,11 +157,11 @@
 							<div class="row center">
 								<ul class="pagination col s12 center-align" style="width: auto">
 								
-									<c:if test="${currentPageCancelled == 1 || currentPageCancelled == null}">
+									<c:if test="${currentPageCancelled le 1 || currentPageCancelled == null}">
 										<li class="disabled"><i class="mdi-navigation-chevron-left"></i></li>
 									</c:if>
-									<c:if test="${currentPageCancelled != 1}">
-										<li class="disabled"><a href="user_profile?page=${currentPageCancelled - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
+									<c:if test="${currentPageCancelled gt 1 && currentPageCancelled le noOfPagesCancelled}">
+										<li><a href="user_profile?page=${currentPageCancelled - 1}${parameter}"><i class="mdi-navigation-chevron-left"></i></a></li>
 									</c:if>
 									
 									<c:forEach begin="1" end="${noOfPagesCancelled}" var="i">

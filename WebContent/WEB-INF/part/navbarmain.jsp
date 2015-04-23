@@ -3,7 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<nav id="navbar" class="navbarmain-trans">
+<nav id="navbar" class="navbarmain-trans" style="box-shadow : 0px 0px 0px;">
 	<div class="nav-wrapper">	
 		<a href="index#Home" name="nav-text" class="brand-logo black-text">Senpai</a>
 		<a href="#" data-activates="mobile-demo" id="nav-burger" class="button-collapse grey-text text-darken-2"><i class="mdi-navigation-menu"></i></a>

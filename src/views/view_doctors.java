@@ -65,6 +65,9 @@ public class view_doctors extends HttpServlet {
 				
 			}
 		}
+
+		if(page<=0)
+			page = 1;
 		
 		ListOfDoctorsDAO dao = new ListOfDoctorsDAO();
 		List<Doctor> list = dao.listOfDoctors((page-1)*recordsPerPage, recordsPerPage, request.getParameterMap()); // add filter and search
