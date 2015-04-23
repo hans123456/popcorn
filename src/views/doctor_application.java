@@ -55,20 +55,22 @@ public class doctor_application extends HttpServlet {
 		}
 		
 		for(doctor_info_enum i : doctor_info_enum.values()){
-			if(!i.toString().equals("consultation")){
 				String val = (String) sc.getAttribute(i.toString());
 				if(val!=null){
 					request.setAttribute(i.toString(), val);
 					sc.removeAttribute(i.toString());
 				}
-			} else {
-				Map<String, List<String>> consultHours = (Map<String, List<String>>)sc.getAttribute(i.toString());
+		} 
+		
+		if(sc.getAttribute("consultation") != null) {
+			Map<String, List<String>> consultHours = (Map<String, List<String>>)sc.getAttribute("consultation");
 				if(consultHours!=null){
-					request.setAttribute(i.toString(), consultHours);
-					sc.removeAttribute(i.toString());
+				request.setAttribute("consultation", consultHours);
+				sc.removeAttribute("consultation");
 				}
-			}
 		}
+		
+		
 		
 		SpecializationsDAO speDao = new SpecializationsDAO();
 		CitiesDAO cityDao = new CitiesDAO();
