@@ -391,9 +391,8 @@
 			});
 			
 			$('.datepicker').pickadate({
-				selectMonths: false, // Creates a dropdown to control month
-				selectYears: 1, // Creates a dropdown of 15 years to control year
-				min: true,
+				selectMonths: true, // Creates a dropdown to control month
+				selectYears: 15, // Creates a dropdown of 15 years to control year
 			});
 	
 			$('a[href^="#"]').on('click',function (e) {
