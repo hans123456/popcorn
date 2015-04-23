@@ -130,8 +130,8 @@ public class AppointmentsDAO extends DAO{
 		
 		String query = "SELECT SQL_CALC_FOUND_ROWS " + a.ID + ", "+ 
 				"DATE_FORMAT(" + a.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + a.DOCTOR_ID + " FROM " + 
-				a.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +
-				" WHERE " + d.USER_ID + "=" + a.DOCTOR_ID + " and " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
+				a.TABLE_NAME + "," + u.TABLE_NAME + "," + t.TABLE_NAME +
+				" WHERE " + a.USER_ID + "=" + u.ID + " and " + t.ID + "=" + a.TIME_ID + " and " + 
 				a.DATE + " >= NOW() and " + u.ID + "=" + uid;
 		
 		query += " limit " + offset + ", " + noOfRecords;
@@ -231,8 +231,8 @@ public class AppointmentsDAO extends DAO{
 		String query = "SELECT SQL_CALC_FOUND_ROWS " + c.ID + ", "+ 
 				"DATE_FORMAT(" + c.DATE + ", '%d %M, %Y') as `date`, DATE_FORMAT("+ t.TIME + ",'%I%p') as `time`" + ", " + c.DOCTOR_ID + 
 				 ", " + c.REASON  + " FROM " + 
-				c.TABLE_NAME + "," + u.TABLE_NAME + "," + d.TABLE_NAME + "," + t.TABLE_NAME +
-				" WHERE " + d.USER_ID + "=" + c.DOCTOR_ID + " and " + c.USER_ID + "=" + u.ID + " and " + t.ID + "=" + c.TIME_ID + " and " + 
+				c.TABLE_NAME + "," + u.TABLE_NAME + "," + t.TABLE_NAME +
+				" WHERE " + c.USER_ID + "=" + u.ID + " and " + t.ID + "=" + c.TIME_ID + " and " + 
 				c.DATE + " >= NOW() and " + u.ID + "=" + uid;
 		
 		query += " limit " + offset + ", " + noOfRecords;

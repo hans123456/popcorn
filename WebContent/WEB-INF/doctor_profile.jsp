@@ -435,10 +435,15 @@
 						$("#tr"+<%=i.getTimeId()%>).attr("onclick", "location.href='user_profile?uid=" + <%=i.getAppointeeId()%> + "'");
 			<%
 					} else {
-			%>
-						$("#avail_"+<%=i.getTimeId()%>).toggleClass("red white-text");
-						$("#avail_"+<%=i.getTimeId()%>).text("NO");
-						$("#sched_"+<%=i.getTimeId()%>).remove();
+			%>			
+						if(<%=i.getAppointeeId()%> != "${sessionScope.user.getId()}"){
+							$("#avail_"+<%=i.getTimeId()%>).toggleClass("red white-text");
+							$("#avail_"+<%=i.getTimeId()%>).text("NO");
+							$("#sched_"+<%=i.getTimeId()%>).remove();
+						} else {
+							$("#avail_"+<%=i.getTimeId()%>).toggleClass("blue white-text");
+							$("#avail_"+<%=i.getTimeId()%>).text('<%=i.getAppointeeName()%>');
+						}
 			<%
 					}
 				}

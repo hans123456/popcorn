@@ -50,10 +50,10 @@ public class cancel_appointment extends HttpServlet {
 		
 		User user = (User) request.getSession().getAttribute("user");
 		
-		if (reason == null && !user.isDoctor()) {
-			reason = "I cancelled it.";
-		} else if (reason == null && user.isDoctor()) {
-			reason = "Doctor cancelled it with unknown reason";
+		if(Integer.parseInt(did) == user.getDoctorId()) {
+			reason = "Doctor cancelled it.";
+		} else {
+			reason = "I cancelled it";
 		}
 		
 		
